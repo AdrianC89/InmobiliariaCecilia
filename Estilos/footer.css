@@ -1,7 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+
+
 footer{
     width: 100%;
     display: flex;
-    height: 400px;
+    height: 700px;
     margin-top: 50px;
-    background-color: #333;
+    background-color: #3a3939;
 }
+
+.footer-content{
+    display: flex;
+    font-family: "Abel", sans-serif;;
+    color: #f4f4f4;
+    width: 500px;
+    height: 100%;
+    margin-left: 30px;
+    flex-direction: column;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+    font-size: 1.5rem;
+}
+
+#logo{
+    width: 80%;
+    height: 50%;
+    background: url('../imágenes/LogoCeci.png');
+    background-size: cover;
+    border-radius: 50px;
+    box-shadow: 15px 17px 15px #111;
+}
+
+ .column{
+    display: flex;
+    width: 100%;
+    height: 12%;
+    border: 2px solid #f4f4f4;
+    align-items: center;
+
+}
+
+.column img{
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+}
+
+.column h2{
+    margin-left: 20px;
+}
+
+
