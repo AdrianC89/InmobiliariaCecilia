@@ -1,0 +1,41 @@
+#encabezado {
+    padding: 0;
+    width: 100%;
+    background-color: rgba(246,240,233);
+    justify-content: center;
+    text-align: center;
+}
+#encabezado img {
+    max-width: 400px;
+}
+nav {
+    position: sticky;
+    background:rgb(64, 61, 58);
+    width: 100%;
+}
+nav ul{
+    list-style: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    display: inline-block;
+    padding: 1rem;
+    transition: transform 0.4s;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold; 
+}
+
+
+nav li:hover {
+    background: linear-gradient(rgb(64, 61, 58)20%,rgb(83, 79, 76));
+    border-radius: 0 0 20% 20%;
+    transform: translateY(7px);
+}

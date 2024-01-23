@@ -1,0 +1,10 @@
+@import url(encabezadonav.css);
+@import url(imagen-desc.css);
+
+* {
+    margin: 0;
+}
+.contenido {
+    margin-left: 15%;
+    margin-right: 15%;
+}
