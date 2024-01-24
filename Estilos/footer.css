@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
 
@@ -12,11 +12,12 @@ footer{
 
 .footer-content{
     display: flex;
-    font-family: "Abel", sans-serif;;
+    font-family: "Poppins", sans-serif;;
     color: #f4f4f4;
     width: 33.33%;
     height: 100%;
     flex-direction: column;
+    align-items: center;
 }
 
 .title{
@@ -25,17 +26,22 @@ footer{
     align-items: center;
     width: 100%;
     height: 20%;
-    font-size: 1.5rem;
-    text-shadow: 10px 10px 15px #000;
+    font-size: 1.2rem;
+    font-weight: lighter;
 }
 
 #logo{
     width: 70%;
-    height: 40%;
+    height: 50%;
     background: url('../imágenes/LogoCeci.png');
     background-size: cover;
     border-radius: 30px;
     box-shadow: 15px 17px 15px #111;
+}
+
+.descripcion{
+margin: 30px;
+
 }
 
  .column{
@@ -44,6 +50,8 @@ footer{
     height: 10%;
     border: 2px solid #f4f4f4;
     align-items: center;
+    justify-content: center;
+    overflow: hidden;
     transition: 0.5s ease;
 }
 
@@ -60,9 +68,63 @@ footer{
 }
 
 .column a{
+    text-decoration: none;
     margin-left: 20px;
     color: #f4f4f4;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
+.footer-content ul{
+    display: flex;
+    flex-direction: column;
+}
 
+.prop{
+    position: relative;
+    color: #989696;
+    text-decoration: none;
+    margin: 25px;
+    font-size: 1.2rem;
+    transition: 0.5s ease-in-out;
+}
+
+.prop::after{
+ content: "";
+ position: absolute;
+ height: 3px;
+ background-color: #ff3c78;
+ left: 0;
+ width: 0;
+ bottom: -10px;
+ transition: 0.5s ease-in-out;
+}
+.prop:hover{
+    color: #f4f4f4;
+}
+
+.prop:hover::after{
+    width: 100%;
+}
+
+@media only screen and (max-width: 1250px){
+    #logo{
+        width: 50%;
+        height: 30%;
+    }
+
+    .column a{
+        font-size: 0.8rem;
+    }
+    .column img{
+        width: 25px;
+        height: 25px;
+    }
+
+    .title{
+        font-size: 1rem;
+    }
+
+    .prop{
+        font-size: 1rem;
+    }
+}
