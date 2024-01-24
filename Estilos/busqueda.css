@@ -6,10 +6,18 @@
 
 #whatsapp{
     position: fixed;
-    width: 50px;
-    height: 50px;
-    background: url("");
-    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    background: url('../imágenes/social.png');
+    background-size: cover;
+    border-radius: 100%;
+    border: 2px solid #fff;
     top: 80%;
-    left: 95%;
+    left: 90%;
+    transition: 0.5s;
+}
+
+#whatsapp:hover{
+    cursor: pointer;
+    transform: scale(1.2);
 }
