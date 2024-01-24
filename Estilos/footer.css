@@ -85,6 +85,46 @@ margin: 30px;
     text-decoration: none;
     margin: 25px;
     font-size: 1.2rem;
+    transition: 0.5s ease-in-out;
 }
 
+.prop::after{
+ content: "";
+ position: absolute;
+ height: 3px;
+ background-color: #ff3c78;
+ left: 0;
+ width: 0;
+ bottom: -10px;
+ transition: 0.5s ease-in-out;
+}
+.prop:hover{
+    color: #f4f4f4;
+}
 
+.prop:hover::after{
+    width: 100%;
+}
+
+@media only screen and (max-width: 1250px){
+    #logo{
+        width: 50%;
+        height: 30%;
+    }
+
+    .column a{
+        font-size: 0.8rem;
+    }
+    .column img{
+        width: 25px;
+        height: 25px;
+    }
+
+    .title{
+        font-size: 1rem;
+    }
+
+    .prop{
+        font-size: 1rem;
+    }
+}
