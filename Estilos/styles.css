@@ -1,6 +1,7 @@
 @import url(encabezadonav.css);
 @import url(imagen-desc.css);
 @import url(footer.css);
+@import url(busqueda.css);
 
 * {
     margin: 0;

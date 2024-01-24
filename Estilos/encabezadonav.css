@@ -10,14 +10,18 @@
 }
 nav {
     position: sticky;
+    top:0;
     background:rgb(64, 61, 58);
     width: 100%;
+    z-index: 1000;
 }
 nav ul{
     list-style: none;
     width: 100%;
     display: flex;
     justify-content: center;
+    margin:0;
+    padding:0;
 }
 
 nav li {
