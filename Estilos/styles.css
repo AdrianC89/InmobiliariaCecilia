@@ -2,6 +2,7 @@
 @import url(imagen-desc.css);
 @import url(footer.css);
 @import url(busqueda.css);
+@import url(categorias.css);
 
 * {
     margin: 0;
@@ -16,3 +17,4 @@
 body{
     position: relative;
 }
+

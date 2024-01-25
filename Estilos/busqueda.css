@@ -6,8 +6,8 @@
 
 #whatsapp{
     position: fixed;
-    width: 100px;
-    height: 100px;
+    width: 85px;
+    height: 85px;
     background: url('../imágenes/social.png');
     background-size: cover;
     border-radius: 100%;
