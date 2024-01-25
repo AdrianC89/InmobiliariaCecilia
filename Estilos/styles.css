@@ -3,6 +3,7 @@
 @import url(footer.css);
 @import url(busqueda.css);
 @import url(categorias.css);
+@import url(propDestacadas.css);
 
 * {
     margin: 0;
