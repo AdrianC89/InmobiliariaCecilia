@@ -6,14 +6,14 @@
 
 #whatsapp{
     position: fixed;
-    width: 85px;
-    height: 85px;
+    width: 70px;
+    height: 70px;
     background: url('../imágenes/social.png');
     background-size: cover;
     border-radius: 100%;
     border: 2px solid #fff;
-    top: 80%;
-    left: 90%;
+    top: 85%;
+    left: 93%;
     transition: 0.5s;
 }
 
