@@ -4,6 +4,7 @@
 @import url(busqueda.css);
 @import url(categorias.css);
 @import url(propDestacadas.css);
+@import url(carrousel.css);
 
 * {
     margin: 0;
