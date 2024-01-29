@@ -19,9 +19,21 @@
     background-color: #5d5b5b;
     color: #f4f4f4;
     transition: 0.5s ease;
+    overflow: hidden;
+}
+
+.categoria img{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    filter: brightness(60%);
+}
+
+.categoria h1{
+    position: absolute;
 }
 
 .categoria:hover{
     cursor: pointer;
-    transform: scale(1.1);
+    filter: brightness(130%);
 }
