@@ -1,0 +1,16 @@
+{
+  "name": "inmbobiliaria_cecilia",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license":"ISC",
+  "scripts": {
+    "dev": "nodemon src/api/API-REST.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
