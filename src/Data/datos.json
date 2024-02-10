@@ -1,0 +1,34 @@
+{
+    "propiedades": [
+        {
+            "id": 1,
+            "tipo": "casa",
+            "ubicacion":"rivadavia",
+            "precio": 150,
+            "estado": "en venta"
+        },
+
+        {
+            "id": 2,
+            "tipo": "departamento",
+            "ubicacion": "colon",
+            "precio": 120,
+            "estado": "en alquiler"
+        },
+        {
+            "id": 3,
+            "tipo": "local",
+            "ubicacion": "9 de julio",
+            "precio": 200,
+            "estado": "en alquiler"
+
+        },
+        {
+            "id": 4,
+            "tipo": "terreno",
+            "ubicacion": "beiro",
+            "precio": 500,
+            "estado":"en venta"
+        }
+    ]
+}
