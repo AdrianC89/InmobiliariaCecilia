@@ -7,7 +7,7 @@ const port = 3000
 
 
 
-app.get('/',(req, res)=> fs.readFile('../Data/datos.json',function(err, data){
+app.get('/',(req, res)=> fs.readFile('src/Data/datos.json',function(err, data){
   if(err){
     res.status(500).send("error en busqueda de propiedades")
     console.log(err)
