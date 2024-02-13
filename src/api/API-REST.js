@@ -14,7 +14,8 @@ app.get('/',(req, res)=> fs.readFile('src/Data/datos.json',function(err, data){
     return
   }
   const datos = JSON.parse(data)
-  res.json(datos)
+  const jsonString = JSON.stringify(datos, null, 4) //para ajustar la vista del json
+  res.send(jsonString)
 }))
 
 app.listen(port, ()=>{
