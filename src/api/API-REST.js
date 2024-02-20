@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 
-
+//ZOTipHOiqCh0u053 contraseña de acceso db
 const app = express()
 const port = 3000
 
