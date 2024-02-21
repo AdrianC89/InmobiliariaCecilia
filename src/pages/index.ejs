@@ -1,0 +1,96 @@
+<%- include("templates/cabecera", {tituloWeb: 'Cecilia Gómez Inmobiliaria'}) %>
+
+    <div class="imagen-desc">
+        <h1>Cecilia Gómez Inmobiliaria</h1>
+    </div>
+    <section class="contenido">
+        <a href="https://wa.me/541161636666" target="_blank"> <button id="whatsapp"></button></a>
+    <div class="descripcion">
+        <h1>Bienvenidos</h1>
+        <p>Te invitamos a utilizar las herramientas de nuestra página web para encontrar el inmueble o servicio que estabas buscando, somos un staff con trayectoria que nos especificamos en <b>desarrollos inmobiliarios, la compra, venta, alquileres y tasaciones de casas, terrenos, depto,</b> entre otros en <b>Tandil.</b></p>
+
+        <p>No dudes en contactarte ante cualquier duda desde nuestra sección de contacto.</p></div>
+
+    <div class="busqueda">
+        <h2> &#128269;Lo que estés buscando está aquí</h2>
+    <form action="#" method="get" id="search-form">
+    
+        <select name="tipo-propiedad" id="tipo-propiedad" >
+            <option value="casa">Tipo de propiedad</option>
+            <option value="casa">Casa</option>
+            <option value="departamento">Departamento</option>
+            <option value="terreno">Terreno</option>
+        </select>
+        
+        <input type="text" name="ubicacion" id="ubicacion" placeholder="Ingrese la ubicación">
+        
+        <input type="number" name="precio-desde" id="precio-desde" placeholder="Precio Mínimo">
+
+        <input type="number" name="precio-hasta" id="precio-hasta" placeholder="Precio Máximo">
+
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+    </div>
+    <div class="categorias">
+     <div class="categoria"><img src="../imágenes/3 trucos para hacer que tu salón parezca más grande.jpeg" alt=""><h1>Departamentos</h1></div>
+     <div class="categoria"><img src="../imágenes/40 Times Designers Went All In And Designed The Most Fabulous Examples Of ‘Modern Architecture’.jpeg" alt=""><h1>Casas</h1></div>
+     <div class="categoria"><img src="../imágenes/Sexiest Vespa Workshops_ SIP Scootershop.jpeg" alt=""><h1>Locales</h1></div>
+     <div class="categoria"><img src="../imágenes/18 Places Giving Out Free Land in 2021 (Great For Homesteading).jpeg" alt=""><h1>Terrenos</h1></div>
+    </div>
+    <div class="destacadas">
+      <h1>Propiedades Destacadas</h1>
+      <div class="wrapper">
+        <i id="left" class="fa-solid fa-angle-left"></i>
+        <ul class="carousel">
+          <li class="card">
+            <div class="img"><img src="../imágenes/casa1.jpg" alt="img" draggable="false"></div>
+            <div class="text-container">
+            <h2>Casa 1</h2>
+            <span>Tandil</span>
+            </div>
+          </li>
+          <li class="card">
+            <div class="img"><img src="../imágenes/casa2.jpg" alt="img" draggable="false"></div>
+            <div class="text-container">
+            <h2>Casa 1</h2>
+            <span>Tandil</span>
+            </div>
+          </li>
+          <li class="card">
+            <div class="img"><img src="../imágenes/casa3.jpg" alt="img" draggable="false"></div>
+            <div class="text-container">
+              <h2>Casa 1</h2>
+              <span>Tandil</span>
+            </div>
+          </li>
+          <li class="card">
+            <div class="img"><img src="../imágenes/casa1.jpg" alt="img" draggable="false"></div>
+            <div class="text-container">
+              <h2>Casa 1</h2>
+              <span>Tandil</span>
+            </div>
+          </li>
+          <li class="card">
+            <div class="img"><img src="../imágenes/casa2.jpg" alt="img" draggable="false"></div>
+            <div class="text-container">
+            <h2>Casa 1</h2>
+            <span>Tandil</span>
+            </div>
+          </li>
+          <li class="card">
+            <div class="img"><img src="../imágenes/casa3.jpg" alt="img" draggable="false"></div>
+            <div class="text-container">
+            <h2>Casa 1</h2>
+            <span>Tandil</span>
+            </div>
+          </li>
+        </ul>
+        <i id="right" class="fa-solid fa-angle-right"></i>
+      </div>
+    </div>
+    <div class="mapa">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50767.53043601769!2d-59.142702099999994!3d-37.31952284999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95911f9b2733946f%3A0xceef2c76899c202d!2sTandil%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1706557829580!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    </section>
+<%- include("templates/footer") %>
