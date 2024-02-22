@@ -5,7 +5,8 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "dev": "nodemon src/api/REST-API.js"
+    "dev": "nodemon src/api/REST-API.js",
+    "start": "src/api/REST-API.js"
   },
   "dependencies": {
     "ejs": "^3.1.9",
