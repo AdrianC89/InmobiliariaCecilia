@@ -26,16 +26,14 @@ router.get('/propiedades', async (req, res) => {
   try {
     const propiedadesDB = await Propiedad.find()
     console.log(propiedadesDB)
+    res.render('../pages/propiedades.ejs', {
+      propiedades : propiedadesDB
+    });
   } catch (error) {
     console.log(error)
   }
 
-  res.render('../pages/propiedades.ejs', {
-    propiedades: [
-      { id: 'aahh', nombre: 'Casa de Campo', descripcion: 'Casa con 3 habitaciones en La Pastora', precio: 3000 },
-      { id: 'aahj', nombre: 'Casa de Ciudad', descripcion: 'Casa con 2 habitaciones en el Centro', precio: 5000 },
-    ]
-  });
+
 });
 
 
