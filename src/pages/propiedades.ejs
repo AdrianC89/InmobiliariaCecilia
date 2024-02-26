@@ -1,4 +1,39 @@
 <%- include("templates/cabecera", {tituloWeb: 'Propiedades'}) %>
+    <div>
 
-    <h1>Propiedades</h1>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+
+                <% if (propiedades.length > 0) { %>
+                    <% propiedades.forEach(propiedad => { %>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>@mdo</td>
+                          </tr>
+                          <% }); %>
+                          <% } else { %>
+                              <p>No hay propiedades disponibles.</p>
+                          <% } %>
+
+
+
+            </tbody>
+          </table>
+
+        
+    </div>
+ 
+
 <%- include("templates/footer") %>
