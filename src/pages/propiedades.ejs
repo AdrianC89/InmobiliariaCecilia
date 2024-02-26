@@ -16,10 +16,10 @@
                 <% if (propiedades.length > 0) { %>
                     <% propiedades.forEach(propiedad => { %>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <th scope="row"><%= propiedad.id %></th>
+                            <td><%= propiedad.nombre %></td>
+                            <td><%= propiedad.descripcion %></td>
+                            <td><%= propiedad.precio %></td>
                             <td>@mdo</td>
                           </tr>
                           <% }); %>
