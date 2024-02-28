@@ -1,0 +1,12 @@
+<%- include("templates/cabecera", {tituloWeb: 'Detalle de Propiedad' }) %>
+    <div class="contenido">
+        <h1>Detalle Propiedad</h1>
+        <% if (error) { %>
+            <p>
+                <%= mensaje %>
+            </p>
+            <a href="/propiedades">Volver a Propiedades</a>
+            <% } %>
+    </div>
+
+    <%- include("templates/footer") %>
