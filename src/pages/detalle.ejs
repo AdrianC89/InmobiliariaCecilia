@@ -7,6 +7,82 @@
             </p>
             <a href="/propiedades">Volver a Propiedades</a>
             <% } %>
+
+        <% if (!error) { %>
+
+            <form id="formularioEditar" data-id="<%= propiedad.id %>">
+                <input type="text"
+                name="nombre"
+                value="<%= propiedad.nombre %>"
+                id="nombreInput">
+                <input type="text"
+                name="nombre"
+                value="<%= propiedad.descripcion %>"
+                id="descripcionInput">
+                <input type="text"
+                name="nombre"
+                value="<%= propiedad.precio %>"
+                id="precioInput">
+
+                <button type="submit">Editar</button>
+            </form>
+            <hr>
+            <button id="btnEliminar" data-id="<%= propiedad.id %>">Eliminar</button>
+
+                    <% } %>
     </div>
 
     <%- include("templates/footer") %>
+
+<script>
+    const btnEliminar = document.querySelector('#btnEliminar')
+
+    btnEliminar.addEventListener('click', async() => {
+        console.log('me diste CLICK')
+        const id = btnEliminar.dataset.id
+        try {
+            const data = await fetch(`/propiedades/${id}`, {
+                method: 'delete'
+            })
+
+            const resp = await data.json()
+            
+            if(resp.estado){
+                window.location.href = '/propiedades'
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    })
+
+    const formularioEditar = document.querySelector('#formularioEditar')
+
+    formularioEditar.addEventListener('submit', async(e) => {
+        e.preventDefault()
+        
+        const nombre = document.querySelector('#nombreInput').value
+        const descripcion = document.querySelector('#descripcionInput').value
+        const precio = document.querySelector('#precioInput').value
+        const id = formularioEditar.dataset.id
+
+        try {
+            const data = await fetch (`/propiedades/${id}`, {
+                method: 'put',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body : JSON.stringify({nombre, descripcion, precio})
+            })
+
+            const resp = await data.json()
+
+            if(resp.estado){
+                window.location.href = '/propiedades'
+            } else{
+                console.log (resp)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    })
+</script>

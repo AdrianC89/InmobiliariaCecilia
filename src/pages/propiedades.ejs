@@ -21,7 +21,11 @@
                             <td><%= propiedad.nombre %></td>
                             <td><%= propiedad.descripcion %></td>
                             <td><%= propiedad.precio %></td>
-                            <td>@mdo</td>
+                            <td>
+                              <a href="propiedades/<%= propiedad.id %>">
+                                <button>Editar</button>
+                              </a>
+                            </td>
                           </tr>
                           <% }); %>
                           <% } else { %>

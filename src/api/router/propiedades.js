@@ -54,4 +54,49 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+router.delete('/:id', async (req, res) => {
+  const id = req.params.id
+
+  try {
+    const propiedadDB = await Propiedad.findByIdAndDelete({ _id:id })
+
+    if(propiedadDB){
+      res.json({
+        estado: true,
+        mensaje: 'Eliminado!!',
+      })
+    } else {
+      res.json({
+        estado: false,
+        mensaje: 'Falló eliminar!!',
+      })
+    }
+  } catch (error) {
+    console.log(error)
+}
+})
+
+router.put('/:id', async(req, res) => {
+
+  const id = req.params.id
+  const body = req.body
+  try {
+    
+    const propiedadDB = await Propiedad.findByIdAndUpdate(id, body, { useFindAndModify: false})
+    console.log(propiedadDB)
+
+    res.json({
+      estado: true,
+      mensaje: 'Editado'
+    })
+  } catch (error) {
+    console.log(error)
+
+    res.json({
+      estado: false,
+      mensaje: 'Fallamos!'
+    })
+  }
+})
+
 module.exports = router;
