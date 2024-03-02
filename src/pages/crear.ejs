@@ -1,7 +1,7 @@
 <%- include("templates/cabecera", {tituloWeb: 'Crear Propiedad'}) %>
-<div class="contenido">
+<div>
     <h1>Crear</h1>
-    <form action="/propiedades" method="post">
+    <form action="/propiedades" method="post" enctype="multipart/form-data">
         <input 
         type="text"
         placeholder="Agregar Nombre"
@@ -14,6 +14,9 @@
         type="text"
         placeholder="Agregar Precio"
         name="precio">
+        <input type="file"
+        placeholder="Agregar Imagen"
+        name="imagen">
 
     <button type="submit">Agregar</button>
     </form>

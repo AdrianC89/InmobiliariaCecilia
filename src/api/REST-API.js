@@ -2,7 +2,10 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const app = express()
+const app = express();
+const morgan = require('morgan');
+const multer = require('multer');
+const { v4: uuid } = require('uuid'); 
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
@@ -29,8 +32,17 @@ mongoose.connect(uri)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../pages'));
 
+//Middlewares
+app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../')));
-
+const storage = multer.diskStorage({
+    destination: path.join(__dirname, '../imagenes/upload'),
+    filename: (req, file, cb) => {
+        cb(null, uuid() + path.extname(file.originalname));
+    }
+    
+})
+app.use(multer({ storage: storage }).single('imagen'));
 
 //Rutas importadas
 app.use('/', require('./router/rutasWeb')); 

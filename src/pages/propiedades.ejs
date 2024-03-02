@@ -1,11 +1,12 @@
 <%- include("templates/cabecera", {tituloWeb: 'Propiedades'}) %>
-    <div class="contenido">
+    <div>
         <h1>CRUD PROPIEDADES</h1>
         <a href="/propiedades/crear"><button>Crear Nueva Propiedad</button></a>
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">id</th>
+                <th scope="col">ID</th>
+                <th scope="col">Imagen</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripción</th>
                 <th scope="col">Precio</th>
@@ -18,6 +19,7 @@
                     <% propiedades.forEach(propiedad => { %>
                         <tr>
                             <th scope="row"><%= propiedad.id %></th>
+                            <td><%= propiedad.imagen %></td>
                             <td><%= propiedad.nombre %></td>
                             <td><%= propiedad.descripcion %></td>
                             <td><%= propiedad.precio %></td>
