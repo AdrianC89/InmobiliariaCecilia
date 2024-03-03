@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const { unlink } = require('fs-extra');
 const Propiedad = require('../models/propiedades')
 
 router.get('/', async (req, res) => {
@@ -21,15 +22,18 @@ router.get('/crear', (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  const body = req.body
-  try {
+  const propiedad = new Propiedad();
+  propiedad.nombre = req.body.nombre;
+  propiedad.descripcion = req.body.descripcion;
+  propiedad.precio = req.body.precio;
+  propiedad.filename = req.file.filename;
+  propiedad.path = '/imagenes/upload/' + req.file.filename;
+  propiedad.originalname = req.file.originalname;
+  propiedad.size = req.file.size;
 
-    await Propiedad.create(body)
+  await propiedad.save();
 
-    res.redirect('/propiedades')
-  } catch (error) {
-    console.log(error)
-  }
+  res.redirect('/propiedades');
 })
 
 
@@ -58,8 +62,8 @@ router.delete('/:id', async (req, res) => {
   const id = req.params.id
 
   try {
-    const propiedadDB = await Propiedad.findByIdAndDelete({ _id:id })
-
+    const propiedadDB = await Propiedad.findByIdAndDelete({ _id:id });
+    await unlink(path.resolve('./src/' + propiedadDB.path));
     if(propiedadDB){
       res.json({
         estado: true,

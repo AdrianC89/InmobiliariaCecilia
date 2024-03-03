@@ -38,7 +38,6 @@
     const btnEliminar = document.querySelector('#btnEliminar')
 
     btnEliminar.addEventListener('click', async() => {
-        console.log('me diste CLICK')
         const id = btnEliminar.dataset.id
         try {
             const data = await fetch(`/propiedades/${id}`, {
