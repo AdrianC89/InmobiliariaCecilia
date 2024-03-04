@@ -1,7 +1,8 @@
 <%- include("templates/cabecera", {tituloWeb: 'Propiedades'}) %>
     <div>
         <h1>CRUD PROPIEDADES</h1>
-        <a href="/propiedades/crear"><button>Crear Nueva Propiedad</button></a>
+        <a href="/propiedades/crear">
+          <button type="button" class="btn btn-dark">Crear Nueva Propiedad</button></a>
         <table class="table">
             <thead>
               <tr>
@@ -31,7 +32,8 @@
                           </tr>
                           <% }); %>
                           <% } else { %>
-                              <p>No hay propiedades disponibles.</p>
+                              <p class="lead">No hay propiedades disponibles.</p>
+                              
                           <% } %>
 
 
