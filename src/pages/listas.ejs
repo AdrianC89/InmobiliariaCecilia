@@ -1,0 +1,51 @@
+<%- include("templates/cabecera", {tituloWeb: 'listas-propiedades'}) %>
+                <div class="contenido-body">
+                    <nav id="nav-prop">
+                        <h1>Propiedades</h1>
+                    </nav>
+                <div class="contenido-prop">
+                    <div class="descripcion">
+                        <% let N = propiedades.length %>
+                        <h2>resultados de propiedades: <%= N %></h2>
+                    </div>
+                    <div class="contenedor">
+                        <% let inicio = 0 %>
+                        <% let fin = 5 %>
+                        <% if (N > 0) { %>
+                            <% if (N > 5) { %>
+                             <% let nodos = propiedades.slice(inicio,fin) %>
+                             <% nodos.forEach(propiedad => { %>
+                                <div class="prop-card">
+                                 <img src="<%= propiedad.path %>" alt="">
+                                 <div class="Titulo"><h3><%= propiedad.nombre %></h3></div>
+                                 <div class="Precio"><h3><%= propiedad.precio %></h3></div>
+                                 <div class="prop-descripcion"><p><%= propiedad.descripcion %></p></div>
+                                </div>
+                               <% }); %>
+                           <% }else { %>
+                            <% propiedades.forEach(propiedad => { %>
+                                <div class="prop-card">
+                                 <img src="<%= propiedad.path %>" alt="">
+                                 <div class="Titulo"><h3><%= propiedad.nombre %></h3></div>
+                                 <div class="Precio"><h3><%= propiedad.precio %></h3></div>
+                                 <div class="prop-descripcion"><p><%= propiedad.descripcion %></p></div>
+                                </div>
+                               <% }); %>
+                             <% } %>
+                            
+                        <% } else { %>
+                         <% alert("No hay propiedades disponibles") %>
+                                      
+                        <% } %>
+
+                       
+                    </div>
+                </div>
+
+                          <div class="button-section">
+                            <button id="back">Anterior</button>
+                            <button id="next">Siguiente</button>
+                        </div>
+                </div>
+<%- include("templates/footer") %>
+    

@@ -21,6 +21,17 @@ router.get('/crear', (req, res) => {
   res.render('crear')
 })
 
+router.get('/listas', async(req, res) => {
+  try {
+    const propiedadesDB = await Propiedad.find()
+    res.render('listas', {
+      propiedades: propiedadesDB
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 router.post('/', async (req, res) => {
   const propiedad = new Propiedad();
   propiedad.nombre = req.body.nombre;

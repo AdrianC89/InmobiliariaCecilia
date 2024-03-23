@@ -8,14 +8,14 @@
 #encabezado img {
     max-width: 400px;
 }
-nav {
+#encabezado-nav {
     position: sticky;
     top:0;
     background:rgb(64, 61, 58);
     width: 100%;
     z-index: 1000;
 }
-nav ul{
+#encabezado-nav ul{
     list-style: none;
     width: 100%;
     display: flex;
@@ -24,21 +24,21 @@ nav ul{
     padding:0;
 }
 
-nav li {
+#encabezado-nav li {
     color: whitesmoke;
     display: inline-block;
     padding: 1rem;
     transition: transform 0.4s;
 }
 
-nav a {
+#encabezado-nav a {
     text-decoration: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold; 
 }
 
 
-nav li:hover {
+#encabezado-nav li:hover {
     color: rgb(227,99,59);
     background: linear-gradient(rgb(64, 61, 58)20%,rgb(83, 79, 76));
     border-radius: 0 0 20% 20%;

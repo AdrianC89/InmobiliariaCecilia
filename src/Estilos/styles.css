@@ -5,6 +5,7 @@
 @import url(categorias.css);
 @import url(propDestacadas.css);
 @import url(carrousel.css);
+@import url(prop.css);
 
 * {
     margin: 0;
