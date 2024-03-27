@@ -16,6 +16,17 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/listas', async (req, res) => {
+  try {
+    const propiedadesDB = await Propiedad.find();
+    res.render('listas', {
+      propiedades: propiedadesDB
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 // Ruta para mostrar el formulario de creación de propiedades
 router.get('/crear', (req, res) => {
   res.render('crear');
