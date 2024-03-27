@@ -2,50 +2,67 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const { unlink } = require('fs-extra');
-const Propiedad = require('../models/propiedades')
+const Propiedad = require('../models/propiedades');
 
+// Ruta para obtener todas las propiedades
 router.get('/', async (req, res) => {
   try {
-    const propiedadesDB = await Propiedad.find()
+    const propiedadesDB = await Propiedad.find();
     res.render('../pages/propiedades.ejs', {
       propiedades: propiedadesDB
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-
-
 });
 
+// Ruta para mostrar el formulario de creación de propiedades
 router.get('/crear', (req, res) => {
-  res.render('crear')
-})
+  res.render('crear');
+});
 
-router.get('/listas', async(req, res) => {
-  try {
-    const propiedadesDB = await Propiedad.find()
-    res.render('listas', {
-      propiedades: propiedadesDB
-    });
-  } catch (error) {
-    console.log(error)
-  }
-})
-
+// Ruta para procesar la creación de una nueva propiedad
 router.post('/', async (req, res) => {
-  const propiedad = new Propiedad();
-  propiedad.nombre = req.body.nombre;
-  propiedad.descripcion = req.body.descripcion;
-  propiedad.precio = req.body.precio;
-  propiedad.filename = req.file.filename;
-  propiedad.path = '/imagenes/upload/' + req.file.filename;
-  propiedad.originalname = req.file.originalname;
-  propiedad.size = req.file.size;
+  try {
+    const propiedad = new Propiedad({
+      descripcion: req.body.descripcion,
+      precio: req.body.precio,
+      numeroRegistro: req.body.numeroRegistro,
+      tipoOperacion: req.body.tipoOperacion,
+      tipoPropiedad: req.body.tipoPropiedad,
+      direccion: req.body.direccion,
+      direccionBusq: req.body.direccionBusq,
+      coordenada1: req.body.coordenada1,
+      coordenada2: req.body.coordenada2,
+      moneda: req.body.moneda,
+      dormitorios: req.body.dormitorios,
+      banos: req.body.banos,
+      garage: req.body.garage,
+      metro2prop: req.body.metro2prop,
+      metro2terr: req.body.metro2terr,
+      credito: req.body.credito,
+      video: req.body.video
+    });
 
-  await propiedad.save();
+    if (req.files) {
+      req.files.forEach(file => {
+        propiedad.imagenes.push({
+          filename: file.filename,
+          path: '/imagenes/upload/' + file.filename,
+          originalname: file.originalname,
+          size: file.size
+        });
+      });
+    }
 
-  res.redirect('/propiedades');
-})
+    await propiedad.save();
+
+    res.redirect('/propiedades');
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error al crear la propiedad');
+  }
+});
 
 
 router.get('/:id', async (req, res) => {

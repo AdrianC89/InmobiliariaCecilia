@@ -42,7 +42,7 @@ const storage = multer.diskStorage({
     }
     
 })
-app.use(multer({ storage: storage }).single('imagen'));
+app.use(multer({ storage: storage }).array('imagenes', 8));
 
 //Rutas importadas
 app.use('/', require('./router/rutasWeb')); 

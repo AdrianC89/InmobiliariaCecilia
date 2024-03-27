@@ -1,25 +1,130 @@
-<%- include("templates/cabecera", {tituloWeb: 'Crear Propiedad'}) %>
-<div>
-    <h1>Crear</h1>
-    <form action="/propiedades" method="post" enctype="multipart/form-data">
-        <input 
-        type="text"
-        placeholder="Agregar Nombre"
-        name="nombre">
-        <input  
-        type="text"
-        placeholder="Agregar Descripción"
-        name="descripcion">
-        <input 
-        type="text"
-        placeholder="Agregar Precio"
-        name="precio">
-        <input type="file"
-        placeholder="Agregar Imagen"
-        name="imagen">
+<%- include("templates/cabecera", {tituloWeb: 'Crear Propiedad' }) %>
+    <div>
+        <h1>Crear</h1>
+        <form class="CrearProp" action="/propiedades" method="post" enctype="multipart/form-data">
+            <input type="text" placeholder="Agregar numero de Registro" name="numeroRegistro" required>
 
-    <button type="submit">Agregar</button>
-    </form>
-</div>
-    
-<%- include("templates/footer") %>
+            <input type="text" placeholder="Agregar Descripción" name="descripcion" required>
+            <input type="text" placeholder="Agregar Descripción" name="descripcion" required>
+            <input type="text" placeholder="Agregar Precio" name="precio" value="Consultar" required>
+
+            <!-- Campo para cargar las imágenes, permitiendo múltiples selecciones -->
+            <input type="file" placeholder="Agregar Imagen" name="imagenes" multiple required>
+
+            <!-- Campo para la dirección, con autocompletar de Google Maps -->
+            <input type="text" placeholder="Dirección" name="direccion" id="direccionInput" autocomplete="off" required>
+
+            <!-- Campos ocultos para las coordenadas -->
+            <input type="text" name="coordenada1" id="coordenada1" required>
+            <input type="text" name="coordenada2" id="coordenada2" required>
+
+
+            <!-- Selección del tipo de operación -->
+            <select name="tipoOperacion" required>
+                <option value="" disabled selected>Selecciona el tipo de operación</option>
+                <option value="venta">Venta</option>
+                <option value="alquiler">Alquiler</option>
+                <option value="alquiler temporario">Alquiler Temporario</option>
+                <option value="venta en otra localidad">Venta en otra localidad</option>
+                <option value="remate">Remate</option>
+                <option value="permuta">Permuta</option>
+            </select>
+
+            <!-- Selección del tipo de propiedad -->
+            <select name="tipoPropiedad" required>
+                <option value="" disabled selected>Selecciona el tipo de propiedad</option>
+                <option value="casa">Casa</option>
+                <option value="departamento/duplex">Departamento/Dúplex</option>
+                <option value="quinta">Quinta</option>
+                <option value="lote">Lote</option>
+                <option value="campo">Campo</option>
+                <option value="galpon">Galpón</option>
+                <option value="local/oficina">Local/Oficina</option>
+                <option value="cabañas/hoteles/otros">Cabañas/Hoteles/Otros</option>
+                <option value="fondo de comercio">Fondo de Comercio</option>
+                <option value="cocheras">Cocheras</option>
+            </select>
+
+            <!-- Selección de la moneda -->
+            <select name="moneda" required>
+                <option value="" disabled selected>Selecciona la moneda</option>
+                <option value="peso">Peso</option>
+                <option value="dolar">Dólar</option>
+            </select>
+
+            <!-- Selección del número de dormitorios -->
+            <select name="dormitorios" required>
+                <option value="" disabled selected>Selecciona la cantidad de dormitorios</option>
+                <option value="Sin dormitorio">Sin Dormitorio</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+
+            <!-- Selección del número de baños -->
+            <select name="banos" required>
+                <option value="" disabled selected>Selecciona la cantidad de baños</option>
+                <option value="Sin baño">Sin Baño</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <!-- Selección del número de garage -->
+            <select name="garage" required>
+                <option value="" disabled selected>Selecciona la cantidad de garages</option>
+                <option value="No tiene garage">No tiene Garage</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+
+            <!-- Campo para los metros cuadrados de la propiedad -->
+            <input type="text" placeholder="Metros cuadrados de la propiedad" name="metro2prop" required>
+
+            <!-- Campo para los metros cuadrados del terreno -->
+            <input type="text" placeholder="Metros cuadrados del terreno" name="metro2terr" required>
+
+            <!-- Selección de la aptitud para crédito -->
+            <select name="credito" required>
+                <option value="" disabled selected>Selecciona si es apta para crédito hipotecario</option>
+                <option value="Apta para credito hipotecario">Apta para Crédito Hipotecario</option>
+                <option value="No apta para credito hipotecario">No Apta para Crédito Hipotecario</option>
+            </select>
+
+            <!-- Campo para cargar el video de YouTube -->
+            <input type="text" placeholder="Enlace del video de YouTube" name="video">
+
+            <button type="submit">Agregar</button>
+        </form>
+    </div>
+
+    <script>
+        // Inicializar el autocompletado de Google Maps para el campo de dirección
+        function initAutocomplete() {
+            const input = document.getElementById('direccionInput');
+            const options = {
+                types: ['geocode'] // Limitar la búsqueda a direcciones
+            };
+            const autocomplete = new google.maps.places.Autocomplete(input, options);
+            // Listener para detectar el cambio en la dirección seleccionada
+            autocomplete.addListener('place_changed', function() {
+                const place = autocomplete.getPlace();
+                // Rellenar automáticamente los campos de coordenadas
+                document.getElementById('coordenada1').value = place.geometry.location.lat();
+                document.getElementById('coordenada2').value = place.geometry.location.lng();
+            });
+        }
+        </script>
+        <!-- Incluir la API de Google Maps -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVK2JXZTFXnHRmXtwqV6BwcX8ZCcYfBO0&sensor=false&libraries=places&callback=initAutocomplete" async defer></script>
+
+    <%- include("templates/footer") %>
