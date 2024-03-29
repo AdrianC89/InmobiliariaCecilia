@@ -4,97 +4,29 @@
                         <h1>Propiedades</h1>
                     </nav>
                 <div class="contenido-prop">
-                    <div class="descripcion">
-                        <% let N = propiedades.length %>
-                        <h2>resultados de propiedades: <%= N %></h2>
+                    <div class="descripcion"> 
                     </div>
                     <div class="contenedor">
-                        <% let inicio = 0 %>
-                        <% let fin = 3 %>
-                        <% function CreatePropiedad(array){ %>
-                                <% array.forEach(propiedad => { %>
+                                <% propiedades.forEach(propiedad => { %>
                                     <div class="prop-card">
-                                     <!--<img src="<%= propiedad.path %>" alt=""> -->
+                                     <img src="<%= propiedad.path %>" alt=""> 
                                      <div class="Titulo"><h3><%= propiedad.tipoPropiedad %></h3></div>
                                      <div class="Precio"><h3><%= propiedad.precio %></h3></div>
                                      <div class="prop-descripcion"><p><%= propiedad.descripcion %></p></div>
                                     </div>
-                             <% }); %>
-                     <% } %>    
-                        
-                        <% if(N > 3){ %>
-                            <% let nodos = propiedades.slice(inicio, fin) %>
-                            <% CreatePropiedad(nodos) %>
-
-                      <%  } else{ %>
-                        <% CreatePropiedad(propiedades) %>
-                     <% } %>
-                     
+                             <% }); %>  
                      
                     </div>
                 </div>
 
                           <div class="button-section">
-                            <button id="back" onclick="siguiente()">Anterior</button>
+                            <button id="back">Anterior</button>
                             
-                            <button id="next" onclick="anterior()">Siguiente</button>
+                            <button id="next">Siguiente</button>
                             
                         </div>
                 </div>
-                <script>
-                    const contenedor = document.querySelector(".contenedor")
-                    const PropContainer = document.querySelector(".contenido-prop")
-                    const CreatePropiedad = '<% CreatePropiedad %>'
-                    let next = document.getElementById("next")
-                    let back = document.getElementById("back")
-                    let N = '<%= N %>'
-                    let propiedades = '<% propiedades %>'
-                    let inicio = 0
-                    let fin = 3
-
-                            function CleanContainer(container){
-                                while(container.firstChild){
-                                  container.removeChild(container.firstChild)
-                                }
-                              }
-                              
-                              next.addEventListener("click", ()=>{
-                                back.style.visibility = "visible"
-                                if(inicio<(N-3)){
-                                  inicio = inicio + 3
-                                  if((N-inicio)>= inicio){
-                                    fin = inicio + 3
-                                    let nodos = propiedades.slice(inicio, fin)
-                                    CleanContainer(contenedor)
-                                    CreatePropiedad(nodos)
-                                    PropContainer.scrollTop = 0
-                                    console.log("inicio: ",inicio);
-                                    console.log("fin: ",fin);
-                                  }else{
-                                    let nodos = propiedades.slice(inicio, N)
-                                    CleanContainer(contenedor)
-                                    CreatePropiedad(nodos)
-                                    PropContainer.scrollTop = 0
-                                    console.log("inicio: ",inicio);
-                                    console.log("fin: ",fin);
-                                  }
-                                }
-                              })
-                              
-                              back.addEventListener("click", ()=>{
-                                if(inicio > 0){
-                                  inicio = inicio - 3
-                                  fin = inicio + 3
-                                  let nodos = propiedades.slice(inicio, fin)
-                                  CleanContainer(contenedor)
-                                  CreatePropiedad(nodos)
-                                  PropContainer.scrollTop = 0
-                                  console.log("inicio: ",inicio);
-                                  console.log("fin: ",fin);
-                                }
-                                
-                              })
-                </script>
+                <script src="../Funciones/listas.js"></script>
                 
                 
 <%- include("templates/footer") %>
