@@ -9,7 +9,7 @@
                     <div class="contenedor">
                                 <% propiedades.forEach(propiedad => { %>
                                     <div class="prop-card">
-                                     <img src="<%= propiedad.path %>" alt=""> 
+                                     <img src="<%= propiedad.imagenes[0].path %>" alt=""> 
                                      <div class="Titulo"><h3><%= propiedad.tipoPropiedad %></h3></div>
                                      <div class="Precio"><h3><%= propiedad.precio %></h3></div>
                                      <div class="prop-descripcion"><p><%= propiedad.descripcion %></p></div>
