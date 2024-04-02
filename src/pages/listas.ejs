@@ -4,14 +4,18 @@
                         <h1>Propiedades</h1>
                     </nav>
                 <div class="contenido-prop">
-                    <div class="descripcion"> 
+                    <div class="descripcion-prop"> 
                     </div>
                     <div class="contenedor">
                                 <% propiedades.forEach(propiedad => { %>
                                     <div class="prop-card">
                                      <img src="<%= propiedad.imagenes[0].path %>" alt=""> 
                                      <div class="Titulo"><h3><%= propiedad.tipoPropiedad %></h3></div>
-                                     <div class="Precio"><h3><%= propiedad.precio %></h3></div>
+                                     <div class="Precio"><h3><% if (propiedad.moneda==='Dolar' ) { %>
+                                                              US$<%= propiedad.precio %>
+                                                            <% } else { %>
+                                                            $<%= propiedad.precio %>
+                                                            <% } %></h3></div>
                                      <div class="prop-descripcion"><p><%= propiedad.descripcion %></p></div>
                                     </div>
                              <% }); %>  

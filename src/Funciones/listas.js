@@ -1,7 +1,7 @@
 const contenedor = document.querySelector(".contenedor")
 const PropContainer = document.querySelector(".contenido-prop")
 let propCard = document.querySelectorAll(".prop-card")
-let descripcion = document.querySelector(".descripcion")
+let descripcion = document.querySelector(".descripcion-prop")
 let h2Descripcion = document.createElement('h2')
 descripcion.appendChild(h2Descripcion)
 let next = document.getElementById("next")
