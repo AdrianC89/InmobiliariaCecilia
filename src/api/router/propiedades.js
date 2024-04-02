@@ -5,7 +5,7 @@ const { unlink } = require('fs-extra');
 const Propiedad = require('../models/propiedades');
 
 // Ruta para obtener todas las propiedades
-router.get('/', async (req, res) => {
+router.get('/form', async (req, res) => {
   try {
     const propiedadesDB = await Propiedad.find();
     res.render('../pages/propiedades.ejs', {
@@ -16,10 +16,10 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/listas', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const propiedadesDB = await Propiedad.find();
-    res.render('listas', {
+    res.render('../pages/listas', {
       propiedades: propiedadesDB
     });
   } catch (error) {
