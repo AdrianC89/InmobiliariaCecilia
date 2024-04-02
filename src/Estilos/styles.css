@@ -6,6 +6,7 @@
 @import url(propDestacadas.css);
 @import url(carrousel.css);
 @import url(prop.css);
+@import url(crudprop.css);
 
 
 * {
@@ -35,4 +36,6 @@ height: 600px;
     width: 100%;
     height: 100%;
 }
+
+
 

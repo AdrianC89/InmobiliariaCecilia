@@ -18,7 +18,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">N° Registro</th>
+            <th scope="col">N°</th>
             <th scope="col">Imágenes</th>
             <th scope="col">Tipo de Propiedad</th>
             <th scope="col">Descripción</th>
@@ -36,26 +36,25 @@
                 <td>
                   <div id="carousel<%= propiedad._id %>" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                      <% propiedad.imagenes.forEach((imagen, index)=> { %>
+                      <% propiedad.imagenes.forEach((imagen, index) => { %>
                         <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                          <div class="d-flex justify-content-center align-items-center">
-                            <img src="<%= imagen.path %>" class="img-fluid" alt="<%= imagen.originalname %>">
-                          </div>
+                          <img src="<%= imagen.path %>" class="d-block mx-auto img-fluid carousel-image" alt="<%= imagen.originalname %>">
                         </div>
-                        <% }); %>
+                      <% }); %>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel<%= propiedad._id %>"
-                      data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carousel<%= propiedad._id %>"
-                      data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
+                    <% if (propiedad.imagenes.length > 1) { %>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carousel<%= propiedad._id %>" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carousel<%= propiedad._id %>" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                    <% } %>
                   </div>
                 </td>
+                
                 <td>
                   <%= propiedad.tipoPropiedad %>
                 </td>
