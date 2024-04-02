@@ -51,14 +51,14 @@
     padding: auto;
 }
 
-.descripcion{
+.descripcion-prop{
     display: flex;
     align-items: center;
     width: 100%;
     height: 5rem;
 }
 
-.descripcion h2{
+.descripcion-prop h2{
     margin-left: 15%;
     margin-top: 50px;
 }
