@@ -33,21 +33,19 @@
 }
 
 .contenido-prop{
+    width: 100%;
     display: flex;
     flex-direction: column;
-    width: 80%;
-    background-size: cover;
-    background-color: rgb(241, 236, 236);
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 500px;
+    align-items: center ;
+    justify-content: center;
+    background-color: #f4f4f4;
 }
 
 .contenedor{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 80%;
     padding: auto;
 }
 
@@ -73,15 +71,20 @@
   margin: 3%;
   overflow: hidden;
 }
+.svg{
+    width: 1.2rem;
+    height: 1.2rem;
+    margin: 10px;
+}
 
-.prop-card img{
+ .img{
     height: 100%;
     position: absolute;
     left: 0;
     width: 40%;
 }
 
-.prop-card .Titulo{
+ .Titulo{
     position: absolute;
     left: 50%;
     top: 20%;
@@ -89,7 +92,7 @@
 
 }
 
-.prop-card .Precio{
+ .Precio{
     position: absolute;
     left: 85%;
     top: 5%;
@@ -97,12 +100,21 @@
     
 }
 
-.prop-card .prop-descripcion{
+
+ .prop-descripcion{
+    display: flex;
+    align-items: center;
     position: absolute;
     left: 45%;
     top: 50%;
-    color: gray;
+    font-size: 1rem;
 }
+ .icono{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
 
  .button-section{
  display: flex;

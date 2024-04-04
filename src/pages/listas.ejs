@@ -9,14 +9,18 @@
                     <div class="contenedor">
                                 <% propiedades.forEach(propiedad => { %>
                                     <div class="prop-card">
-                                     <img src="<%= propiedad.imagenes[0].path %>" alt=""> 
-                                     <div class="Titulo"><h3><%= propiedad.tipoPropiedad %></h3></div>
+                                     <img class="img" src="<%= propiedad.imagenes[0].path %>" alt="">
+                                     <div class="Titulo"><h3><%= propiedad.descripcion %></h3></div>
                                      <div class="Precio"><h3><% if (propiedad.moneda==='Dolar' ) { %>
                                                               US$<%= propiedad.precio %>
                                                             <% } else { %>
                                                             $<%= propiedad.precio %>
                                                             <% } %></h3></div>
-                                     <div class="prop-descripcion"><p><%= propiedad.descripcion %></p></div>
+                                     <div class="prop-descripcion">
+                                      <div class="icono"><img class="svg" src="../imagenes/iconos/cama-alternativa.svg" alt=""><p><%= propiedad.dormitorios %></p></div>
+                                      <div class="icono"><img class="svg" src="../imagenes/iconos/ducha.svg" alt=""><p><%= propiedad.banos %></p></div>
+                                      <div class="icono"><img class="svg" src="../imagenes/iconos/regla-triangulo.svg" alt=""><p><%= propiedad.metro2terr %></p></div>
+                                    </div>
                                     </div>
                              <% }); %>  
                      

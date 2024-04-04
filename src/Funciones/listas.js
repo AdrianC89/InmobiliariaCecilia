@@ -36,6 +36,12 @@ if(N > 5){
              propiedad.style.display = "none"
             })
      }
+     function scrollToTop() {
+        if (document.body.scrollTop != 0 || document.documentElement.scrollTop != 0) {
+            document.body.scrollTop = 0; // Para navegadores que no son Firefox
+            document.documentElement.scrollTop = 0; // Para Firefox
+        }
+    }
                   
     next.addEventListener("click", ()=>{
     back.style.visibility = "visible"
@@ -46,14 +52,14 @@ if(N > 5){
             let nodos = propiedades.slice(inicio, fin)
             CleanContainer()
             ShowListas(nodos)
-            PropContainer.scrollTop = 0
+            scrollToTop()
             console.log("inicio: ",inicio);
             console.log("fin: ",fin);
             }else{
             let nodos = propiedades.slice(inicio, N)
             CleanContainer()
             ShowListas(nodos)
-            PropContainer.scrollTop = 0
+            scrollToTop()
             console.log("inicio: ",inicio);
             console.log("fin: ",fin);
              }
@@ -67,7 +73,7 @@ if(N > 5){
         let nodos = propiedades.slice(inicio, fin)
         CleanContainer()
         ShowListas(nodos)
-        PropContainer.scrollTop = 0
+        scrollToTop()
         console.log("inicio: ",inicio);
         console.log("fin: ",fin);
         }
