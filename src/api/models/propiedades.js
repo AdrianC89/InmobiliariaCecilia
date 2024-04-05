@@ -1,12 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const imagenSchema = new Schema({
-    filename: { type: String },
-    path: { type: String },
-    originalname: { type: String },
-    size: { type: Number }
-});
 
 const propiedadesSchema = new Schema({
     numeroRegistro: { type: String },
@@ -17,7 +11,7 @@ const propiedadesSchema = new Schema({
     coordenada1: { type: String },
     coordenada2: { type: String },
     descripcion: { type: String },
-    precio: { type: String },
+    precio: { type: String , default: "Consultar"},
     moneda: { type: String, enum: ['Peso', 'Dolar'] },
     dormitorios: { type: String, enum: ['Sin dormitorio', '1', '2', '3', '4', '5', '6', '7', '8'] },
     banos: { type: String, enum: ['Sin baño', '1', '2', '3', '4', '5'] },
@@ -26,7 +20,12 @@ const propiedadesSchema = new Schema({
     metro2terr: { type: Number },
     credito: { type: String, enum: ['Apta para credito hipotecario', 'No apta para credito hipotecario'] },
     video: { type: String },
-    imagenes: [imagenSchema] // Campo array para las imágenes
+    imagenes: [{
+        filename: { type: String },
+        path: { type: String },
+        originalname: { type: String },
+        size: { type: Number }
+    }] // Campo array para las imágenes
 });
 //creando el Modelo
 const Propiedad = mongoose.model('propiedades', propiedadesSchema);

@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const { unlink } = require('fs-extra');
 const Propiedad = require('../models/propiedades');
+const { uploadImage } = require ('../cloudinary.js');
 
 // Ruta para obtener todas las propiedades
 router.get('/form', async (req, res) => {
@@ -55,17 +56,18 @@ router.post('/', async (req, res) => {
       video: req.body.video
     });
 
-    if (req.files) {
-      req.files.forEach(file => {
-        propiedad.imagenes.push({
-          filename: file.filename,
-          path: '/imagenes/upload/' + file.filename,
-          originalname: file.originalname,
-          size: file.size
-        });
-      });
-    }
-
+    if (req.body && req.files && req.files.image) {
+      const files = Array.isArray(req.files.image) ? req.files.image : [req.files.image];
+      for (const file of files) {
+          const result = await uploadImage(file.tempFilePath);
+          propiedad.imagenes.push({
+              filename: result.original_filename,
+              path: result.secure_url,
+              originalname: result.original_filename,
+              size: result.bytes
+          });
+      }
+  }
     await propiedad.save();
 
     res.redirect('/propiedades');
