@@ -10,17 +10,25 @@
                                 <% propiedades.forEach(propiedad => { %>
                                     <div class="prop-card">
                                      <img class="img" src="<%= propiedad.imagenes[0].path %>" alt="">
+                                     <div class="estado"><p>En <%= propiedad.tipoOperacion %></p></div>
                                      <div class="Titulo"><h3><%= propiedad.descripcion %></h3></div>
                                      <div class="Precio"><h3><% if (propiedad.moneda==='Dolar' ) { %>
                                                               US$<%= propiedad.precio %>
                                                             <% } else { %>
                                                             $<%= propiedad.precio %>
                                                             <% } %></h3></div>
+                                     <div class="ubicacion-prop"><img class="svg" src="../imagenes/iconos/marcador.svg" alt=""><p><%= propiedad.direccion %></p></div>
                                      <div class="prop-descripcion">
-                                      <div class="icono"><img class="svg" src="../imagenes/iconos/cama-alternativa.svg" alt=""><p><%= propiedad.dormitorios %></p></div>
-                                      <div class="icono"><img class="svg" src="../imagenes/iconos/ducha.svg" alt=""><p><%= propiedad.banos %></p></div>
+                                      <% if(propiedad.dormitorios > 0){ %>
+                                        <div class="icono"><img class="svg" src="../imagenes/iconos/cama-alternativa.svg" alt=""><p><%= propiedad.dormitorios %></p></div>
+                                     <% } %>
+                                      <% if(propiedad.banos > 0){ %>
+                                        <div class="icono"><img class="svg" src="../imagenes/iconos/ducha.svg" alt=""><p><%= propiedad.banos %></p></div>
+                                     <% } %>
                                       <div class="icono"><img class="svg" src="../imagenes/iconos/regla-triangulo.svg" alt=""><p><%= propiedad.metro2terr %></p></div>
+                                      <p>Tipo: <%= propiedad.tipoPropiedad %></p>
                                     </div>
+                                    <button class="detalle">Detalle</button>
                                     </div>
                              <% }); %>  
                      
