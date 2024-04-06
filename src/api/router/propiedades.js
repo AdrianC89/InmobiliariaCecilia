@@ -28,6 +28,36 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/:tipo', async (req, res) => {
+  const tipo = req.params.tipo
+  try {
+    const propiedadesDB = await Propiedad.find({ tipoPropiedad: tipo });
+    res.render('../pages/listas', {
+      propiedades: propiedadesDB
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get('/detalle/:id', async (req, res) => {
+  const id = req.params.id
+  try {
+    const propiedadDB = await Propiedad.findOne({ numeroRegistro: id })
+    res.render('detalleLista', {
+      propiedad: propiedadDB,
+      error: false
+    })
+
+  } catch (error) {
+    console.log(error)
+    res.render('detalleLista', {
+      error: true,
+      mensaje: 'No se encuentra el ID seleccionado'
+    })
+  }
+})
+
 // Ruta para mostrar el formulario de creación de propiedades
 router.get('/crear', (req, res) => {
   res.render('crear');
@@ -78,7 +108,7 @@ router.post('/', async (req, res) => {
 });
 
 
-router.get('/:id', async (req, res) => {
+router.get('/form/:id', async (req, res) => {
 
   const id = req.params.id
   try {
@@ -99,7 +129,7 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/form/:id', async (req, res) => {
   const id = req.params.id
 
   try {
@@ -121,7 +151,7 @@ router.delete('/:id', async (req, res) => {
 }
 })
 
-router.put('/:id', async(req, res) => {
+router.put('/form/:id', async(req, res) => {
 
   const id = req.params.id
   const body = req.body

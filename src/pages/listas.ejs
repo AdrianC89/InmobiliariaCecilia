@@ -1,4 +1,4 @@
-<%- include("templates/cabecera", {tituloWeb: 'listas-propiedades'}) %>
+<%- include("templates/cabecera", {tituloWeb: 'propiedades'}) %>
                 <div class="contenido-body">
                     <nav id="nav-prop">
                         <h1>Propiedades</h1>
@@ -28,7 +28,7 @@
                                       <div class="icono"><img class="svg" src="../imagenes/iconos/regla-triangulo.svg" alt=""><p><%= propiedad.metro2terr %></p></div>
                                       <p>Tipo: <%= propiedad.tipoPropiedad %></p>
                                     </div>
-                                    <button class="detalle">Detalle</button>
+                                   <a href="/propiedades/detalle/<%= propiedad.numeroRegistro %>"><button class="detalle">Detalle</button></a> 
                                     </div>
                              <% }); %>  
                      
