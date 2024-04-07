@@ -15,4 +15,16 @@ cloudinary.config({
    })
 }
 
-module.exports = { uploadImage };
+async function deleteImages(publicIds) {
+  try {
+      // Eliminar las imágenes de Cloudinary utilizando los public_ids proporcionados
+      for (const publicId of publicIds) {
+          await cloudinary.uploader.destroy(publicId);
+      }
+      console.log('Imágenes eliminadas de Cloudinary con éxito.');
+  } catch (error) {
+      console.error('Error al eliminar imágenes de Cloudinary:', error);
+  }
+}
+
+module.exports = { uploadImage, deleteImages };

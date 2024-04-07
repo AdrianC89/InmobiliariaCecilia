@@ -3,7 +3,8 @@ const router = express.Router();
 const path = require('path');
 const { unlink } = require('fs-extra');
 const Propiedad = require('../models/propiedades');
-const { uploadImage } = require ('../cloudinary.js');
+const { uploadImage, deleteImages } = require('../cloudinary.js');
+const fs = require('fs');
 
 // Ruta para obtener todas las propiedades
 router.get('/form', async (req, res) => {
@@ -94,13 +95,23 @@ router.post('/', async (req, res) => {
               filename: result.original_filename,
               path: result.secure_url,
               originalname: result.original_filename,
-              size: result.bytes
+              size: result.bytes,
+              public_id: result.public_id
           });
+
+          await fs.unlink(file.tempFilePath, (err) => {
+            if (err) {
+                console.error('Error al eliminar el archivo:', err);
+                // Manejar el error adecuadamente
+            } else {
+                console.log('Archivo eliminado correctamente');
+            }
+        });
       }
   }
     await propiedad.save();
 
-    res.redirect('/propiedades');
+    res.redirect('propiedades/form');
   } catch (error) {
     console.log(error);
     res.status(500).send('Error al crear la propiedad');
@@ -129,27 +140,43 @@ router.get('/form/:id', async (req, res) => {
   }
 })
 
-router.delete('/form/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   const id = req.params.id
 
   try {
-    const propiedadDB = await Propiedad.findByIdAndDelete({ _id:id });
-    await unlink(path.resolve('./src/' + propiedadDB.path));
-    if(propiedadDB){
+    // Encuentra y elimina la propiedad de la base de datos
+    const propiedadDB = await Propiedad.findByIdAndDelete({ _id: id });
+
+    // Verifica si la propiedad fue encontrada y eliminada correctamente
+    if (propiedadDB) {
+      // Extrae los public_ids de las imágenes asociadas a la propiedad
+      const publicIds = propiedadDB.imagenes.map(imagen => imagen.public_id);
+      
+      // Elimina las imágenes asociadas a la propiedad en Cloudinary
+      await deleteImages(publicIds);
+      
+      // Envía una respuesta exitosa
       res.json({
         estado: true,
-        mensaje: 'Eliminado!!',
-      })
+        mensaje: 'Propiedad eliminada junto con sus imágenes.',
+      });
     } else {
-      res.json({
+      // Envía una respuesta indicando que la propiedad no se encontró
+      res.status(404).json({
         estado: false,
-        mensaje: 'Falló eliminar!!',
-      })
+        mensaje: 'La propiedad no fue encontrada.',
+      });
     }
   } catch (error) {
-    console.log(error)
-}
-})
+    // Manejo de errores
+    console.error('Error al eliminar la propiedad:', error);
+    res.status(500).json({
+      estado: false,
+      mensaje: 'Error al eliminar la propiedad.',
+    });
+  }
+});
+
 
 router.put('/form/:id', async(req, res) => {
 

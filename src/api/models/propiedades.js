@@ -24,7 +24,8 @@ const propiedadesSchema = new Schema({
         filename: { type: String },
         path: { type: String },
         originalname: { type: String },
-        size: { type: Number }
+        size: { type: Number },
+        public_id: { type: String}
     }] // Campo array para las imágenes
 });
 //creando el Modelo
