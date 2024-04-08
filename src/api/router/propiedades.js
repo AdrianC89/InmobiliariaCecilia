@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/tipo/:tipo', async (req, res) => {
+router.get('/propiedad/:tipo', async (req, res) => {
   const tipo = req.params.tipo
   try {
     const propiedadesDB = await Propiedad.find({ tipoPropiedad: tipo });
