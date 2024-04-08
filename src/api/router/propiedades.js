@@ -8,6 +8,7 @@ const fs = require('fs');
 
 // Ruta para obtener todas las propiedades
 
+
 router.get('/', async (req, res) => {
   try {
     const propiedadesDB = await Propiedad.find();
