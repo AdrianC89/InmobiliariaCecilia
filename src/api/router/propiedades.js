@@ -34,7 +34,7 @@ router.get('/tipo/:tipo', async (req, res) => {
 router.get('/detalle/:id', async (req, res) => {
   const id = req.params.id
   try {
-    const propiedadDB = await Propiedad.findOne({ numeroRegistro: id })
+    const propiedadDB = await Propiedad.findOne({ _id: id })
     res.render('detalleLista', {
       propiedad: propiedadDB,
       error: false

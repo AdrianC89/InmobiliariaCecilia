@@ -18,19 +18,27 @@
     flex-direction: column;
 }
 
-.contenido-body #nav-prop{
+ #nav-prop{
     display: flex;
+    position: relative;
     width: 80%;
     height: 5rem;
     align-items: center;
-    color: #f4f4f4;
-    background-color: rgb(104, 100, 100);
+    color: #333;
+    font-size: 2rem;
     margin-top: 2rem;
 }
 
-.contenido-body #nav-prop h1{
-    margin: 30px;
+#nav-prop::after{
+ content: "";
+ position: absolute;
+ height: 1rem;
+ background: linear-gradient(to right,rgb(189, 105, 45), orange 80%,#f4f4f4);
+ left: 0;
+ width: 50%;
+ bottom: -10px;
 }
+
 
 .contenido-prop{
     width: 100%;
@@ -86,9 +94,9 @@
 
  .Titulo{
     position: absolute;
-    left: 45%;
+    left: 42%;
     top: 30%;
-    color: rgb(4, 17, 81);
+    color: indigo;
 
 }
 
@@ -97,7 +105,7 @@
     left:45%;
     top: 10%;
     padding: 5px;
-    background-color: rgb(4, 17, 81);
+    background-color: indigo;
     color: #f4f4f4;
     text-align: center;
     font-size: 1rem;
@@ -107,7 +115,7 @@
     display: flex;
     position: absolute;
     align-items: center;
-    left: 45%;
+    left: 42%;
     top: 45%
 }
 
@@ -115,7 +123,7 @@
     position: absolute;
     left: 85%;
     top: 5%;
-    color: rgb(4, 17, 81);
+    color: indigo;
     
 }
 
@@ -124,7 +132,7 @@
     display: flex;
     align-items: center;
     position: absolute;
-    left: 45%;
+    left: 40%;
     top: 60%;
     font-size: 1rem;
 }
@@ -141,7 +149,7 @@
     top: 80%;
     padding: 5px 10px;
     color: #f4f4f4;
-    background-color: rgb(4, 17, 81);
+    background-color: indigo;
     font-size: 1.3rem;
     cursor: pointer;
 }
@@ -162,7 +170,8 @@
     box-shadow: 5px 5px 10px rgb(197, 191, 191);
     border: none;
     background-color: #f4f4f4;
-    color: rgb(4, 17, 81);
+    color: blueviolet;
+    border: none;
 }
 
 .button-section button:hover{
