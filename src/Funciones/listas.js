@@ -65,7 +65,7 @@ if(N > 5){
              }
           }
     })
-                  
+           
     back.addEventListener("click", ()=>{
         if(inicio > 0){
         inicio = inicio - 5

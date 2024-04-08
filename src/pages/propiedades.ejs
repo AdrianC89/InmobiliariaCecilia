@@ -11,7 +11,7 @@
 
   <div class="container">
     <h1 class="mt-5 mb-4">CRUD PROPIEDADES</h1>
-    <a href="/propiedades/crear" class="btn btn-primary mb-4">Crear Nueva Propiedad</a>
+    <a href="/propiedades/form/crear" class="btn btn-primary mb-4">Crear Nueva Propiedad</a>
     <div class="table-responsive">
       <table class="table">
         <thead>
@@ -67,7 +67,7 @@
                           <% } %>
                 </td>
                 <td>
-                  <a href="/propiedades/<%= propiedad.id %>" class="btn btn-primary">Editar</a>
+                  <a href="/propiedades/form/<%= propiedad.id %>" class="btn btn-primary">Editar</a>
                 </td>
               </tr>
               <% }); %>

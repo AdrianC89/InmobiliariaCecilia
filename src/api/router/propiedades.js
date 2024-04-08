@@ -7,16 +7,6 @@ const { uploadImage, deleteImages } = require('../cloudinary.js');
 const fs = require('fs');
 
 // Ruta para obtener todas las propiedades
-router.get('/form', async (req, res) => {
-  try {
-    const propiedadesDB = await Propiedad.find();
-    res.render('../pages/propiedades.ejs', {
-      propiedades: propiedadesDB
-    });
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 router.get('/', async (req, res) => {
   try {
@@ -29,11 +19,11 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:tipo', async (req, res) => {
+router.get('/tipo/:tipo', async (req, res) => {
   const tipo = req.params.tipo
   try {
     const propiedadesDB = await Propiedad.find({ tipoPropiedad: tipo });
-    res.render('../pages/listas', {
+    res.render('listas', {
       propiedades: propiedadesDB
     });
   } catch (error) {
@@ -59,8 +49,21 @@ router.get('/detalle/:id', async (req, res) => {
   }
 })
 
+//rutas del administrador
+
+router.get('/form', async (req, res) => {
+  try {
+    const propiedadesDB = await Propiedad.find();
+    res.render('../pages/propiedades.ejs', {
+      propiedades: propiedadesDB
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 // Ruta para mostrar el formulario de creación de propiedades
-router.get('/crear', (req, res) => {
+router.get('/form/crear', (req, res) => {
   res.render('crear');
 });
 
@@ -140,7 +143,7 @@ router.get('/form/:id', async (req, res) => {
   }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/form/:id', async (req, res) => {
   const id = req.params.id
 
   try {

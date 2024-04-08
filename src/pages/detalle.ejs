@@ -40,14 +40,14 @@
     btnEliminar.addEventListener('click', async() => {
         const id = btnEliminar.dataset.id
         try {
-            const data = await fetch(`/propiedades/${id}`, {
+            const data = await fetch(`/propiedades/form/${id}`, {
                 method: 'delete'
             })
 
             const resp = await data.json()
             
             if(resp.estado){
-                window.location.href = '/propiedades'
+                window.location.href = '/propiedades/form'
             }
         } catch (error) {
             console.log(error)
@@ -65,7 +65,7 @@
         const id = formularioEditar.dataset.id
 
         try {
-            const data = await fetch (`/propiedades/${id}`, {
+            const data = await fetch (`/propiedades/form/${id}`, {
                 method: 'put',
                 headers: {
                     'Content-Type': 'application/json'

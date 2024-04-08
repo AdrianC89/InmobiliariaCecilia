@@ -7,7 +7,8 @@
                     <div class="descripcion-prop"> 
                     </div>
                     <div class="contenedor">
-                                <% propiedades.forEach(propiedad => { %>
+                                 <% if(propiedades.length > 0){ %>
+                                  <% propiedades.forEach(propiedad => { %>
                                     <div class="prop-card">
                                      <img class="img" src="<%= propiedad.imagenes[0].path %>" alt="">
                                      <div class="estado"><p>En <%= propiedad.tipoOperacion %></p></div>
@@ -31,6 +32,12 @@
                                    <a href="/propiedades/detalle/<%= propiedad.numeroRegistro %>"><button class="detalle">Detalle</button></a> 
                                     </div>
                              <% }); %>  
+                               <% }else{ %>
+                                <tr>
+                                  <td colspan="6" class="text-center">No hay propiedades disponibles.</td>
+                                </tr>
+                              <% } %>
+                                
                      
                     </div>
                 </div>
