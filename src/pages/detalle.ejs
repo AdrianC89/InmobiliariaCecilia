@@ -1,38 +1,150 @@
-<%- include("templates/cabecera", {tituloWeb: 'Detalle de Propiedad' }) %>
-    <div>
-        <h1>Detalle Propiedad</h1>
-        <% if (error) { %>
-            <p>
-                <%= mensaje %>
-            </p>
-            <a href="/propiedades">Volver a Propiedades</a>
-            <% } %>
+<!DOCTYPE html>
+<html lang="es">
 
-        <% if (!error) { %>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <!-- Otros estilos específicos de la página -->
+</head>
 
-            <form id="formularioEditar" data-id="<%= propiedad.id %>">
-                <input type="text"
-                name="nombre"
-                value="<%= propiedad.nombre %>"
-                id="nombreInput">
-                <input type="text"
-                name="nombre"
-                value="<%= propiedad.descripcion %>"
-                id="descripcionInput">
-                <input type="text"
-                name="nombre"
-                value="<%= propiedad.precio %>"
-                id="precioInput">
+<%- include("templates/cabecera", {tituloWeb: 'Editar Propiedad' }) %>
+<div>
+    <h1>Editar Propiedad</h1>
+    <% if (error) { %>
+        <p>
+            <%= mensaje %>
+        </p>
+        <a href="/propiedades">Volver a Propiedades</a>
+    <% } %>
 
-                <button type="submit">Editar</button>
-            </form>
-            <hr>
-            <button id="btnEliminar" data-id="<%= propiedad.id %>">Eliminar</button>
+    <% if (!error) { %>
 
-                    <% } %>
-    </div>
+        <form id="formularioEditar" enctype="multipart/form-data" data-id="<%= propiedad.id %>">
 
-    <%- include("templates/footer") %>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="descripcion" name="descripcion" value="<%= propiedad.descripcion %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección Visible</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" value="<%= propiedad.direccion %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="text" class="form-control" id="precio" name="precio" value="<%= propiedad.precio %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="imagenes" class="form-label">Imágenes</label>
+                <input type="file" class="form-control" id="imagenes" name="image" multiple required>
+                <button type="button" id="agregarImagen" class="btn btn-primary">Agregar más imágenes</button>
+            </div>
+            <!-- Campos ocultos para guardar las imágenes actuales -->
+            <% propiedad.imagenes.forEach(imagen => { %>
+                <input type="hidden" name="imagenActual" value="<%= imagen.public_id %>">
+            <% }); %>
+            
+            <div class="mb-3">
+                <label for="tipoOperacion" class="form-label">Tipo de Operación</label>
+                <select class="form-select" id="tipoOperacion" name="tipoOperacion" required>
+                    <option value="Venta" <% if (propiedad.tipoOperacion === 'Venta') { %> selected <% } %>>Venta</option>
+                    <option value="Alquiler" <% if (propiedad.tipoOperacion === 'Alquiler') { %> selected <% } %>>Alquiler</option>
+                    <option value="Alquiler temporario" <% if (propiedad.tipoOperacion === 'Alquiler temporario') { %> selected <% } %>>Alquiler Temporario</option>
+                    <option value="Venta en otra localidad" <% if (propiedad.tipoOperacion === 'Venta en otra localidad') { %> selected <% } %>>Venta en otra localidad</option>
+                    <option value="Remate" <% if (propiedad.tipoOperacion === 'Remate') { %> selected <% } %>>Remate</option>
+                    <option value="Permuta" <% if (propiedad.tipoOperacion === 'Permuta') { %> selected <% } %>>Permuta</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="tipoPropiedad" class="form-label">Tipo de Propiedad</label>
+                <select class="form-select" id="tipoPropiedad" name="tipoPropiedad" required>
+                    <option value="Casa" <% if (propiedad.tipoPropiedad === 'Casa') { %> selected <% } %>>Casa</option>
+                    <option value="Departamento/Duplex" <% if (propiedad.tipoPropiedad === 'Departamento/Duplex') { %> selected <% } %>>Departamento/Dúplex</option>
+                    <option value="Quinta" <% if (propiedad.tipoPropiedad === 'Quinta') { %> selected <% } %>>Quinta</option>
+                    <option value="Lote" <% if (propiedad.tipoPropiedad === 'Lote') { %> selected <% } %>>Lote</option>
+                    <option value="Campo" <% if (propiedad.tipoPropiedad === 'Campo') { %> selected <% } %>>Campo</option>
+                    <option value="Galpon" <% if (propiedad.tipoPropiedad === 'Galpon') { %> selected <% } %>>Galpón</option>
+                    <option value="Local/Oficina" <% if (propiedad.tipoPropiedad === 'Local/Oficina') { %> selected <% } %>>Local/Oficina</option>
+                    <option value="Cabañas/Hoteles/Otros" <% if (propiedad.tipoPropiedad === 'Cabañas/Hoteles/Otros') { %> selected <% } %>>Cabañas/Hoteles/Otros</option>
+                    <option value="Fondo de comercio" <% if (propiedad.tipoPropiedad === 'Fondo de comercio') { %> selected <% } %>>Fondo de Comercio</option>
+                    <option value="Cocheras" <% if (propiedad.tipoPropiedad === 'Cocheras') { %> selected <% } %>>Cocheras</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="moneda" class="form-label">Moneda</label>
+                <select class="form-select" id="moneda" name="moneda" required>
+                    <option value="Peso" <% if (propiedad.moneda === 'Peso') { %> selected <% } %>>Peso</option>
+                    <option value="Dolar" <% if (propiedad.moneda === 'Dolar') { %> selected <% } %>>Dólar</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="dormitorios" class="form-label">Cantidad de Dormitorios</label>
+                <select class="form-select" id="dormitorios" name="dormitorios" required>
+                  <option value="" disabled selected>Selecciona la cantidad de dormitorios</option>
+                  <option value="Sin dormitorio" <% if (propiedad.dormitorios === 'Sin dormitorio') { %> selected <% } %>>Sin Dormitorio</option>
+                  <option value="1" <% if (propiedad.dormitorios === '1') { %> selected <% } %>>1</option>
+                  <option value="2" <% if (propiedad.dormitorios === '2') { %> selected <% } %>>2</option>
+                  <option value="3" <% if (propiedad.dormitorios === '3') { %> selected <% } %>>3</option>
+                  <option value="4" <% if (propiedad.dormitorios === '4') { %> selected <% } %>>4</option>
+                  <option value="5" <% if (propiedad.dormitorios === '5') { %> selected <% } %>>5</option>
+                  <option value="6" <% if (propiedad.dormitorios === '6') { %> selected <% } %>>6</option>
+                  <option value="7" <% if (propiedad.dormitorios === '7') { %> selected <% } %>>7</option>
+                  <option value="8" <% if (propiedad.dormitorios === '8') { %> selected <% } %>>8</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="banos" class="form-label">Cantidad de Baños</label>
+                <select class="form-select" id="banos" name="banos" required>
+                  <option value="" disabled selected>Selecciona la cantidad de baños</option>
+                  <option value="Sin baño" <% if (propiedad.banos === 'Sin baño') { %> selected <% } %>>Sin Baño</option>
+                  <option value="1" <% if (propiedad.banos === '1') { %> selected <% } %>>1</option>
+                  <option value="2" <% if (propiedad.banos === '2') { %> selected <% } %>>2</option>
+                  <option value="3" <% if (propiedad.banos === '3') { %> selected <% } %>>3</option>
+                  <option value="4" <% if (propiedad.banos === '4') { %> selected <% } %>>4</option>
+                  <option value="5" <% if (propiedad.banos === '5') { %> selected <% } %>>5</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="garage" class="form-label">Cantidad de Garages</label>
+                <select class="form-select" id="garage" name="garage" required>
+                  <option value="" disabled selected>Selecciona la cantidad de garages</option>
+                  <option value="No tiene garage" <% if (propiedad.garage === 'No tiene garage') { %> selected <% } %>>No tiene Garage</option>
+                  <option value="1" <% if (propiedad.garage === '1') { %> selected <% } %>>1</option>
+                  <option value="2" <% if (propiedad.garage === '2') { %> selected <% } %>>2</option>
+                  <option value="3" <% if (propiedad.garage === '3') { %> selected <% } %>>3</option>
+                  <option value="4" <% if (propiedad.garage === '4') { %> selected <% } %>>4</option>
+                  <option value="5" <% if (propiedad.garage === '5') { %> selected <% } %>>5</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="metro2prop" class="form-label">Metros cuadrados de la propiedad</label>
+                <input type="text" class="form-control" id="metro2prop" name="metro2prop" value="<%= propiedad.metro2prop %>" required>
+              </div>
+              <div class="mb-3">
+                <label for="metro2terr" class="form-label">Metros cuadrados del terreno</label>
+                <input type="text" class="form-control" id="metro2terr" name="metro2terr" value="<%= propiedad.metro2terr %>" required>
+              </div>
+              <div class="mb-3">
+                <label for="credito" class="form-label">Apta para Crédito Hipotecario</label>
+                <select class="form-select" id="credito" name="credito" required>
+                  <option value="" disabled selected>Selecciona si es apta para crédito hipotecario</option>
+                  <option value="Apta para credito hipotecario">Apta para Crédito Hipotecario</option>
+                  <option value="No apta para credito hipotecario">No Apta para Crédito Hipotecario</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="video" class="form-label">Enlace del video de YouTube</label>
+                <input type="text" class="form-control" id="video" name="video" value="<%= propiedad.video %>">
+              </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+        <hr>
+        <button id="btnEliminar" class="btn btn-primary mb-4" data-id="<%= propiedad.id %>">Eliminar</button>
+
+    <% } %>
+</div>
+
+<%- include("templates/footer") %>
+
 
 <script>
     const btnEliminar = document.querySelector('#btnEliminar')
@@ -59,9 +171,9 @@
     formularioEditar.addEventListener('submit', async(e) => {
         e.preventDefault()
         
-        const nombre = document.querySelector('#nombreInput').value
-        const descripcion = document.querySelector('#descripcionInput').value
-        const precio = document.querySelector('#precioInput').value
+        const descripcion = document.querySelector('#descripcion').value
+        const direccion = document.querySelector('#direccion').value
+        const precio = document.querySelector('#precio').value
         const id = formularioEditar.dataset.id
 
         try {
@@ -70,7 +182,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body : JSON.stringify({nombre, descripcion, precio})
+                body : JSON.stringify({descripcion, direccion, precio})
             })
 
             const resp = await data.json()
