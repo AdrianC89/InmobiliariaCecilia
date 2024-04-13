@@ -9,11 +9,14 @@
 <%- include("templates/cabecera", {tituloWeb: 'Propiedades-form' }) %>
 
 
-  <div class="container">
-    <h1 class="mt-5 mb-4">CRUD PROPIEDADES</h1>
-    <a href="/propiedades/form/crear" class="btn btn-primary mb-4">Crear Nueva Propiedad</a>
+  <div class="container-prop">
+    <nav id="nav-prop">
+      <h1>Administración de Propiedades</h1>
+    </nav>
+    
     <div class="table-responsive">
-      <table class="table">
+      <a href="/propiedades/form/crear" class="btn btn-primary mb-4" id="botonCrear">Crear Nueva Propiedad</a>
+      <table class="table" id="tablaProp">
         <thead>
           <tr>
             <th scope="col">N°</th>
