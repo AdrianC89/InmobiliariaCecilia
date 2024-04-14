@@ -4,11 +4,11 @@
     max-width: 250px;
 }
 .carousel-item img {
-    max-height: auto; /* Ajusta el tamaño máximo de las imágenes según sea necesario */
-    width: auto; /* Permitir que el ancho se ajuste automáticamente */
+    max-height: auto; 
+    width: auto; 
   }
   .carousel-image {
-    margin: 10px; /* Agregar un margen entre las imágenes */
+    margin: 10px; 
   }
   .carousel-item {
     margin: 0 auto;
@@ -17,30 +17,41 @@
   .carousel-inner {
     max-width: 250px;
     min-height: 180px;
-    max-height: 180px; /* Ajusta el tamaño máximo del contenedor del carrusel según sea necesario */
-    overflow: hidden; /* Ocultar el contenido que desborda del contenedor */
+    max-height: 180px; 
+    overflow: hidden; 
   }
   
   .carousel-control-prev,
 .carousel-control-next {
-  width: auto; /* Ajusta automáticamente el ancho de los botones */
-  background: transparent; /* Fondo transparente para los botones */
-  border: none; /* Elimina el borde de los botones */
-  font-size: 1.5rem; /* Tamaño de fuente de los botones */
-  color: black; /* Color del texto de los botones */
-  top: 50%; /* Alinea verticalmente los botones */
-  transform: translateY(-50%); /* Alinea verticalmente los botones */
+  width: auto;
+  background: transparent; 
+  border: none; 
+  font-size: 1.5rem; 
+  color: black; 
+  top: 50%; 
+  transform: translateY(-50%); 
 }
 
 .carousel-control-prev {
-  left: 0px; /* Ajusta la posición del botón "Previous" */
+  left: 0px; 
 }
 
 .carousel-control-next {
-  right: 0px; /* Ajusta la posición del botón "Next" */
+  right: 0px; 
 }
 
 .container-prop {
+  display: flex;
+  font-family: 'Poppins',serif;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.propiedad-form {
   display: flex;
   font-family: 'Poppins',serif;
   width: 100%;
@@ -75,5 +86,6 @@
 }
 
 #botonCrear:hover {
-  background-color: rgb(227,99,59);
+  background-color: rgb(107, 11, 175);
+  
 }

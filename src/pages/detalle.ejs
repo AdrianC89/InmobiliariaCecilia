@@ -8,7 +8,7 @@
 </head>
 
 <%- include("templates/cabecera", {tituloWeb: 'Editar Propiedad' }) %>
-<div class="container">
+<div class="propiedad-form">
     <nav id="nav-prop">
         <h1>Editar Propiedad</h1>
       </nav>
@@ -25,19 +25,19 @@
 
             <div class="mb-3">
                 <label for="descripcion" class="form-label">Descripción</label>
-                <input type="text" class="form-control" id="descripcion" name="descripcion" value="<%= propiedad.descripcion %>" required>
+                <input type="text" class="form-control" id="descripcion" name="descripcion" value="<%= propiedad.descripcion %>" >
             </div>
             <div class="mb-3">
                 <label for="direccion" class="form-label">Dirección Visible</label>
-                <input type="text" class="form-control" id="direccion" name="direccion" value="<%= propiedad.direccion %>" required>
+                <input type="text" class="form-control" id="direccion" name="direccion" value="<%= propiedad.direccion %>" >
             </div>
             <div class="mb-3">
                 <label for="precio" class="form-label">Precio</label>
-                <input type="text" class="form-control" id="precio" name="precio" value="<%= propiedad.precio %>" required>
+                <input type="text" class="form-control" id="precio" name="precio" value="<%= propiedad.precio %>" >
             </div>
             <div class="mb-3">
                 <label for="imagenes" class="form-label">Imágenes</label>
-                <input type="file" class="form-control" id="imagenes" name="image" multiple required>
+                <input type="file" class="form-control" id="imagenes" name="image" multiple >
                 <button type="button" id="agregarImagen" class="btn btn-primary">Agregar más imágenes</button>
             </div>
             <!-- Campos ocultos para guardar las imágenes actuales -->
@@ -47,7 +47,7 @@
             
             <div class="mb-3">
                 <label for="tipoOperacion" class="form-label">Tipo de Operación</label>
-                <select class="form-select" id="tipoOperacion" name="tipoOperacion" required>
+                <select class="form-select" id="tipoOperacion" name="tipoOperacion" >
                     <option value="Venta" <% if (propiedad.tipoOperacion === 'Venta') { %> selected <% } %>>Venta</option>
                     <option value="Alquiler" <% if (propiedad.tipoOperacion === 'Alquiler') { %> selected <% } %>>Alquiler</option>
                     <option value="Alquiler temporario" <% if (propiedad.tipoOperacion === 'Alquiler temporario') { %> selected <% } %>>Alquiler Temporario</option>
@@ -58,7 +58,7 @@
             </div>
             <div class="mb-3">
                 <label for="tipoPropiedad" class="form-label">Tipo de Propiedad</label>
-                <select class="form-select" id="tipoPropiedad" name="tipoPropiedad" required>
+                <select class="form-select" id="tipoPropiedad" name="tipoPropiedad" >
                     <option value="Casa" <% if (propiedad.tipoPropiedad === 'Casa') { %> selected <% } %>>Casa</option>
                     <option value="Departamento/Duplex" <% if (propiedad.tipoPropiedad === 'Departamento/Duplex') { %> selected <% } %>>Departamento/Dúplex</option>
                     <option value="Quinta" <% if (propiedad.tipoPropiedad === 'Quinta') { %> selected <% } %>>Quinta</option>
@@ -73,14 +73,14 @@
             </div>
             <div class="mb-3">
                 <label for="moneda" class="form-label">Moneda</label>
-                <select class="form-select" id="moneda" name="moneda" required>
+                <select class="form-select" id="moneda" name="moneda" >
                     <option value="Peso" <% if (propiedad.moneda === 'Peso') { %> selected <% } %>>Peso</option>
                     <option value="Dolar" <% if (propiedad.moneda === 'Dolar') { %> selected <% } %>>Dólar</option>
                 </select>
             </div>
             <div class="mb-3">
                 <label for="dormitorios" class="form-label">Cantidad de Dormitorios</label>
-                <select class="form-select" id="dormitorios" name="dormitorios" required>
+                <select class="form-select" id="dormitorios" name="dormitorios" >
                   <option value="" disabled selected>Selecciona la cantidad de dormitorios</option>
                   <option value="Sin dormitorio" <% if (propiedad.dormitorios === 'Sin dormitorio') { %> selected <% } %>>Sin Dormitorio</option>
                   <option value="1" <% if (propiedad.dormitorios === '1') { %> selected <% } %>>1</option>
@@ -95,7 +95,7 @@
               </div>
               <div class="mb-3">
                 <label for="banos" class="form-label">Cantidad de Baños</label>
-                <select class="form-select" id="banos" name="banos" required>
+                <select class="form-select" id="banos" name="banos" >
                   <option value="" disabled selected>Selecciona la cantidad de baños</option>
                   <option value="Sin baño" <% if (propiedad.banos === 'Sin baño') { %> selected <% } %>>Sin Baño</option>
                   <option value="1" <% if (propiedad.banos === '1') { %> selected <% } %>>1</option>
@@ -107,7 +107,7 @@
               </div>
               <div class="mb-3">
                 <label for="garage" class="form-label">Cantidad de Garages</label>
-                <select class="form-select" id="garage" name="garage" required>
+                <select class="form-select" id="garage" name="garage" >
                   <option value="" disabled selected>Selecciona la cantidad de garages</option>
                   <option value="No tiene garage" <% if (propiedad.garage === 'No tiene garage') { %> selected <% } %>>No tiene Garage</option>
                   <option value="1" <% if (propiedad.garage === '1') { %> selected <% } %>>1</option>
@@ -119,15 +119,15 @@
               </div>
               <div class="mb-3">
                 <label for="metro2prop" class="form-label">Metros cuadrados de la propiedad</label>
-                <input type="text" class="form-control" id="metro2prop" name="metro2prop" value="<%= propiedad.metro2prop %>" required>
+                <input type="text" class="form-control" id="metro2prop" name="metro2prop" value="<%= propiedad.metro2prop %>" >
               </div>
               <div class="mb-3">
                 <label for="metro2terr" class="form-label">Metros cuadrados del terreno</label>
-                <input type="text" class="form-control" id="metro2terr" name="metro2terr" value="<%= propiedad.metro2terr %>" required>
+                <input type="text" class="form-control" id="metro2terr" name="metro2terr" value="<%= propiedad.metro2terr %>" >
               </div>
               <div class="mb-3">
                 <label for="credito" class="form-label">Apta para Crédito Hipotecario</label>
-                <select class="form-select" id="credito" name="credito" required>
+                <select class="form-select" id="credito" name="credito" >
                   <option value="" disabled selected>Selecciona si es apta para crédito hipotecario</option>
                   <option value="Apta para credito hipotecario">Apta para Crédito Hipotecario</option>
                   <option value="No apta para credito hipotecario">No Apta para Crédito Hipotecario</option>
@@ -176,6 +176,17 @@
         const descripcion = document.querySelector('#descripcion').value
         const direccion = document.querySelector('#direccion').value
         const precio = document.querySelector('#precio').value
+        const imagenes = document.querySelector('#imagenes').value
+        const tipoOperacion = document.querySelector('#tipoOperacion').value
+        const tipoPropiedad = document.querySelector('#tipoPropiedad').value
+        const moneda = document.querySelector('#moneda').value
+        const dormitorios = document.querySelector('#dormitorios').value
+        const banos = document.querySelector('#banos').value
+        const garage = document.querySelector('#garage').value
+        const metro2prop = document.querySelector('#metro2prop').value
+        const metro2terr = document.querySelector('#metro2terr').value
+        const credito = document.querySelector('#credito').value
+        const video = document.querySelector('#video').value
         const id = formularioEditar.dataset.id
 
         try {
