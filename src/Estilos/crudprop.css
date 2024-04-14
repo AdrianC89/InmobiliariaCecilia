@@ -1,12 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 .carousel.slide{
     max-width: 250px;
 }
 .carousel-item img {
-    max-height: auto; /* Ajusta el tamaño máximo de las imágenes según sea necesario */
-    width: auto; /* Permitir que el ancho se ajuste automáticamente */
+    max-height: auto; 
+    width: auto; 
   }
   .carousel-image {
-    margin: 10px; /* Agregar un margen entre las imágenes */
+    margin: 10px; 
   }
   .carousel-item {
     margin: 0 auto;
@@ -15,25 +17,75 @@
   .carousel-inner {
     max-width: 250px;
     min-height: 180px;
-    max-height: 180px; /* Ajusta el tamaño máximo del contenedor del carrusel según sea necesario */
-    overflow: hidden; /* Ocultar el contenido que desborda del contenedor */
+    max-height: 180px; 
+    overflow: hidden; 
   }
   
   .carousel-control-prev,
 .carousel-control-next {
-  width: auto; /* Ajusta automáticamente el ancho de los botones */
-  background: transparent; /* Fondo transparente para los botones */
-  border: none; /* Elimina el borde de los botones */
-  font-size: 1.5rem; /* Tamaño de fuente de los botones */
-  color: black; /* Color del texto de los botones */
-  top: 50%; /* Alinea verticalmente los botones */
-  transform: translateY(-50%); /* Alinea verticalmente los botones */
+  width: auto;
+  background: transparent; 
+  border: none; 
+  font-size: 1.5rem; 
+  color: black; 
+  top: 50%; 
+  transform: translateY(-50%); 
 }
 
 .carousel-control-prev {
-  left: 0px; /* Ajusta la posición del botón "Previous" */
+  left: 0px; 
 }
 
 .carousel-control-next {
-  right: 0px; /* Ajusta la posición del botón "Next" */
+  right: 0px; 
+}
+
+.container-prop {
+  display: flex;
+  font-family: 'Poppins',serif;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.propiedad-form {
+  display: flex;
+  font-family: 'Poppins',serif;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.table-responsive, .CrearProp {
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+}
+
+#tablaProp {
+  width: 95%;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgb(197, 191, 191);
+}
+
+.container-prop h1{
+  font-weight: bold;
+  font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+}
+
+#botonCrear {
+  background-color: indigo;
+  border: none;
+}
+
+#botonCrear:hover {
+  background-color: rgb(107, 11, 175);
+  
 }
