@@ -7,6 +7,7 @@ footer{
     display: flex;
     max-height: 700px;
     background-color: #3a3939;
+    margin-top: 5%;
 }
 
 .footer-content{

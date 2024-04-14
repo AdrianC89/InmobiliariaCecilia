@@ -1,3 +1,25 @@
 <%- include("templates/cabecera", {tituloWeb: 'Detalle'}) %>
- <h1>ID: <%= propiedad.id %></h1> 
+<div class="detalle-contenedor">
+    <nav id="detalle-nav">
+        <h1><%= propiedad.descripcion %></h1>
+    </nav>
+    <div class="detalle-estado">
+        <div id="detalle-operacion"><h2>En <%= propiedad.tipoOperacion %></h2></div>
+        <div id="detalle-precio"><h3><% if (propiedad.moneda==='Dolar' ) { %>
+            US$<%= propiedad.precio %>
+             <% } else { %>
+             $<%= propiedad.precio %>
+              <% } %></h3>
+        </div>
+    </div>
+    <div class="detalle-body">
+        <div class="section1">
+            <img id="detalle-img" src="<%= propiedad.imagenes[0].path %>" alt="imagen.nombre">
+            <div id="detalle-contenido">
+                <h2>Detalles de la Propiedad</h2>
+            </div>
+        </div>
+    </div>
+</div>
+ 
 <%- include("templates/footer") %>
