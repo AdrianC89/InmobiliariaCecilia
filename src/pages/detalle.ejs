@@ -195,7 +195,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body : JSON.stringify({descripcion, direccion, precio})
+                body : JSON.stringify({descripcion, direccion, precio, imagenes, tipoOperacion, tipoPropiedad, moneda, dormitorios,banos,garage,metro2prop,metro2terr, credito, video})
             })
 
             const resp = await data.json()

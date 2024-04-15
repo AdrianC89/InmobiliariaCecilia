@@ -63,7 +63,7 @@
     scroll-snap-align: start;
     height: 400px;
     list-style: none;
-    background: #fff;
+    background: #f4f4f4;
     cursor: pointer;
     padding-bottom: 15px;
     flex-direction: column;

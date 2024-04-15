@@ -21,16 +21,24 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/propiedad/:tipo', async (req, res) => {
-  const tipo = req.params.tipo
+  let tipo = req.params.tipo;
+  // Codificar el tipo de propiedad
+  tipo = encodeURIComponent(tipo);
+
   try {
-    const propiedadesDB = await Propiedad.find({ tipoPropiedad: tipo });
+    // Decodificar el tipo de propiedad antes de buscar en la base de datos
+    const propiedadesDB = await Propiedad.find({ tipoPropiedad: decodeURIComponent(tipo) });
     res.render('listas', {
       propiedades: propiedadesDB
     });
   } catch (error) {
     console.log(error);
+    // Manejar el error apropiadamente
+    res.status(500).send('Error interno del servidor');
   }
 });
+
+
 
 router.get('/detalle/:id', async (req, res) => {
   const id = req.params.id
