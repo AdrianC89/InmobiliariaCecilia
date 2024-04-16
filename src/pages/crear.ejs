@@ -68,7 +68,7 @@
         <input type="text" class="form-control" name="coordenada2" id="coordenada2" required>
       </div>
       <div class="mapaform">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50767.53043601769!2d-59.142702099999994!3d-37.31952284999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95911f9b2733946f%3A0xceef2c76899c202d!2sTandil%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1706557829580!5m2!1ses!2sar" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div id="map" style="height: 400px; width: 100%;"></div>
       </div>
       <div class="mb-3">
         <label for="descripcion" class="form-label">Descripción</label>
@@ -159,27 +159,9 @@
     </form>
   </div>
   </body>
-  <script>
-    // Inicializar el autocompletado de Google Maps para el campo de dirección
-    function initAutocomplete() {
-      const input = document.getElementById('direccionInput');
-      const options = {
-        types: ['geocode'] // Limitar la búsqueda a direcciones
-      };
-      const autocomplete = new google.maps.places.Autocomplete(input, options);
-      // Listener para detectar el cambio en la dirección seleccionada
-      autocomplete.addListener('place_changed', function () {
-        const place = autocomplete.getPlace();
-        // Rellenar automáticamente los campos de coordenadas
-        document.getElementById('coordenada1').value = place.geometry.location.lat();
-        document.getElementById('coordenada2').value = place.geometry.location.lng();
-      });
-    }
-  </script>
+
   <!-- Incluir la API de Google Maps -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVK2JXZTFXnHRmXtwqV6BwcX8ZCcYfBO0&sensor=false&libraries=places&callback=initAutocomplete"
-    async defer></script>
+
   <script>
   // Obtener el campo de entrada de archivos y el botón de agregar imágenes
 const input = document.getElementById('imagenes');
@@ -221,5 +203,54 @@ input.addEventListener('change', function(event) {
 });
 
   </script>
+  <script>
+function initMap() {
+    const input = document.getElementById('direccionInput');
+    const options = {
+        types: ['geocode'] // Limitar la búsqueda a direcciones
+    };
+    const autocomplete = new google.maps.places.Autocomplete(input, options);
+
+    // Crear el mapa
+    const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -34.603722, lng: -58.381592 }, // Centro inicial del mapa
+        zoom: 12, // Zoom inicial
+    });
+
+    // Crear un marcador que se actualizará cuando se complete una dirección en el autocompletado
+    const marker = new google.maps.Marker({
+        map,
+        draggable: true, // Permitir que el marcador se pueda arrastrar
+    });
+
+    // Listener para detectar el cambio en la dirección seleccionada
+    autocomplete.addListener('place_changed', function () {
+        const place = autocomplete.getPlace();
+        if (!place.geometry || !place.geometry.location) {
+            console.error("No se ha encontrado la ubicación para el lugar proporcionado");
+            return;
+        }
+
+        // Actualizar las coordenadas del marcador con la ubicación seleccionada
+        const newPosition = place.geometry.location;
+        marker.setPosition(newPosition);
+        map.setCenter(newPosition);
+
+        // Actualizar los campos de coordenadas
+        document.getElementById('coordenada1').value = newPosition.lat();
+        document.getElementById('coordenada2').value = newPosition.lng();
+    });
+
+    // Listener para detectar el movimiento del marcador y actualizar las coordenadas
+    marker.addListener('dragend', function () {
+        document.getElementById('coordenada1').value = marker.getPosition().lat();
+        document.getElementById('coordenada2').value = marker.getPosition().lng();
+    });
+}
+
+  </script>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVK2JXZTFXnHRmXtwqV6BwcX8ZCcYfBO0&sensor=false&libraries=places&callback=initMap"
+    async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <!-- Otros scripts específicos de la página -->
