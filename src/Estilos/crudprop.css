@@ -40,6 +40,12 @@
   right: 0px; 
 }
 
+#titulosTabla {
+  background-color: black;
+  color: #f4f4f4;
+  text-align: center;
+}
+
 .container-prop {
   display: flex;
   font-family: 'Poppins',serif;
@@ -52,14 +58,13 @@
 }
 
 .propiedad-form {
-  display: flex;
   font-family: 'Poppins',serif;
-  width: 100%;
+  width: 80%;
   min-height: 100vh;
+  margin: auto;
   background-color: #f4f4f4;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  
+  
 }
 
 .table-responsive, .CrearProp {
@@ -73,7 +78,7 @@
   box-shadow: 5px 5px 10px rgb(197, 191, 191);
 }
 
-.container-prop h1{
+.container-prop h1, .propiedad-form h1{
   font-weight: bold;
   font-size: 1.5em;
     margin-block-start: 0.83em;
@@ -88,4 +93,38 @@
 #botonCrear:hover {
   background-color: rgb(107, 11, 175);
   
+}
+
+.form-label {
+  font-weight: bold;
+}
+.dobleCampo {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+
+}
+#coordenada1, #coordenada2 {
+  width: 300px;
+}
+
+#propiedad {
+  margin-left: 0.7rem;
+}
+
+#coordenadas, #dimensiones {
+  margin: auto 0;
+}
+
+#cajaMoneda {
+  margin: 0.5rem 2rem;
+}
+
+#moneda {
+  padding: 0.7rem 4rem;
+}
+
+#divform {
+  margin-right: 0.7rem;
 }

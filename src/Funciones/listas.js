@@ -20,7 +20,7 @@ function ShowListas(nodos) {
 }
 
 if(N == 0){
-    alert("No hay propiedades disponibles")
+    h2Descripcion.innerHTML = `No se encontraron resultados`
 }
 if(N > 5){
     let nodos = propiedades.slice(inicio,fin) 

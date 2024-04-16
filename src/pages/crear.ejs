@@ -1,129 +1,148 @@
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <!-- Otros estilos específicos de la página -->
+</head>
+
 <%- include("templates/cabecera", {tituloWeb: 'Crear Propiedad' }) %>
-
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <!-- Otros estilos específicos de la página -->
-  </head>
 
   <div class="propiedad-form">
     <nav id="nav-prop">
       <h1>Crear Nueva Propiedad</h1>
     </nav>
     <form class="CrearProp" action="/propiedades" method="post" enctype="multipart/form-data">
+      <h3>Complete los siguientes campos</h3>
+      <hr>
       <div class="mb-3">
         <label for="numeroRegistro" class="form-label">Número de Registro</label>
         <input type="text" class="form-control" id="numeroRegistro" name="numeroRegistro" required>
+        <p>( Nº mayor ingresado:)</p>
       </div>
-      <div class="mb-3">
-        <label for="descripcion" class="form-label">Descripción</label>
-        <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+      <div class="dobleCampo">
+        <div class="mb-3">
+          <label for="tipoOperacion" class="form-label">Tipo de Operación</label>
+          <select class="form-select" id="tipoOperacion" name="tipoOperacion" required>
+            <option value="" disabled selected>Selecciona el tipo de operación</option>
+            <option value="Venta">Venta</option>
+            <option value="Alquiler">Alquiler</option>
+            <option value="Alquiler temporario">Alquiler Temporario</option>
+            <option value="Venta en otra localidad">Venta en otra localidad</option>
+            <option value="Remate">Remate</option>
+            <option value="Permuta">Permuta</option>
+          </select>
+        </div>
+        <div class="mb-3" id="propiedad">
+          <label for="tipoPropiedad" class="form-label" >Tipo de Propiedad</label>
+          <select class="form-select" id="tipoPropiedad" name="tipoPropiedad" required>
+            <option value="" disabled selected>Selecciona el tipo de propiedad</option>
+            <option value="Casa">Casa</option>
+            <option value="Departamento/Duplex">Departamento/Dúplex</option>
+            <option value="Quinta">Quinta</option>
+            <option value="Lote">Lote</option>
+            <option value="Campo">Campo</option>
+            <option value="Galpon">Galpón</option>
+            <option value="Local/Oficina">Local/Oficina</option>
+            <option value="Cabañas/Hoteles/Otros">Cabañas/Hoteles/Otros</option>
+            <option value="Fondo de comercio">Fondo de Comercio</option>
+            <option value="Cocheras">Cocheras</option>
+          </select>
+        </div>
       </div>
       <div class="mb-3">
         <label for="direccion" class="form-label">Dirección Visible</label>
         <input type="text" class="form-control" id="direccion" name="direccion" required>
       </div>
+      <h4>CÓMO SE VERÁ SU PROPIEDAD EN LA BÚSQUEDA POR MAPA</h4>
+      <hr>
       <div class="mb-3">
-        <label for="precio" class="form-label">Precio</label>
-        <input type="text" class="form-control" id="precio" name="precio" required>
+        <label for="direccionBusq" class="form-label">Dirección Búsqueda</label>
+        <input type="text" class="form-control" id="direccionInput" name="direccionBusq" autocomplete="off" required>
+        <p><b>Importante:</b> Ingrese una dirección y luego seleccione un resultado de la lista.</p>
       </div>
+      <div class="dobleCampo">
+        <label class="form-label" id="coordenadas">Coordenadas</label>
+        <input type="text" class="form-control" name="coordenada1" id="coordenada1" required>
+        <input type="text" class="form-control" name="coordenada2" id="coordenada2" required>
+      </div>
+      <div class="mapaform">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50767.53043601769!2d-59.142702099999994!3d-37.31952284999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95911f9b2733946f%3A0xceef2c76899c202d!2sTandil%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1706557829580!5m2!1ses!2sar" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea class="form-control" id="descripcion" name="descripcion" rows="4" placeholder= "Por favor complete este campo detalladamente, es muy importante para el usuario que le especifique correctamente las caracteristicas de la propiedad" required></textarea>
+      </div>
+      <div class="dobleCampo">
+        <div class="mb-3">
+          <input type="number" class="form-control" id="precio" name="precio" placeholder="Valor" >
+        </div>
+        <div class="mb-3" id="cajaMoneda">
+          <select class="form-select" id="moneda" name="moneda" required>
+            <option value="Peso">Peso</option>
+            <option value="Dolar">Dólar</option>
+          </select>
+        </div>
+      </div>
+
       <div class="mb-3">
         <label for="imagenes" class="form-label">Imágenes</label>
         <input type="file" class="form-control" id="imagenes" name="image" multiple required>
         <button type="button" id="agregarImagen" class="btn btn-primary">Agregar más imágenes</button>
       </div>
-      <div class="mb-3">
-        <label for="direccionBusq" class="form-label">Dirección</label>
-        <input type="text" class="form-control" id="direccionInput" name="direccionBusq" autocomplete="off" required>
-      </div>
-      <input type="text" class="form-control" name="coordenada1" id="coordenada1" required>
-      <input type="text" class="form-control" name="coordenada2" id="coordenada2" required>
 
-      <div class="mb-3">
-        <label for="tipoOperacion" class="form-label">Tipo de Operación</label>
-        <select class="form-select" id="tipoOperacion" name="tipoOperacion" required>
-          <option value="" disabled selected>Selecciona el tipo de operación</option>
-          <option value="Venta">Venta</option>
-          <option value="Alquiler">Alquiler</option>
-          <option value="Alquiler temporario">Alquiler Temporario</option>
-          <option value="Venta en otra localidad">Venta en otra localidad</option>
-          <option value="Remate">Remate</option>
-          <option value="Permuta">Permuta</option>
-        </select>
+      <div class="dobleCampo">
+        <div class="mb-3"  id="divform">
+          <label for="dormitorios" class="form-label">Dormitorios</label>
+          <select class="form-select" id="dormitorios" name="dormitorios" required>
+            <option value="" disabled selected>Selecciona la cantidad de dormitorios</option>
+            <option value="Sin dormitorio">Sin Dormitorio</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+        </div>
+        <div class="mb-3"  id="divform">
+          <label for="banos" class="form-label">Baños</label>
+          <select class="form-select" id="banos" name="banos" required>
+            <option value="" disabled selected>Selecciona la cantidad de baños</option>
+            <option value="Sin baño">Sin Baño</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="garage" class="form-label">Garages</label>
+          <select class="form-select" id="garage" name="garage" required>
+            <option value="" disabled selected>Selecciona la cantidad de garages</option>
+            <option value="No tiene garage">No tiene Garage</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+      </div>   
+      <div class="dobleCampo">
+        <label class="form-label" id="dimensiones">Dimensiones de la Propiedad</label>
+        <div class="mb-3" id="divform">
+          <input type="number" class="form-control" id="metro2prop" name="metro2prop" placeholder="M2 (Propiedad)" required>
+        </div>
+        <div class="mb-3">
+          <input type="number" class="form-control" id="metro2terr" name="metro2terr" placeholder="M2 (Terreno)" required>
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="tipoPropiedad" class="form-label">Tipo de Propiedad</label>
-        <select class="form-select" id="tipoPropiedad" name="tipoPropiedad" required>
-          <option value="" disabled selected>Selecciona el tipo de propiedad</option>
-          <option value="Casa">Casa</option>
-          <option value="Departamento/Duplex">Departamento/Dúplex</option>
-          <option value="Quinta">Quinta</option>
-          <option value="Lote">Lote</option>
-          <option value="Campo">Campo</option>
-          <option value="Galpon">Galpón</option>
-          <option value="Local/Oficina">Local/Oficina</option>
-          <option value="Cabañas/Hoteles/Otros">Cabañas/Hoteles/Otros</option>
-          <option value="Fondo de comercio">Fondo de Comercio</option>
-          <option value="Cocheras">Cocheras</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label for="moneda" class="form-label">Moneda</label>
-        <select class="form-select" id="moneda" name="moneda" required>
-          <option value="" disabled selected>Selecciona la moneda</option>
-          <option value="Peso">Peso</option>
-          <option value="Dolar">Dólar</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label for="dormitorios" class="form-label">Cantidad de Dormitorios</label>
-        <select class="form-select" id="dormitorios" name="dormitorios" required>
-          <option value="" disabled selected>Selecciona la cantidad de dormitorios</option>
-          <option value="Sin dormitorio">Sin Dormitorio</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label for="banos" class="form-label">Cantidad de Baños</label>
-        <select class="form-select" id="banos" name="banos" required>
-          <option value="" disabled selected>Selecciona la cantidad de baños</option>
-          <option value="Sin baño">Sin Baño</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label for="garage" class="form-label">Cantidad de Garages</label>
-        <select class="form-select" id="garage" name="garage" required>
-          <option value="" disabled selected>Selecciona la cantidad de garages</option>
-          <option value="No tiene garage">No tiene Garage</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label for="metro2prop" class="form-label">Metros cuadrados de la propiedad</label>
-        <input type="text" class="form-control" id="metro2prop" name="metro2prop" required>
-      </div>
-      <div class="mb-3">
-        <label for="metro2terr" class="form-label">Metros cuadrados del terreno</label>
-        <input type="text" class="form-control" id="metro2terr" name="metro2terr" required>
-      </div>
+      
       <div class="mb-3">
         <label for="credito" class="form-label">Apta para Crédito Hipotecario</label>
         <select class="form-select" id="credito" name="credito" required>
@@ -139,6 +158,7 @@
       <button type="submit" class="btn btn-primary">Agregar</button>
     </form>
   </div>
+  </body>
   <script>
     // Inicializar el autocompletado de Google Maps para el campo de dirección
     function initAutocomplete() {

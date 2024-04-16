@@ -11,7 +11,7 @@ const propiedadesSchema = new Schema({
     coordenada1: { type: String },
     coordenada2: { type: String },
     descripcion: { type: String },
-    precio: { type: String , default: "Consultar"},
+    precio: { type: Number },
     moneda: { type: String, enum: ['Peso', 'Dolar'] },
     dormitorios: { type: String, enum: ['Sin dormitorio', '1', '2', '3', '4', '5', '6', '7', '8'] },
     banos: { type: String, enum: ['Sin baño', '1', '2', '3', '4', '5'] },
