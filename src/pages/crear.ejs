@@ -159,97 +159,12 @@
     </form>
   </div>
   </body>
-
+  <script
+  src="/Funciones/cargaImagenes.js" async defer></script>
+  <script
+  src="/Funciones/autoCompMap.js"></script>
   <!-- Incluir la API de Google Maps -->
-
-  <script>
-  // Obtener el campo de entrada de archivos y el botón de agregar imágenes
-const input = document.getElementById('imagenes');
-const agregarImagenBtn = document.getElementById('agregarImagen');
-
-// Agregar un evento click al botón de agregar imágenes
-agregarImagenBtn.addEventListener('click', function() {
-    // Crear un nuevo campo de entrada de archivos
-    const newInput = document.createElement('input');
-    newInput.type = 'file';
-    newInput.className = 'form-control';
-    newInput.name = 'image';
-    newInput.multiple = true;
-    newInput.required = true;
-
-    // Insertar el nuevo campo de entrada antes del botón de agregar imágenes
-    input.parentNode.insertBefore(newInput, agregarImagenBtn);
-});
-
-// Agregar un evento change al campo de entrada de archivos para detectar cuando se seleccionan archivos
-input.addEventListener('change', function(event) {
-    // Obtener la lista de archivos seleccionados
-    const files = event.target.files;
-    
-    // Obtener el formulario
-    const form = document.querySelector('form');
-
-    // Iterar sobre cada archivo seleccionado
-    for (const file of files) {
-        // Crear un nuevo campo de entrada oculto para cada archivo seleccionado
-        const hiddenInput = document.createElement('input');
-        hiddenInput.type = 'hidden';
-        hiddenInput.name = 'image'; // Nombre del campo en el formulario
-        hiddenInput.value = file.name; // Valor del campo (nombre del archivo)
-        
-        // Agregar el campo oculto al formulario
-        form.appendChild(hiddenInput);
-    }
-});
-
-  </script>
-  <script>
-function initMap() {
-    const input = document.getElementById('direccionInput');
-    const options = {
-        types: ['geocode'] // Limitar la búsqueda a direcciones
-    };
-    const autocomplete = new google.maps.places.Autocomplete(input, options);
-
-    // Crear el mapa
-    const map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -34.603722, lng: -58.381592 }, // Centro inicial del mapa
-        zoom: 12, // Zoom inicial
-    });
-
-    // Crear un marcador que se actualizará cuando se complete una dirección en el autocompletado
-    const marker = new google.maps.Marker({
-        map,
-        draggable: true, // Permitir que el marcador se pueda arrastrar
-    });
-
-    // Listener para detectar el cambio en la dirección seleccionada
-    autocomplete.addListener('place_changed', function () {
-        const place = autocomplete.getPlace();
-        if (!place.geometry || !place.geometry.location) {
-            console.error("No se ha encontrado la ubicación para el lugar proporcionado");
-            return;
-        }
-
-        // Actualizar las coordenadas del marcador con la ubicación seleccionada
-        const newPosition = place.geometry.location;
-        marker.setPosition(newPosition);
-        map.setCenter(newPosition);
-
-        // Actualizar los campos de coordenadas
-        document.getElementById('coordenada1').value = newPosition.lat();
-        document.getElementById('coordenada2').value = newPosition.lng();
-    });
-
-    // Listener para detectar el movimiento del marcador y actualizar las coordenadas
-    marker.addListener('dragend', function () {
-        document.getElementById('coordenada1').value = marker.getPosition().lat();
-        document.getElementById('coordenada2').value = marker.getPosition().lng();
-    });
-}
-
-  </script>
-    <script
+  <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVK2JXZTFXnHRmXtwqV6BwcX8ZCcYfBO0&sensor=false&libraries=places&callback=initMap"
     async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
