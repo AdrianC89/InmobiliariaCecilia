@@ -4,6 +4,7 @@ let propCard = document.querySelectorAll(".prop-card")
 let descripcion = document.querySelector(".descripcion-prop")
 let h2Descripcion = document.createElement('h2')
 descripcion.appendChild(h2Descripcion)
+let buttonSection = document.getElementById("button-section")
 let next = document.getElementById("next")
 let back = document.getElementById("back")
 let inicio = 0
@@ -25,11 +26,12 @@ if(N == 0){
 if(N > 5){
     let nodos = propiedades.slice(inicio,fin) 
     ShowListas(nodos)
-    next.style.visibility = "visible"
+    next.style.display = "block"
     }else{
      ShowListas(propiedades)
-     next.style.visibility = "hidden"
+     next.style.display = "none"
     }
+
 
     function CleanContainer(){
          propiedades.forEach(propiedad =>{
@@ -44,7 +46,8 @@ if(N > 5){
     }
                   
     next.addEventListener("click", ()=>{
-    back.style.visibility = "visible"
+    back.style.display = "block"
+    buttonSection.style.justifyContent = "space-between"
      if(inicio<(N-3)){
         inicio = inicio + 5
         if((N-inicio)>= inicio){
@@ -76,6 +79,10 @@ if(N > 5){
         scrollToTop()
         console.log("inicio: ",inicio);
         console.log("fin: ",fin);
+        if(inicio == 0){
+         back.style.display = "none"
+         buttonSection.style.justifyContent = "center"
+        }
         }
                     
     })

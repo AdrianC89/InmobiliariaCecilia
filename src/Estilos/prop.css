@@ -155,16 +155,16 @@
 }
 
 
- .button-section{
+ #button-section{
  display: flex;
  align-items: center;
- justify-content: space-between;
+ justify-content: center;
  width: 20%;
  height: 5rem;
  margin-bottom: 5rem;
 }
 
-.button-section button{
+#button-section button{
     padding: 20px 30px;
     font-weight: bold;
     box-shadow: 5px 5px 10px rgb(197, 191, 191);
@@ -174,11 +174,11 @@
     border: none;
 }
 
-.button-section button:hover{
+#button-section button:hover{
     cursor: pointer;
     background-color:  #e0dddd;
 }
 
 #back{
-    visibility: hidden;
+    display: none;
 }

@@ -10,7 +10,7 @@
                               
                       <% propiedades.forEach(propiedad => { %>
                         <div class="prop-card">
-                        <img class="img" src="<%= propiedad.imagenes[0].path %>" alt="">
+                        <img class="img" src="<%= propiedad.imagenes[0].path %>" alt="imagen.nombre">
                         <div class="estado"><p>En <%= propiedad.tipoOperacion %></p></div>
                         <div class="Titulo"><h3><%= propiedad.descripcion %></h3></div>
                         <div class="Precio"><h3><% if (propiedad.moneda==='Dolar' ) { %>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
 
-                          <div class="button-section">
+                          <div id="button-section">
                             <button id="back">Anterior</button>
                             
                             <button id="next">Siguiente</button>
