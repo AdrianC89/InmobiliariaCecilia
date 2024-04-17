@@ -138,14 +138,14 @@ router.get('/form/:id', async (req, res) => {
     const propiedadDB = await Propiedad.findOne({ _id: id })
     console.log(propiedadDB)
 
-    res.render('detalle', {
+    res.render('editar', {
       propiedad: propiedadDB,
       error: false
     })
 
   } catch (error) {
     console.log(error)
-    res.render('detalle', {
+    res.render('editar', {
       error: true,
       mensaje: 'No se encuentra el ID seleccionado'
     })
