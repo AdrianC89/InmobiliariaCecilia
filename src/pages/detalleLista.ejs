@@ -1,10 +1,10 @@
 <%- include("templates/cabecera", {tituloWeb: 'Detalle'}) %>
 <div class="detalle-contenedor">
     <nav id="detalle-nav">
-        <h1><%= propiedad.descripcion %></h1>
+        <h1><%= propiedad.tipoPropiedad %> En <%= propiedad.direccion %></h1>
     </nav>
     <div class="detalle-estado">
-        <div id="detalle-operacion"><h2>En <%= propiedad.tipoOperacion %></h2></div>
+        <h2>En <%= propiedad.tipoOperacion %></h2>
         <div id="detalle-precio"><h3><% if (propiedad.moneda==='Dolar' ) { %>
             US$<%= propiedad.precio %>
              <% } else { %>
@@ -13,13 +13,50 @@
         </div>
     </div>
     <div class="detalle-body">
-        <div class="section1">
+        <div class="SectionProp">
             <img id="detalle-img" src="<%= propiedad.imagenes[0].path %>" alt="imagen.nombre">
             <div id="detalle-contenido">
                 <h2>Detalles de la Propiedad</h2>
+                <ul id="descripcion">
+                    <li>Tipo propiedada: <%= propiedad.tipoPropiedad %></li>
+                    <li>Ubicacion: <%= propiedad.direccion %></li>
+                    <li>Moneda: <%= propiedad.moneda %></li>
+                  <% if(propiedad.dormitorios > 0){ %>
+                   <li>Cantidad de dormitorios: <%= propiedad.dormitorios %></li> 
+                  <% } %>
+                  <% if(propiedad.banos > 0){ %>
+                  <li>Cantidad de baños: <%= propiedad.banos %></li> 
+                  <% } %>
+                  <% if(propiedad.garage > 0){ %>
+                   <li>Cantidad de garages: <%= propiedad.garage %></li> 
+                 <% } %>
+                  <% if(propiedad.metro2prop != 0){ %>
+                   <li>Metros (propiedad): <%= propiedad.metro2prop %>m2</li> 
+                 <% } %>
+                  <li>Metros (terreno): <%= propiedad.metro2terr %>m2</li>
+                  <li>Credito: <%= propiedad.credito %></li>
+                 </ul>
             </div>
         </div>
+        <div class="SectionDescrip">
+            <h1>Descripción</h1>
+            <p><%= propiedad.descripcion %></p>
+        </div>
+        <div class="SectionMap">
+            <h1>Ubicacion en mapa</h1>
+            <iframe
+            src="https://www.google.com/maps?q=<%= propiedad.coordenada1 %>,<%= propiedad.coordenada2 %>&output=embed"
+             width="100%"
+             height="450"
+             style="border:0;"
+             style="margin-top: 30px;"
+             allowfullscreen=""
+             loading="lazy">
+            </iframe>
+    
+        </div>
     </div>
+    
 </div>
  
 <%- include("templates/footer") %>
