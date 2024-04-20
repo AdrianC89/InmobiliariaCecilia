@@ -37,9 +37,20 @@
             </div>
             <div class="mb-3">
                 <label for="imagenes" class="form-label">Imágenes</label>
-                <input type="file" class="form-control" id="imagenes" name="image" multiple >
+                <div id="imagenesExistentes" class="card-group">
+                    <% propiedad.imagenes.forEach(imagen => { %>
+                        <div class="card">
+                            <img src="<%= imagen.path %>" class="card-img-top" alt="Imagen de propiedad">
+                            <div class="card-body">
+                                <button type="button" class="btn btn-danger btn-sm btnEliminarImagen" data-id="<%= imagen.id %>">Eliminar</button>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+                <input type="file" class="form-control" id="imagenes" name="image" multiple>
                 <button type="button" id="agregarImagen" class="btn btn-primary">Agregar más imágenes</button>
             </div>
+            
             <!-- Campos ocultos para guardar las imágenes actuales -->
             <% propiedad.imagenes.forEach(imagen => { %>
                 <input type="hidden" name="imagenActual" value="<%= imagen.public_id %>">
@@ -129,8 +140,8 @@
                 <label for="credito" class="form-label">Apta para Crédito Hipotecario</label>
                 <select class="form-select" id="credito" name="credito" >
                   <option value="" disabled selected>Selecciona si es apta para crédito hipotecario</option>
-                  <option value="Apta para credito hipotecario">Apta para Crédito Hipotecario</option>
-                  <option value="No apta para credito hipotecario">No Apta para Crédito Hipotecario</option>
+                  <option value="Apta para credito hipotecario" <% if (propiedad.credito === 'Apta para credito hipotecario') { %> selected <% } %>>Apta para Crédito Hipotecario</option>
+                  <option value="No apta para credito hipotecario" <% if (propiedad.credito === 'No apta para credito hipotecario') { %> selected <% } %>>No Apta para Crédito Hipotecario</option>
                 </select>
               </div>
               <div class="mb-3">
@@ -168,45 +179,91 @@
         }
     })
 
-    const formularioEditar = document.querySelector('#formularioEditar')
+    const formularioEditar = document.querySelector('#formularioEditar');
 
-    formularioEditar.addEventListener('submit', async(e) => {
-        e.preventDefault()
-        
-        const descripcion = document.querySelector('#descripcion').value
-        const direccion = document.querySelector('#direccion').value
-        const precio = document.querySelector('#precio').value
-        const imagenes = document.querySelector('#imagenes').value
-        const tipoOperacion = document.querySelector('#tipoOperacion').value
-        const tipoPropiedad = document.querySelector('#tipoPropiedad').value
-        const moneda = document.querySelector('#moneda').value
-        const dormitorios = document.querySelector('#dormitorios').value
-        const banos = document.querySelector('#banos').value
-        const garage = document.querySelector('#garage').value
-        const metro2prop = document.querySelector('#metro2prop').value
-        const metro2terr = document.querySelector('#metro2terr').value
-        const credito = document.querySelector('#credito').value
-        const video = document.querySelector('#video').value
-        const id = formularioEditar.dataset.id
+// Evento submit del formulario
+formularioEditar.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Obtener datos del formulario
+    const formData = new FormData(formularioEditar);
+    const id = formularioEditar.dataset.id;
+
+    try {
+        const response = await fetch(`/propiedades/form/${id}`, {
+            method: 'PUT',
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.estado) {
+            window.location.href = '/propiedades/form';
+        } else {
+            console.log(data.mensaje);
+        }
+    } catch (error) {
+        console.error('Error al editar la propiedad:', error);
+    }
+});
+
+// Evento click para eliminar una imagen existente
+const btnEliminarImagenes = document.querySelectorAll('.btnEliminarImagen');
+
+btnEliminarImagenes.forEach(btn => {
+    btn.addEventListener('click', async () => {
+        const imagenId = btn.dataset.id;
+        const propiedadId = formularioEditar.dataset.id; // Obtén el ID de la propiedad
 
         try {
-            const data = await fetch (`/propiedades/form/${id}`, {
-                method: 'put',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body : JSON.stringify({descripcion, direccion, precio, imagenes, tipoOperacion, tipoPropiedad, moneda, dormitorios,banos,garage,metro2prop,metro2terr, credito, video})
-            })
-
-            const resp = await data.json()
-
-            if(resp.estado){
-                window.location.href = '/propiedades/form'
-            } else{
-                console.log (resp)
+            const response = await fetch(`/propiedades/form/${propiedadId}/eliminarImagen/${imagenId}`, {
+                method: 'DELETE'
+            });
+            const data = await response.json();
+            if (data.success) {
+                // Actualizar la vista eliminando la imagen de la card
+                btn.closest('.card').remove();
+            } else {
+                console.error('Error al eliminar la imagen:', data.error);
             }
         } catch (error) {
-            console.log(error)
+            console.error('Error al eliminar la imagen:', error);
         }
-    })
+    });
+});
+const input = document.getElementById('imagenes');
+const agregarImagenBtn = document.getElementById('agregarImagen');
+
+agregarImagenBtn.addEventListener('click', function() {
+    // Crear un nuevo campo de entrada de archivos
+    const newInput = document.createElement('input');
+    newInput.type = 'file';
+    newInput.className = 'form-control';
+    newInput.name = 'image';
+    newInput.multiple = true;
+    newInput.required = true;
+
+    // Agregar un evento change al nuevo campo de entrada de archivos
+    newInput.addEventListener('change', function(event) {
+        // Obtener la lista de archivos seleccionados
+        const files = event.target.files;
+
+        // Iterar sobre cada archivo seleccionado
+        for (const file of files) {
+            // Crear un nuevo campo de entrada oculto para cada archivo seleccionado
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'image'; // Nombre del campo en el formulario
+            hiddenInput.value = file.name; // Valor del campo (nombre del archivo)
+
+            // Agregar el campo oculto al formulario
+            input.parentNode.insertBefore(hiddenInput, input.nextSibling);
+        }
+    });
+
+    // Insertar el nuevo campo de entrada antes del botón de agregar imágenes
+    input.parentNode.insertBefore(newInput, agregarImagenBtn);
+});
+
 </script>
+

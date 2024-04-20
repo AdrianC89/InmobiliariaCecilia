@@ -53,6 +53,7 @@
       </div>
       <div class="mb-3">
         <label for="direccion" class="form-label">Dirección Visible</label>
+        <h6>Dirección que aparecerá en la vista inicial de su propiedad.</h6>
         <input type="text" class="form-control" id="direccion" name="direccion" required>
       </div>
       <h4>CÓMO SE VERÁ SU PROPIEDAD EN LA BÚSQUEDA POR MAPA</h4>
@@ -69,7 +70,11 @@
       </div>
       <div class="mapaform">
         <div id="map" style="height: 400px; width: 100%;"></div>
+        <p><b>Nota:</b> Puede arrastrar el alfiler dentro del mapa y ubicarlo donde usted desee</p>
       </div>
+      <h4>INFORMACIÓN GENERAL DE LA PROPIEDAD</h4>
+      <p>Detalles específicos de su propiedad que podrán visualizarse en la vista principal de la misma.</p>
+      <hr>
       <div class="mb-3">
         <label for="descripcion" class="form-label">Descripción</label>
         <textarea class="form-control" id="descripcion" name="descripcion" rows="4" placeholder= "Por favor complete este campo detalladamente, es muy importante para el usuario que le especifique correctamente las caracteristicas de la propiedad" required></textarea>
@@ -88,6 +93,7 @@
 
       <div class="mb-3">
         <label for="imagenes" class="form-label">Imágenes</label>
+        <h6>Puede optar por elegir varias al mismo tiempo desde su Adminitrador de Archivos <b>(CTRL + Click)</b>, o tomar una por una seleccionando el botón <b>"Agregar más imágenes"</b></h6>
         <input type="file" class="form-control" id="imagenes" name="image" multiple required>
         <button type="button" id="agregarImagen" class="btn btn-primary">Agregar más imágenes</button>
       </div>

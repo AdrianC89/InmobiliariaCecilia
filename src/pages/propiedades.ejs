@@ -35,11 +35,11 @@
                   <%= propiedad.numeroRegistro %>
                 </td>
                 <td>
-                  <div id="carousel<%= propiedad._id %>" class="carousel slide" data-bs-ride="carousel">
+                  <div id="carousel<%= propiedad._id %>" class="carousel slide" id="carrudesl" data-bs-ride="carousel">
                     <div class="carousel-inner">
                       <% propiedad.imagenes.forEach((imagen, index) => { %>
-                        <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                          <img src="<%= imagen.path %>" class="d-block mx-auto img-fluid carousel-image" alt="<%= imagen.originalname %>">
+                        <div class="carousel-item <%= index === 0 ? 'active' : '' %>" id="carruItem">
+                          <img src="<%= imagen.path %>" class="d-block mx-auto img-fluid carousel-image" id="carruImg" alt="<%= imagen.originalname %>">
                         </div>
                       <% }); %>
                     </div>

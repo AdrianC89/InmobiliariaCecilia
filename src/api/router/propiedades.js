@@ -190,27 +190,107 @@ router.delete('/form/:id', async (req, res) => {
 });
 
 
-router.put('/form/:id', async(req, res) => {
+router.put('/form/:id', async (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
 
-  const id = req.params.id
-  const body = req.body
   try {
-    
-    const propiedadDB = await Propiedad.findByIdAndUpdate(id, body, { useFindAndModify: false})
-    console.log(propiedadDB)
+    // Encuentra la propiedad por su ID
+    const propiedadDB = await Propiedad.findById(id);
+
+    // Actualiza los campos de la propiedad con los datos del formulario
+    propiedadDB.descripcion = body.descripcion;
+    propiedadDB.direccion = body.direccion;
+    propiedadDB.precio = body.precio;
+    propiedadDB.tipoOperacion = body.tipoOperacion;
+    propiedadDB.tipoPropiedad = body.tipoPropiedad;
+    propiedadDB.moneda = body.moneda;
+    propiedadDB.dormitorios = body.dormitorios;
+    propiedadDB.banos = body.banos;
+    propiedadDB.garage = body.garage;
+    propiedadDB.metro2prop = body.metro2prop;
+    propiedadDB.metro2terr = body.metro2terr;
+    propiedadDB.credito = body.credito;
+    propiedadDB.video = body.video;
+
+    // Actualiza las imágenes de la propiedad
+    if (req.files && req.files.image) {
+      const files = Array.isArray(req.files.image) ? req.files.image : [req.files.image];
+      for (const file of files) {
+        const result = await uploadImage(file.tempFilePath);
+        propiedadDB.imagenes.push({
+          filename: result.original_filename,
+          path: result.secure_url,
+          originalname: result.original_filename,
+          size: result.bytes,
+          public_id: result.public_id
+        });
+
+        await fs.unlink(file.tempFilePath, (err) => {
+          if (err) {
+            console.error('Error al eliminar el archivo:', err);
+            // Manejar el error adecuadamente
+          } else {
+            console.log('Archivo eliminado correctamente');
+          }
+        });
+      }
+    }
+
+    // Elimina las imágenes de la propiedad que se eliminaron en el cliente
+    if (body.imagenesEliminadas && body.imagenesEliminadas.length > 0) {
+      body.imagenesEliminadas.forEach(imagenId => {
+        propiedadDB.imagenes = propiedadDB.imagenes.filter(img => img._id.toString() !== imagenId);
+      });
+    }
+
+    // Guarda los cambios en la base de datos
+    await propiedadDB.save();
 
     res.json({
       estado: true,
-      mensaje: 'Editado'
-    })
+      mensaje: 'Propiedad editada correctamente'
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
 
-    res.json({
+    res.status(500).json({
       estado: false,
-      mensaje: 'Fallamos!'
-    })
+      mensaje: 'Error al editar la propiedad'
+    });
   }
-})
+});
+router.delete('/form/:propiedadId/eliminarImagen/:imagenId', async (req, res) => {
+  const propiedadId = req.params.propiedadId;
+  const imagenId = req.params.imagenId;
+
+  try {
+    // Encuentra la propiedad por su ID
+    const propiedad = await Propiedad.findById(propiedadId);
+
+    // Encuentra la imagen dentro de las imágenes de la propiedad por su ID
+    const imagen = propiedad.imagenes.find(img => img.id === imagenId);
+
+    // Verifica si se encontró la imagen
+    if (!imagen) {
+      return res.status(404).json({ error: 'La imagen no fue encontrada' });
+    }
+
+    // Elimina la imagen de Cloudinary
+    await deleteImages([imagen.public_id]);
+
+    // Filtra las imágenes de la propiedad, excluyendo la imagen eliminada
+    propiedad.imagenes = propiedad.imagenes.filter(img => img.id !== imagenId);
+
+    // Guarda la propiedad actualizada
+    await propiedad.save();
+
+    // Responde con éxito
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Error al eliminar la imagen:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+});
 
 module.exports = router;
