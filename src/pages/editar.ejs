@@ -164,6 +164,7 @@
 
     btnEliminar.addEventListener('click', async() => {
         const id = btnEliminar.dataset.id
+        showLoader();
         try {
             const data = await fetch(`/propiedades/form/${id}`, {
                 method: 'delete'
@@ -172,10 +173,12 @@
             const resp = await data.json()
             
             if(resp.estado){
+                hideLoader();
                 window.location.href = '/propiedades/form'
             }
         } catch (error) {
             console.log(error)
+            hideLoader();
         }
     })
 
@@ -188,7 +191,7 @@ formularioEditar.addEventListener('submit', async (e) => {
     // Obtener datos del formulario
     const formData = new FormData(formularioEditar);
     const id = formularioEditar.dataset.id;
-
+    showLoader();
     try {
         const response = await fetch(`/propiedades/form/${id}`, {
             method: 'PUT',
@@ -198,9 +201,11 @@ formularioEditar.addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (data.estado) {
+            hideLoader();
             window.location.href = '/propiedades/form';
         } else {
             console.log(data.mensaje);
+            hideLoader();
         }
     } catch (error) {
         console.error('Error al editar la propiedad:', error);
@@ -214,7 +219,7 @@ btnEliminarImagenes.forEach(btn => {
     btn.addEventListener('click', async () => {
         const imagenId = btn.dataset.id;
         const propiedadId = formularioEditar.dataset.id; // Obtén el ID de la propiedad
-
+        showLoader();
         try {
             const response = await fetch(`/propiedades/form/${propiedadId}/eliminarImagen/${imagenId}`, {
                 method: 'DELETE'
@@ -222,9 +227,11 @@ btnEliminarImagenes.forEach(btn => {
             const data = await response.json();
             if (data.success) {
                 // Actualizar la vista eliminando la imagen de la card
+                hideLoader();
                 btn.closest('.card').remove();
             } else {
                 console.error('Error al eliminar la imagen:', data.error);
+                hideLoader();
             }
         } catch (error) {
             console.error('Error al eliminar la imagen:', error);
