@@ -3,10 +3,6 @@
 #carrudesl{
     max-width: 250px;
 }
-#carrruItem img {
-    max-height: auto; 
-    width: auto; 
-  }
   #carruImg {
     margin: 10px; 
   }
@@ -15,13 +11,14 @@
   }
 
   .carousel-inner {
-    max-width: 250px;
+    max-width: 200px;
+    min-width: 200px;
     min-height: 180px;
     max-height: 180px; 
     overflow: hidden; 
   }
   
-  .carousel-control-prev,
+.carousel-control-prev,
 .carousel-control-next {
   width: auto;
   background: transparent; 
@@ -67,7 +64,7 @@
   
 }
 
-.table-responsive, .CrearProp {
+.table-responsive, .CrearProp, #formularioEditar  {
   margin-top: 5rem;
   margin-bottom: 3rem;
 }

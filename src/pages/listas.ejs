@@ -1,3 +1,9 @@
+<head>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <!-- Otros estilos específicos de la página -->
+  </head>
 <%- include("templates/cabecera", {tituloWeb: 'propiedades'}) %>
                 <div class="contenido-body">
                     <nav id="nav-prop">
@@ -7,12 +13,39 @@
                     <div class="descripcion-prop"> 
                     </div>
                     <div class="contenedor">
-                              
                       <% propiedades.forEach(propiedad => { %>
                         <div class="prop-card">
-                        <img class="img" src="<%= propiedad.imagenes[0].path %>" alt="imagen.nombre">
+                            <div class="img">
+                                <div id="carousel<%= propiedad._id %>" class="carousel slide" data-bs-ride="carousel" >
+                                    <div class="carousel-indicators">
+                                        <% if (propiedad.imagenes.length > 1) { %>
+                                        <% propiedad.imagenes.forEach ((imagen, index) => { %>
+                                            <button type="button" data-bs-target="#carousel<%= propiedad._id %>" data-bs-slide-to="<%= index %>" <% if (index === 0) { %>class="active" <% } %> aria-label="Slide <%= index + 1 %>"></button>
+                                        <% }); %>
+                                        <% } %>
+                                    </div>
+                                    <div class="carousel-inner" id="carousel-lista">
+                                        <% propiedad.imagenes.forEach((imagen, index) => { %>
+                                            <div class="carousel-item <% if (index === 0) { %> active <% } %>">
+                                                <img src="<%= imagen.path %>" class="d-block w-100" alt="<%= imagen.nombre %>">
+                                            </div>
+                                        <% }); %>
+                                    </div>
+                                    <% if (propiedad.imagenes.length > 1) { %>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel<%= propiedad._id %>" data-bs-slide="prev">
+                                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                          <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#carousel<%= propiedad._id %>" data-bs-slide="next">
+                                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                          <span class="visually-hidden">Next</span>
+                                        </button>
+                                      <% } %>
+                                </div>
+                            </div>
+                            
                         <div class="estado"><p>En <%= propiedad.tipoOperacion %></p></div>
-                        <div class="Titulo"><h3><%= propiedad.tipoPropiedad %> En <%= propiedad.direccion %></h3></div>
+                        <div id="Titulo"><h3><%= propiedad.tipoPropiedad %> En <%= propiedad.direccion %></h3></div>
                         <div class="Precio"><h3><% if (propiedad.moneda==='Dolar' ) { %>
                                                US$<%= propiedad.precio %>
                                                 <% } else { %>
