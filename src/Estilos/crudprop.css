@@ -128,3 +128,8 @@
 #divform {
   margin-right: 0.7rem;
 }
+
+#tarjetaImagen{
+ max-width: 10rem;
+ margin: 0.5rem;
+}

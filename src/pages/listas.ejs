@@ -1,85 +1,74 @@
-<head>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <!-- Otros estilos específicos de la página -->
-  </head>
-<%- include("templates/cabecera", {tituloWeb: 'propiedades'}) %>
-                <div class="contenido-body">
-                    <nav id="nav-prop">
-                        <h1>Propiedades</h1>
-                    </nav>
-                <div class="contenido-prop">
-                    <div class="descripcion-prop"> 
-                    </div>
-                    <div class="contenedor">
-                      <% propiedades.forEach(propiedad => { %>
-                        <div class="prop-card">
-                            <div class="img">
-                                <div id="carousel<%= propiedad._id %>" class="carousel slide" data-bs-ride="carousel" >
-                                    <div class="carousel-indicators">
-                                        <% if (propiedad.imagenes.length > 1) { %>
-                                        <% propiedad.imagenes.forEach ((imagen, index) => { %>
-                                            <button type="button" data-bs-target="#carousel<%= propiedad._id %>" data-bs-slide-to="<%= index %>" <% if (index === 0) { %>class="active" <% } %> aria-label="Slide <%= index + 1 %>"></button>
-                                        <% }); %>
-                                        <% } %>
-                                    </div>
-                                    <div class="carousel-inner" id="carousel-lista">
-                                        <% propiedad.imagenes.forEach((imagen, index) => { %>
-                                            <div class="carousel-item <% if (index === 0) { %> active <% } %>">
-                                                <img src="<%= imagen.path %>" class="d-block w-100" alt="<%= imagen.nombre %>">
-                                            </div>
-                                        <% }); %>
-                                    </div>
-                                    <% if (propiedad.imagenes.length > 1) { %>
-                                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel<%= propiedad._id %>" data-bs-slide="prev">
-                                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                          <span class="visually-hidden">Previous</span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button" data-bs-target="#carousel<%= propiedad._id %>" data-bs-slide="next">
-                                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                          <span class="visually-hidden">Next</span>
-                                        </button>
-                                      <% } %>
-                                </div>
-                            </div>
-                            
-                        <div class="estado"><p>En <%= propiedad.tipoOperacion %></p></div>
-                        <div id="Titulo"><h3><%= propiedad.tipoPropiedad %> En <%= propiedad.direccion %></h3></div>
-                        <div class="Precio"><h3><% if (propiedad.moneda==='Dolar' ) { %>
-                                               US$<%= propiedad.precio %>
-                                                <% } else { %>
-                                                $<%= propiedad.precio %>
-                                                 <% } %></h3></div>
-                      <div class="ubicacion-prop"><img class="svg" src="/imagenes/iconos/marcador.svg" alt=""><p><%= propiedad.direccion %></p></div>
-                      <div class="prop-descripcion">
-                            <% if(propiedad.dormitorios > 0){ %>
-                                   <div class="icono"><img class="svg" src="/imagenes/iconos/cama-alternativa.svg" alt=""><p><%= propiedad.dormitorios %></p></div>
-                             <% } %>
-                             <% if(propiedad.banos > 0){ %>
-                                   <div class="icono"><img class="svg" src="/imagenes/iconos/ducha.svg" alt=""><p><%= propiedad.banos %></p></div>
-                             <% } %>
-                              <div class="icono"><img class="svg" src="/imagenes/iconos/regla-triangulo.svg" alt=""><p><%= propiedad.metro2terr %></p></div>
-                                  <p>Tipo: <%= propiedad.tipoPropiedad %></p>
-                              </div>
-                                   <a href="/propiedades/detalle/<%= propiedad._id %>"><button class="detalle">Detalle</button></a> 
-                                    </div>
-                             <% }); %>  
-                            
-                                
-                     
-                    </div>
-                </div>
 
-                          <div id="button-section">
-                            <button id="back">Anterior</button>
-                            
-                            <button id="next">Siguiente</button>
-                            
+<%- include("templates/cabecera", {tituloWeb: 'propiedades'}) %>
+<div class="contenido-body">
+    <nav id="nav-prop">
+        <h1>Propiedades</h1>
+    </nav>
+    <div class="contenido-prop">
+        <div class="descripcion-prop"> 
+        </div>
+        <div class="contenedor">
+            <% propiedades.forEach(propiedad => { %>
+                <div class="prop-card">
+                    <div class="img">
+                        <div class="carousel" id="carousel<%= propiedad._id %>">
+                            <div class="carousel-inner">
+                                <% propiedad.imagenes.forEach((imagen, index) => { %>
+                                    <div class="carousel-item <% if (index === 0) { %>active<% } %>">
+                                        <img src="<%= imagen.path %>" alt="<%= imagen.originalname %>">
+                                    </div>
+                                <% }); %>
+                            </div>
+                            <button class="prev" onclick="prevSlide('<%= propiedad._id %>')">❮</button>
+                            <button class="next" onclick="nextSlide('<%= propiedad._id %>')">❯</button>
                         </div>
+                    </div>
+                    
+                    <div class="estado"><p>En <%= propiedad.tipoOperacion %></p></div>
+                    <div class="Titulo"><h3><%= propiedad.tipoPropiedad %> En <%= propiedad.direccion %></h3></div>
+                    <div class="Precio"><h3><% if (propiedad.moneda==='Dolar' ) { %>US$<%= propiedad.precio %><% } else { %> $<%= propiedad.precio %><% } %></h3></div>
+                    <div class="ubicacion-prop"><img class="svg" src="/imagenes/iconos/marcador.svg" alt=""><p><%= propiedad.direccion %></p></div>
+                    <div class="prop-descripcion">
+                        <% if(propiedad.dormitorios > 0){ %>
+                            <div class="icono"><img class="svg" src="/imagenes/iconos/cama-alternativa.svg" alt=""><p><%= propiedad.dormitorios %></p></div>
+                        <% } %>
+                        <% if(propiedad.banos > 0){ %>
+                            <div class="icono"><img class="svg" src="/imagenes/iconos/ducha.svg" alt=""><p><%= propiedad.banos %></p></div>
+                        <% } %>
+                        <div class="icono"><img class="svg" src="/imagenes/iconos/regla-triangulo.svg" alt=""><p><%= propiedad.metro2terr %></p></div>
+                        <p>Tipo: <%= propiedad.tipoPropiedad %></p>
+                    </div>
+                    <a href="/propiedades/detalle/<%= propiedad._id %>"><button class="detalle">Detalle</button></a> 
                 </div>
-                <script src="/Funciones/listas.js" type="text/javascript"></script>
+            <% }); %>  
+        </div>
+    </div>
+    <div id="button-section">
+        <button id="back">Anterior</button>
+        <button id="next">Siguiente</button>
+    </div>
+</div>
+    <script src="/Funciones/listas.js" type="text/javascript"></script>
                 
                 
-<%- include("templates/footer") %>
+    <script>
+        function prevSlide(carouselId) {
+            const carousel = document.getElementById("carousel" + carouselId);
+            const slides = carousel.querySelectorAll(".carousel-item");
+            const activeIndex = Array.from(slides).findIndex(slide => slide.classList.contains("active"));
+            const prevIndex = (activeIndex - 1 + slides.length) % slides.length;
+            slides[activeIndex].classList.remove("active");
+            slides[prevIndex].classList.add("active");
+        }
+    
+        function nextSlide(carouselId) {
+            const carousel = document.getElementById("carousel" + carouselId);
+            const slides = carousel.querySelectorAll(".carousel-item");
+            const activeIndex = Array.from(slides).findIndex(slide => slide.classList.contains("active"));
+            const nextIndex = (activeIndex + 1) % slides.length;
+            slides[activeIndex].classList.remove("active");
+            slides[nextIndex].classList.add("active");
+        }
+    </script>
+    <%- include("templates/footer") %>
     

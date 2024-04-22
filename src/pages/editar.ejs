@@ -40,7 +40,7 @@
                 <label for="imagenes" class="form-label">Imágenes</label>
                 <div id="imagenesExistentes" class="card-group">
                     <% propiedad.imagenes.forEach(imagen => { %>
-                        <div class="card">
+                        <div class="card" id="tarjetaImagen">
                             <img src="<%= imagen.path %>" class="card-img-top" alt="Imagen de propiedad">
                             <div class="card-body">
                                 <button type="button" class="btn btn-danger btn-sm btnEliminarImagen" data-id="<%= imagen.id %>">Eliminar</button>
