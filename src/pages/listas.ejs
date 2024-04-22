@@ -10,12 +10,12 @@
         <div class="contenedor">
             <% propiedades.forEach(propiedad => { %>
                 <div class="prop-card">
-                    <div class="img">
-                        <div class="carousel" id="carousel<%= propiedad._id %>">
-                            <div class="carousel-inner">
+                    <div class="imagenProp">
+                        <div class="carouselLista" id="carouselLista<%= propiedad._id %>">
+                            <div class="carouselInner">
                                 <% propiedad.imagenes.forEach((imagen, index) => { %>
-                                    <div class="carousel-item <% if (index === 0) { %>active<% } %>">
-                                        <img src="<%= imagen.path %>" alt="<%= imagen.originalname %>">
+                                    <div class="carousel-object <% if (index === 0) { %>active<% } %>">
+                                        <img id="imagenCarousel" src="<%= imagen.path %>" alt="<%= imagen.originalname %>" >
                                     </div>
                                 <% }); %>
                             </div>
@@ -53,8 +53,8 @@
                 
     <script>
         function prevSlide(carouselId) {
-            const carousel = document.getElementById("carousel" + carouselId);
-            const slides = carousel.querySelectorAll(".carousel-item");
+            const carousel = document.getElementById("carouselLista" + carouselId);
+            const slides = carousel.querySelectorAll(".carousel-object");
             const activeIndex = Array.from(slides).findIndex(slide => slide.classList.contains("active"));
             const prevIndex = (activeIndex - 1 + slides.length) % slides.length;
             slides[activeIndex].classList.remove("active");
@@ -62,8 +62,8 @@
         }
     
         function nextSlide(carouselId) {
-            const carousel = document.getElementById("carousel" + carouselId);
-            const slides = carousel.querySelectorAll(".carousel-item");
+            const carousel = document.getElementById("carouselLista" + carouselId);
+            const slides = carousel.querySelectorAll(".carousel-object");
             const activeIndex = Array.from(slides).findIndex(slide => slide.classList.contains("active"));
             const nextIndex = (activeIndex + 1) % slides.length;
             slides[activeIndex].classList.remove("active");
