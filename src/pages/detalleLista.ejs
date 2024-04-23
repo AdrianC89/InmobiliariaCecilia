@@ -1,3 +1,8 @@
+<head>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  </head>
 <%- include("templates/cabecera", {tituloWeb: 'Detalle'}) %>
 <div class="detalle-contenedor">
     <nav id="detalle-nav">
@@ -14,7 +19,30 @@
     </div>
     <div class="detalle-body">
         <div class="SectionProp">
-            <img id="detalle-img" src="<%= propiedad.imagenes[0].path %>" alt="imagen.nombre">
+            <div id="carouselExampleIndicators" class="carousel slide">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                <% propiedad.imagenes.forEach((imagen, index) => { %>
+                    <div class="carousel-item <%= index === 0 ? 'active' : '' %>" id="carruItem">
+                        <img src="<%= imagen.path %>" class="" id="carruImg" alt="<%= imagen.originalname %>">
+                    </div>
+                <% }) %>
+                </div>
+                <% if (propiedad.imagenes.length > 1) { %>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+                <% } %>
+            </div>
             <div id="detalle-contenido">
                 <h2>Detalles de la Propiedad</h2>
                 <ul id="descripcion">
