@@ -10,7 +10,20 @@
         <div class="contenedor">
             <% propiedades.forEach(propiedad => { %>
                 <div class="prop-card">
-                    <img class="img" src="<%= propiedad.imagenes[0].path %>" alt="">
+                    <div class="imagenProp">
+                        <div class="carouselLista" id="carouselLista<%= propiedad._id %>">
+                            <div class="carouselInner">
+                                <% propiedad.imagenes.forEach((imagen, index) => { %>
+                                    <div class="carousel-object <% if (index === 0) { %>active<% } %>">
+                                        <img id="imagenCarousel" src="<%= imagen.path %>" alt="<%= imagen.originalname %>" >
+                                    </div>
+                                <% }); %>
+                            </div>
+                            <button class="prev" onclick="prevSlide('<%= propiedad._id %>')">❮</button>
+                            <button class="next" onclick="nextSlide('<%= propiedad._id %>')">❯</button>
+                        </div>
+                    </div>
+                    
                     <div class="estado"><p>En <%= propiedad.tipoOperacion %></p></div>
                     <div class="Titulo"><h3><%= propiedad.tipoPropiedad %> En <%= propiedad.direccion %></h3></div>
                     <div class="Precio"><h3><% if (propiedad.moneda==='Dolar' ) { %>US$<%= propiedad.precio %><% } else { %> $<%= propiedad.precio %><% } %></h3></div>
