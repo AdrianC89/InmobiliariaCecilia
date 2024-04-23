@@ -231,8 +231,8 @@
     right: 0;
 }
 
-.carrousel-object img {
-    width: 100%;
-    height: 100%;
+#imagenCarousel{
+    width: 21rem;
+    min-height: 18rem;
     object-fit: cover;
 }
