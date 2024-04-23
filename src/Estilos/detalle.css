@@ -16,13 +16,15 @@
 }
 
 #detalle-nav{
-    font-size: 1.3rem;
     background-color: rgb(227,99,59);
     color: #f4f4f4;
     max-width: 50%;
     padding: 20px 30px;
     margin-left: 5%;
     margin-top: 5%;
+}
+#detalle-nav h1{
+    font-size: 2rem;
 }
 .detalle-estado{
     display: flex;
@@ -35,6 +37,7 @@
     align-items: center;
     justify-content: center;
     background-color: indigo;
+    font-size: 1.5rem;
     padding: 20px;
     height: 100%;
     color: #f4f4f4;
@@ -47,6 +50,11 @@
     align-items: center;
     justify-content: center;
     background-color: #e9e4e4;
+    font-size: 1.5rem;
+}
+
+#detalle-precio h3{
+    font-size: 1.5rem;
 }
 
 .SectionProp{
@@ -83,9 +91,18 @@
 .SectionDescrip p{
     font-size: 1.2rem;
 }
-#detalle-img{
+#carouselExampleIndicators{
     width: 50%;
     height: 500px;
+}
+#carruItem{
+    width: 100%;
+    height: 100%;
+}
+
+#carruItem img{
+    width: 100%;
+    height: 100%;
 }
 
 #detalle-contenido{
