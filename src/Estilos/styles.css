@@ -102,3 +102,47 @@ height: 600px;
       transform: rotate(-360deg);
     }
   }
+
+  @media (max-width: 600px) {
+    #encabezado {
+      text-align: right;
+    }
+    #encabezado img {
+      max-width: 150px;
+    }
+    #encabezado-nav ul{
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top:0;
+      background:rgb(64, 61, 58);
+      width: 100%;
+      z-index: 1000;
+  }
+  .categorias {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    gap: 10px;
+  }
+
+  .categoria {
+    width: 250px;
+    height: 250px;
+  }
+
+  .descripcion h1{
+    font-size: 25px;
+    margin: 1rem;
+
+  }
+  .descripcion p{
+    font-size: 11px;
+  }
+
+  footer {
+    flex-direction: column;
+    justify-content: space-between;
+
+  }
+  }
