@@ -13,13 +13,13 @@
 
     <div class="busqueda">
         <h2> &#128269;Lo que estés buscando está aquí</h2>
-    <form action="#" method="get" id="search-form">
+    <form action="/propiedades/buscar-propiedades" method="get" id="search-form">
     
         <select name="tipo-propiedad" id="tipo-propiedad" >
             <option value="casa">Tipo de propiedad</option>
             <option value="casa">Casa</option>
-            <option value="departamento">Departamento</option>
-            <option value="terreno">Terreno</option>
+            <option value="departamento">Departamento/Duplex</option>
+            <option value="terreno">Lote</option>
         </select>
         
         <input type="text" name="ubicacion" id="ubicacion" placeholder="Ingrese la ubicación">
@@ -28,7 +28,7 @@
 
         <input type="number" name="precio-hasta" id="precio-hasta" placeholder="Precio Máximo">
 
-        <button type="submit">Buscar</button>
+       <a href="#" id="enlace-busqueda"><button type="submit">Buscar</button></a> 
     </form>
 </div>
     </div>
