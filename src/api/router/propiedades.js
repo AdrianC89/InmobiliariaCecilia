@@ -58,6 +58,27 @@ router.get('/detalle/:id', async (req, res) => {
   }
 })
 
+router.get('/buscar-propiedades', async (req, res) =>{
+  const tipo = req.query.tipo;
+  const ubicacion = req.query.ubicacion;
+  const precioMin = req.query.precio_min;
+  const precioMax = req.query.precio_max;
+  try {
+    let query = {};
+    if (tipo) query.tipoPropiedad = tipo;
+    if (ubicacion) query.direccion = ubicacion;
+    if (precioMin && precioMax) query.precio = { $gte: precioMin, $lte: precioMax };
+    else if (precioMin) query.precio = { $gte: precioMin };
+    else if (precioMax) query.precio = { $lte: precioMax };
+
+    const propiedadesDB = await Propiedad.find(query);
+    res.render('../pages/listas', {
+      propiedades: propiedadesDB
+    });
+  } catch (error) {
+    console.log(error);
+  }
+})
 //rutas del administrador
 
 router.get('/form', async (req, res) => {
