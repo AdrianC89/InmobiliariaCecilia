@@ -152,7 +152,7 @@
             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
         </form>
         <hr>
-        <button id="btnEliminar" class="btn btn-primary mb-4" data-id="<%= propiedad.id %>">Eliminar</button>
+        
 
     <% } %>
 </div>
@@ -161,27 +161,7 @@
 
 
 <script>
-    const btnEliminar = document.querySelector('#btnEliminar')
-
-    btnEliminar.addEventListener('click', async() => {
-        const id = btnEliminar.dataset.id
-        showLoader();
-        try {
-            const data = await fetch(`/propiedades/form/${id}`, {
-                method: 'delete'
-            })
-
-            const resp = await data.json()
-            
-            if(resp.estado){
-                hideLoader();
-                window.location.href = '/propiedades/form'
-            }
-        } catch (error) {
-            console.log(error)
-            hideLoader();
-        }
-    })
+   
 
     const formularioEditar = document.querySelector('#formularioEditar');
 

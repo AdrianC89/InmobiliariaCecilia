@@ -6,6 +6,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="/Estilos/crudprop.css">
+  <script src="/Funciones/eliminarPropiedad.js" async defer></script>
   <!-- Otros estilos específicos de la página -->
 </head>
 <%- include("templates/cabecera", {tituloWeb: 'Propiedades-form' }) %>
@@ -71,8 +72,9 @@
                         $<%= propiedad.precio %>
                           <% } %>
                 </td>
-                <td>
+                <td class="botonDoble">
                   <a href="/propiedades/form/<%= propiedad.id %>" class="btn btn-primary">Editar</a>
+                  <button id="btnEliminar" class="btn btn-danger mb-4" data-id="<%= propiedad.id %>">Eliminar</button>
                 </td>
               </tr>
               <% }); %>
