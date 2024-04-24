@@ -5,6 +5,11 @@
     justify-content: center;
     text-align: center;
 }
+
+#menu-icon {
+    display: none; /* Ocultar el icono del menú por defecto */
+}
+
 #encabezado img {
     max-width: 400px;
 }

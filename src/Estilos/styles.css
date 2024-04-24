@@ -104,21 +104,34 @@ height: 600px;
   }
 
   @media (max-width: 600px) {
+
     #encabezado {
+      display: flex;
+      justify-content: space-between;
       text-align: right;
     }
     #encabezado img {
       max-width: 150px;
     }
+
     #encabezado-nav ul{
       display: flex;
       flex-direction: column;
-      position: sticky;
       top:0;
+      position: absolute;
       background:rgb(64, 61, 58);
       width: 100%;
       z-index: 1000;
+  } 
+
+  #encabezado-nav a {
+    font-size: 12px;
   }
+  #menu-icon {
+    display: block; /* Ocultar el icono del menú por defecto */
+    margin-left: 0.5rem;
+    width: 25px;
+}
   .categorias {
     display: flex;
     flex-direction: column;
