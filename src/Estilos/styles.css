@@ -104,14 +104,18 @@ height: 600px;
   }
 
   @media (max-width: 600px) {
+    header {
+      position: fixed;
+      width: 100%;
+      z-index: 9999;
+    }
 
     #encabezado {
-      position: sticky;
       top: 0;
       display: flex;
       justify-content: space-between;
       text-align: right;
-      z-index: 999;
+      
     }
     #encabezado img {
       max-width: 200px;
@@ -119,9 +123,12 @@ height: 600px;
 
     #encabezado-nav {
       display: none;
-      position: static;
+      
     }
-
+    .imagen-desc {
+      min-height: 250px;
+      background-position: 80% 45%; 
+    }
     #encabezado-nav ul{
       display: flex;
       flex-direction: column;
@@ -129,7 +136,10 @@ height: 600px;
       background:rgb(64, 61, 58);
       width: 100%;
   } 
-
+  .contenido {
+    margin-left: 5%;
+    margin-right: 5%;
+}
   #whatsapp{
     width: 60px;
     height: 60px;
@@ -137,6 +147,12 @@ height: 600px;
   #encabezado-nav a {
     font-size: 12px;
   }
+  #encabezado-nav li:hover {
+    color: rgb(227,99,59);
+    background: none;
+    border-radius:0;
+    transform: none;
+}
   #menu-icon {
     display: block; /* Ocultar el icono del menú por defecto */
     margin-left: 0.5rem;

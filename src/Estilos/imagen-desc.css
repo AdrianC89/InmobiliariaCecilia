@@ -1,9 +1,9 @@
 .imagen-desc {
     display: flex;
-    background-image: url('../imagenes/fondotandil.jpg'); 
+    background-image: url('../imagenes/fondotandil.avif'); 
     background-size: cover;
     background-repeat: no-repeat; 
-    background-position: 50% 80%; 
+    background-position: 80% 45%; 
     min-height: 300px;
     justify-content: center;
     text-align: center;
