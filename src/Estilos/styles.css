@@ -106,24 +106,34 @@ height: 600px;
   @media (max-width: 600px) {
 
     #encabezado {
+      position: sticky;
+      top: 0;
       display: flex;
       justify-content: space-between;
       text-align: right;
+      z-index: 999;
     }
     #encabezado img {
-      max-width: 150px;
+      max-width: 200px;
+    }
+
+    #encabezado-nav {
+      display: none;
+      position: static;
     }
 
     #encabezado-nav ul{
       display: flex;
       flex-direction: column;
       top:0;
-      position: absolute;
       background:rgb(64, 61, 58);
       width: 100%;
-      z-index: 1000;
   } 
 
+  #whatsapp{
+    width: 60px;
+    height: 60px;
+  }
   #encabezado-nav a {
     font-size: 12px;
   }

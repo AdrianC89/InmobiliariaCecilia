@@ -12,9 +12,11 @@
     background-size: cover;
     border-radius: 100%;
     border: 2px solid #fff;
-    top: 85%;
-    left: 93%;
+    bottom: 0;
+    right: 0;
+    margin: 1.5rem;
     transition: 0.5s;
+    z-index: 1000;
 }
 
 #whatsapp:hover{
