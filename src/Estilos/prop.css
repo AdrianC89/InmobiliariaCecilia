@@ -235,4 +235,5 @@
     width: 21rem;
     min-height: 18rem;
     object-fit: cover;
+    transition: 1s ease;
 }

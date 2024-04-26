@@ -69,13 +69,27 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    background-color: rgb(227,99,59);
+    color: #f4f4f4;
     width: 80%;
-    padding: auto;
+    padding: 40px;
+    border-radius: 50px;
 }
-.SectionMap h1{
+.SectionMap nav{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.SectionMap nav h1{
     padding: 30px 30px;
 }
 
+.SectionMap nav img{
+    width: 64px;
+    height: 64px;
+    margin-top: 20px;
+}
 
 .SectionDescrip{
     margin-top: 5%;
