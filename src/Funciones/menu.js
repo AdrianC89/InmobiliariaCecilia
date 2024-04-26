@@ -13,3 +13,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+window.addEventListener('scroll', function() {
+    var encabezado = document.getElementById('encabezado');
+    var encabezadoNav = document.getElementById('encabezado-nav');
+    var encabezadoAltura = encabezado.offsetHeight;
+    var viewportWidth = window.innerWidth;
+
+    if (window.pageYOffset > encabezadoAltura && viewportWidth >= 600) {
+        encabezadoNav.style.position = 'fixed';
+        encabezadoNav.style.top = '0';
+    } else {
+        encabezadoNav.style.position = 'static';
+    }
+});

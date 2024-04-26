@@ -176,12 +176,39 @@ height: 600px;
 
   }
   .descripcion p{
-    font-size: 11px;
+    font-size: 13px;
   }
 
   footer {
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
 
+  }
+  .footer-content {
+    width: auto;
+  }
+  .footer-content > .title{
+    font-size: 13px;
+  }
+  .footer-content li{
+    font-size: 13px;
+  }
+  .footer-content > .column {
+    width: 90%;
+  }
+  .footer-content > .column img{
+    width: 15px;
+    height: 15px;
+  }
+  .footer-content > #logo img{
+    width: 100px;
+    margin: 0;
+  }
+
+  .mapa {
+    height: 250px;
   }
   }

@@ -14,8 +14,7 @@
     max-width: 400px;
 }
 #encabezado-nav {
-    position: sticky;
-    top:0;
+   
     background:rgb(64, 61, 58);
     width: 100%;
     z-index: 1000;
