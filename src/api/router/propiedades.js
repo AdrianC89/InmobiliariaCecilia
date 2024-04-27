@@ -59,10 +59,7 @@ router.get('/detalle/:id', async (req, res) => {
 })
 
 router.get('/buscar-propiedades', async (req, res) =>{
-  const tipo = req.query.tipo;
-  const ubicacion = req.query.ubicacion;
-  const precioMin = req.query.precio_min;
-  const precioMax = req.query.precio_max;
+ const { tipo, ubicacion, precioMin, precioMax } = req.query;
   try {
     let query = {};
     if (tipo) query.tipoPropiedad = tipo;

@@ -1,5 +1,4 @@
 <head>
-  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
   </head>
@@ -71,10 +70,12 @@
             <p><%= propiedad.descripcion %></p>
         </div>
         <div class="SectionMap">
-            <h1>Ubicacion en mapa</h1>
+            <nav>
+                <img src="/imagenes/alfiler.png" alt=""> <h1>Ubicacion en mapa</h1>
+            </nav>
             <iframe
             src="https://www.google.com/maps?q=<%= propiedad.coordenada1 %>,<%= propiedad.coordenada2 %>&output=embed"
-             width="100%"
+             width="80%"
              height="450"
              style="border:0;"
              style="margin-top: 30px;"
