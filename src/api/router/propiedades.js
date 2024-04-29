@@ -81,7 +81,7 @@ router.get('/buscar-propiedades', async (req, res) =>{
 router.get('/form', async (req, res) => {
   try {
     const propiedadesDB = await Propiedad.find();
-    res.render('../pages/propiedades.ejs', {
+    res.render('../pages/admin/propiedades.ejs', {
       propiedades: propiedadesDB
     });
   } catch (error) {
@@ -91,7 +91,7 @@ router.get('/form', async (req, res) => {
 
 // Ruta para mostrar el formulario de creación de propiedades
 router.get('/form/crear', (req, res) => {
-  res.render('crear');
+  res.render('admin/crear.ejs');
 });
 
 // Ruta para procesar la creación de una nueva propiedad
@@ -156,14 +156,14 @@ router.get('/form/:id', async (req, res) => {
     const propiedadDB = await Propiedad.findOne({ _id: id })
     console.log(propiedadDB)
 
-    res.render('editar', {
+    res.render('admin/editar.ejs', {
       propiedad: propiedadDB,
       error: false
     })
 
   } catch (error) {
     console.log(error)
-    res.render('editar', {
+    res.render('admin/editar.ejs', {
       error: true,
       mensaje: 'No se encuentra el ID seleccionado'
     })

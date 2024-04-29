@@ -1,0 +1,19 @@
+<%- include("templates/cabecera", {tituloWeb: 'Iniciar sesión'}) %>
+
+<div class="login">
+    <div class="form-container">
+        <h1>Iniciar sesión</h1>
+        <p>Ingresa tus credenciales para acceder al área de administración</p>
+        <form id="login-form">
+            <label for="user">Usuario</label>
+            <input type="text" name="user" id="user" placeholder="Nombre de usuario">
+            <label for="pass">Contraseña</label>
+            <input type="password" name="pass" id="pass" placeholder="Contraseña">
+            <button type="submit" id="button-login">Iniciar sesión</button>
+        </form>
+        <p class="error escondido">Error al iniciar sesión</p>
+    </div>
+</div>
+
+<script src="/Funciones/login.js"></script>
+<%- include("templates/footer") %>
