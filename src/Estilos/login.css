@@ -1,4 +1,4 @@
-.login {
+.login, .admin {
 font-family: 'Mulish', sans-serif;
 display: flex;
 justify-content: center;
@@ -7,20 +7,20 @@ min-height: 90svh;
 font-size:larger ;
 }
 
-.form-container {
+.form-container, .admin-panel {
     width: 500px;
     background-color: white;
     border-radius: 10px;
     padding: 50px;
 }
 
-#login-form {
+#login-form,#register-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-#button-login {
+#button-login, #button-exit {
     border-radius: 4px;
     border: unset;
     padding: 10px 30px;

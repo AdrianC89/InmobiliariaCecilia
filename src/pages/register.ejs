@@ -1,0 +1,21 @@
+<%- include("templates/cabecera", {tituloWeb: 'Iniciar sesión'}) %>
+
+<div class="login">
+    <div class="form-container">
+        <h1>Crear cuenta</h1>
+        <p>Crea tu cuenta para entrar al area de administracion</p>
+        <form id="register-form">
+            <label for="user">Usuario</label>
+            <input type="text" name="user" id="user" placeholder="Nombre de usuario">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Correo electrónico">
+            <label for="pass">Contraseña</label>
+            <input type="password" name="password" id="password" placeholder="Contraseña">
+            <button type="submit" id="button-login">Registrarse</button>
+        </form>
+        <p class="error escondido">Error al registrarse</p>
+    </div>
+</div>
+
+<script src="/Funciones/register.js"></script>
+<%- include("templates/footer") %>
