@@ -21,5 +21,14 @@ router.get('/contacto', (req, res) => {
   res.render('../pages/contacto.ejs')
 })
 
+router.get('/login', (req, res) => {
+  res.render('../pages/login.ejs')
+})
+
+router.get('/admin', (req, res) => {
+  res.render('../pages/admin/admin.ejs')
+})
+
+
 
 module.exports = router;
