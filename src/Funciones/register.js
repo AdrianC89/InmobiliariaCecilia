@@ -4,7 +4,7 @@ const mensajeError = document.getElementsByClassName("error")[0];
 document.getElementById("register-form").addEventListener("submit",async (e)=>{
     e.preventDefault();
     console.log(e.target.children.user.value)
-    const res = await fetch("http://localhost:3001/register",{
+    const res = await fetch("/register",{
         method:"POST",
         headers:{
             "Content-Type" : "application/json"
