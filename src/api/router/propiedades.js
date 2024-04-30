@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 const { unlink } = require('fs-extra');
 const Propiedad = require('../models/propiedades');
-const { uploadImage, deleteImages } = require('../cloudinary.js');
+const { uploadImage, deleteImages } = require('../controllers/cloudinary.js');
 const fs = require('fs');
 
 // Ruta para obtener todas las propiedades

@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
 const morgan = require('morgan');
 const { v4: uuid } = require('uuid'); 
@@ -10,6 +11,7 @@ const fileUpload = require('express-fileupload')
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
+app.use(cookieParser())
 
 
 const port = process.env.PORT || 3000;
@@ -38,6 +40,7 @@ app.use(cors())
 //Middlewares
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../')));
+
 
 //file upload
 app.use(fileUpload({
