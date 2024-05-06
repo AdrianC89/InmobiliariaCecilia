@@ -5,6 +5,7 @@ const { unlink } = require('fs-extra');
 const Propiedad = require('../models/propiedades');
 const { uploadImage, deleteImages } = require('../controllers/cloudinary.js');
 const fs = require('fs');
+const authorization = require('../middlewares/authorization.js');
 
 // Ruta para obtener todas las propiedades
 
@@ -59,10 +60,11 @@ router.get('/detalle/:id', async (req, res) => {
 })
 
 router.get('/buscar-propiedades', async (req, res) =>{
- const { tipo, ubicacion, precioMin, precioMax } = req.query;
+  const { tipo, operacion, ubicacion, precioMin, precioMax } = req.query;
   try {
     let query = {};
     if (tipo) query.tipoPropiedad = tipo;
+    if (operacion) query.tipoOperacion = operacion;
     if (ubicacion) query.direccion = ubicacion;
     if (precioMin && precioMax) query.precio = { $gte: precioMin, $lte: precioMax };
     else if (precioMin) query.precio = { $gte: precioMin };
@@ -78,7 +80,7 @@ router.get('/buscar-propiedades', async (req, res) =>{
 })
 //rutas del administrador
 
-router.get('/form', async (req, res) => {
+router.get('/form',authorization.soloAdmin, async (req, res) => {
   try {
     const propiedadesDB = await Propiedad.find();
     res.render('../pages/admin/propiedades.ejs', {

@@ -60,6 +60,8 @@
 .SectionProp{
     margin-top: 5%;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 80%;
     padding: auto;
 }
@@ -91,6 +93,11 @@
     margin-top: 20px;
 }
 
+.SectionMap iframe{
+    width:"80%";
+    height:"450px";
+}
+
 .SectionDescrip{
     margin-top: 5%;
     display: flex;
@@ -106,7 +113,7 @@
     font-size: 1.2rem;
 }
 #carouselExampleIndicators{
-    width: 50%;
+    width: 45%;
     height: 500px;
 }
 #carruItem{
@@ -124,7 +131,6 @@
     height: auto;
     background-color: gray;
     color: #f4f4f4;
-    margin-left: 50px;
 }
 
 #detalle-contenido h2{
@@ -144,4 +150,45 @@
     padding: 15px 15px;
     font-size: 1.2rem;
     margin-left: 30px;
+}
+
+@media only screen and (max-width: 600px){
+    #detalle-nav{
+        padding: 10px 15px;
+        margin-top: 20%;
+    }
+    #detalle-nav h1{
+        font-size: 1rem;
+    }
+
+    .SectionProp{
+        flex-direction: column;
+    }
+    .detalle-estado h2{
+        font-size: 0.8rem;
+    }
+    #detalle-precio{
+        width: 30%;
+    }
+    #detalle-precio h3{
+        font-size: 0.8rem;
+    }
+    #carouselExampleIndicators{
+        width: 100%;
+        height: 350px;
+    }
+    #detalle-contenido{
+        margin-top: 5%;
+        width: 100%;
+        font-size: 0.8rem;
+    }
+    #detalle-contenido h2{
+        font-size: 1rem;
+    }
+    #descripcion li{
+        font-size: 0.8rem;
+    }
+    .SectionMap{
+        padding: 20px;
+    }
 }
