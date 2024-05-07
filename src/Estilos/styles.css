@@ -187,23 +187,23 @@ height: 600px;
     align-items: center;
 
   }
-  .footer-content {
+  .footer-contenido {
     width: auto;
   }
-  .footer-content > .title{
+  .footer-contenido > .title{
     font-size: 13px;
   }
-  .footer-content li{
+  .footer-contenido li{
     font-size: 13px;
   }
-  .footer-content > .column {
+  .footer-contenido > .column {
     width: 90%;
   }
-  .footer-content > .column img{
+  .footer-contenido > .column img{
     width: 15px;
     height: 15px;
   }
-  .footer-content > #logo img{
+  .footer-contenido > #logo img{
     width: 100px;
     margin: 0;
   }

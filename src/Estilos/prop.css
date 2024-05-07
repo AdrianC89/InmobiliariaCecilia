@@ -299,7 +299,8 @@
     }
     #nav-prop{
         font-size: 1.2rem;
-        margin-top: 10%;
+        margin: 0;
+        padding-top: 10%;
     }
 
 }

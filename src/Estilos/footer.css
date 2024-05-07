@@ -10,7 +10,7 @@ footer{
     margin-top: 5%;
 }
 
-.footer-content{
+.footer-contenido{
     display: flex;
     font-family: 'Mulish', sans-serif;
     color: #f4f4f4;
@@ -71,7 +71,7 @@ margin: 1rem;
     transition: 0.3s ease;
 }
 
-.footer-content ul{
+.footer-contenido ul{
     display: flex;
     flex-direction: column;
 }
