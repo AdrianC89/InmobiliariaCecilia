@@ -8,6 +8,7 @@
 @import url(prop.css);
 @import url(detalle.css);
 @import url(login.css);
+@import url(admin.css);
 
 
 * {
@@ -135,8 +136,11 @@ height: 600px;
       flex-direction: column;
       top:0;
       background:rgb(64, 61, 58);
-      width: 70%;
+      width: 60%;
   } 
+  .panelControl {
+    width: 40%;
+  }
   .contenido {
     margin-left: 5%;
     margin-right: 5%;
@@ -158,6 +162,7 @@ height: 600px;
     display: block; /* Ocultar el icono del menú por defecto */
     margin-left: 0.5rem;
     width: 25px;
+    cursor: pointer;
 }
   .categorias {
     display: flex;

@@ -1,21 +1,25 @@
- const btnEliminar = document.querySelector('#btnEliminar')
+document.addEventListener('DOMContentLoaded', function() {
+    const btnEliminar = document.querySelectorAll('.btnEliminar');
 
-    btnEliminar.addEventListener('click', async() => {
-        const id = btnEliminar.dataset.id
-        showLoader();
-        try {
-            const data = await fetch(`/propiedades/form/${id}`, {
-                method: 'delete'
-            })
+    btnEliminar.forEach(button => {
+        button.addEventListener('click', async () => {
+            const id = button.dataset.id;
+            showLoader();
+            try {
+                const data = await fetch(`/propiedades/form/${id}`, {
+                    method: 'delete'
+                });
 
-            const resp = await data.json()
-            
-            if(resp.estado){
+                const resp = await data.json();
+                
+                if(resp.estado){
+                    hideLoader();
+                    window.location.href = '/propiedades/form';
+                }
+            } catch (error) {
+                console.log(error);
                 hideLoader();
-                window.location.href = '/propiedades/form'
             }
-        } catch (error) {
-            console.log(error)
-            hideLoader();
-        }
-    })
+        });
+    });
+});
