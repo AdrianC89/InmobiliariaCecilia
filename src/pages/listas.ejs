@@ -40,7 +40,7 @@
                        <% } %>
                         <div class="icono"><img class="svg" src="/imagenes/iconos/regla-triangulo.svg" alt="metrosTerr"><p><%= propiedad.metro2terr %></p></div> 
                     </div>
-                    <a id="enlace" href="#"><div class="icono"><img class="svg" id="compartir" src="/imagenes/iconos/whatsapp (2).png" alt="compartir"><p>Compartir</p></div> </a>
+                    <a id="enlace" href="whatsapp://send?text=Cecilia%20Gómez%20Inmobiliaria:%20https://inmobiliariacecilia.onrender.com/propiedades/detalle/<%= propiedad._id %>" target="_blank"><div class="icono"><img class="svg" id="compartir" src="/imagenes/iconos/whatsapp (2).png" alt="compartir"><p>Compartir</p></div> </a>
                     <p id="tipoProp">Tipo: <%= propiedad.tipoPropiedad %></p>
                     <a href="/propiedades/detalle/<%= propiedad._id %>"><button class="detalle">Detalle</button></a> 
                 </div>
