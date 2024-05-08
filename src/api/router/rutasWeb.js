@@ -4,20 +4,20 @@ const path = require('path');
 const authenticationController = require('../controllers/authentication.controller.js');
 const authorization = require('../middlewares/authorization.js');
 //Rutas
-router.get('/', (req, res) => {
+router.get('/',authorization.pasarInfoLogueo, (req, res) => {
   res.render('../pages/index.ejs')
 })
 
 
-router.get('/tasaciones', (req, res) => {
+router.get('/tasaciones',authorization.pasarInfoLogueo, (req, res) => {
   res.render('../pages/tasaciones.ejs')
 })
 
-router.get('/nosotros', (req, res) => {
+router.get('/nosotros',authorization.pasarInfoLogueo, (req, res) => {
   res.render('../pages/nosotros.ejs')
 })
 
-router.get('/contacto', (req, res) => {
+router.get('/contacto',authorization.pasarInfoLogueo, (req, res) => {
   res.render('../pages/contacto.ejs')
 })
 

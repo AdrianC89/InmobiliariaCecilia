@@ -39,6 +39,7 @@ footer{
 
 .descripcion{
 margin: 1rem;
+text-align: center;
 
 }
 
@@ -103,6 +104,16 @@ margin: 1rem;
     width: 100%;
 }
 
+#login-account {
+    text-decoration: none;
+    color: rgb(227,99,59);
+    font-weight: bold;
+    font-size: small;
+}
+
+#login-account:hover{
+    color: #f4f4f4;
+}
 @media only screen and (max-width: 1250px){
     #logo{
         width: 50%;

@@ -35,13 +35,10 @@
             <a href="/contacto"><li>Contacto</li></a>
         </ul>
         
-            <div class="panelControl">
+        <div class="panelControl <%= logueado ? 'logged-in' : 'logged-out' %>">
                 <div class="entrada">
                     <img src="/imagenes/iconopanel.png" alt="Icono Panel">
-                    <button id="btnAdmin">Administración</button>
+                    <a href="/admin"><button id="btnAdmin">Administración</button></a>
                 </div>
-                <ul id="menu-control">
-                    <a href="/admin"><li>Panel de Control</li></a>
-                    
-                </ul></div>
+            </div>
     </nav></header>

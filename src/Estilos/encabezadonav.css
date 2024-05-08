@@ -50,9 +50,17 @@
 }
 
 .panelControl {
+    display: none;
     float: left;
+    width: 20%;
+}
+.panelControl.logged-in {
+    display: block; /* Mostrar el panel de control si el usuario está logueado */
 }
 
+.panelControl.logged-out {
+    display: none; /* Ocultar el panel de control si el usuario no está logueado */
+}
 .entrada {
  justify-content: center;
 }
@@ -69,20 +77,5 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold; 
     border: none;
-}
-
-
-#menu-control {
-    display: none;
-    flex-direction: column;
-}
-#menu-control li{
-    font-size: 12px;
-}
-
-#menu-control li:hover {
-    color: rgb(227,99,59);
-    background: none;
-    border-radius:0;
-    transform: none;
+    cursor: pointer;
 }

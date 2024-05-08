@@ -5,15 +5,16 @@ require('dotenv').config();
 
 function soloAdmin(req,res,next){
     const logueado = revisarCookie(req);
+    res.locals.logueado = logueado; // Pasar la información sobre si el usuario está logueado a la vista
     if (logueado) return next();
-    return res.redirect("/")
-
+    return res.redirect("/");
 }
 
 function soloPublico(req,res,next){
     const logueado = revisarCookie(req);
+    res.locals.logueado = logueado; // Pasar la información sobre si el usuario está logueado a la vista
     if (!logueado) return next();
-    return res.redirect("/admin")
+    return res.redirect("/admin");
 }
 
 function revisarCookie(req){
@@ -32,9 +33,17 @@ function revisarCookie(req){
         return false
     }
 }
+
+function pasarInfoLogueo(req, res, next) {
+    const logueado = revisarCookie(req);
+    res.locals.logueado = logueado;
+    next();
+}
+
 const methods = {
     soloAdmin,
-    soloPublico
+    soloPublico,
+    pasarInfoLogueo
   };
   
   module.exports = methods;
