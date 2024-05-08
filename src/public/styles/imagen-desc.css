@@ -1,0 +1,32 @@
+.imagen-desc {
+    display: flex;
+    background-image: url('../images/fondotandil.avif'); 
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position: 80% 45%; 
+    min-height: 300px;
+    justify-content: center;
+    text-align: center;
+}
+
+.imagen-desc h1 {
+    margin: auto;
+    color: rgba(246,240,233);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 3rem;
+}
+
+.descripcion p {
+    font-family: 'Mulish', sans-serif;
+    font-size: 18px;
+    margin-bottom: 1rem;
+}
+
+.descripcion h1 {
+    font-family: 'Mulish', sans-serif;
+    font-size: 50px;
+    text-align: center;
+    margin: 1.5rem;
+    font-weight: bolder;
+}

@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.detalle-contenedor{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-family: 'Poopins', sans-serif;
+}
+
+.detalle-body{
+    display: flex;
+    width: 100%;
+    padding: auto;
+    align-items: center;
+    flex-direction: column;
+}
+
+#detalle-nav{
+    background-color: rgb(227,99,59);
+    color: #f4f4f4;
+    max-width: 50%;
+    padding: 20px 30px;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+#detalle-nav h1{
+    font-size: 2rem;
+}
+.detalle-estado{
+    display: flex;
+    max-width: 50%;
+    height: 50px;
+    margin-left: 5%;
+}
+.detalle-estado h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: indigo;
+    font-size: 1.5rem;
+    padding: 20px;
+    height: 100%;
+    color: #f4f4f4;
+}
+
+#detalle-precio{
+    display: flex;
+    width: 20%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #e9e4e4;
+    font-size: 1.5rem;
+}
+
+#detalle-precio h3{
+    font-size: 1.5rem;
+}
+
+.SectionProp{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    padding: auto;
+}
+
+.SectionMap{
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(227,99,59);
+    color: #f4f4f4;
+    width: 80%;
+    padding: 40px;
+    border-radius: 50px;
+}
+.SectionMap nav{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.SectionMap nav h1{
+    padding: 30px 30px;
+}
+
+.SectionMap nav img{
+    width: 64px;
+    height: 64px;
+    margin-top: 20px;
+}
+
+.SectionMap iframe{
+    width:"80%";
+    height:"450px";
+}
+
+.SectionDescrip{
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    padding: auto;
+}
+.SectionDescrip h1{
+    padding: 30px 30px;
+}
+.SectionDescrip p{
+    font-size: 1.2rem;
+}
+#carouselExampleIndicators{
+    width: 45%;
+    height: 500px;
+}
+#carruItem{
+    width: 100%;
+    height: 100%;
+}
+
+#carruItem img{
+    width: 100%;
+    height: 100%;
+}
+
+#detalle-contenido{
+    width: 50%;
+    height: auto;
+    background-color: gray;
+    color: #f4f4f4;
+}
+
+#detalle-contenido h2{
+    width: 100%;
+    background-color: #333;
+    text-align: center;
+    padding: 20px 20px;
+}
+
+ #descripcion{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+#descripcion li{
+    padding: 15px 15px;
+    font-size: 1.2rem;
+    margin-left: 30px;
+}
+
+@media only screen and (max-width: 600px){
+    #detalle-nav{
+        padding: 10px 15px;
+        margin-top: 20%;
+    }
+    #detalle-nav h1{
+        font-size: 1rem;
+    }
+
+    .SectionProp{
+        flex-direction: column;
+    }
+    .detalle-estado h2{
+        font-size: 0.8rem;
+    }
+    #detalle-precio{
+        width: 30%;
+    }
+    #detalle-precio h3{
+        font-size: 0.8rem;
+    }
+    #carouselExampleIndicators{
+        width: 100%;
+        height: 350px;
+    }
+    #detalle-contenido{
+        margin-top: 5%;
+        width: 100%;
+        font-size: 0.8rem;
+    }
+    #detalle-contenido h2{
+        font-size: 1rem;
+    }
+    #descripcion li{
+        font-size: 0.8rem;
+    }
+    .SectionMap{
+        padding: 20px;
+    }
+}

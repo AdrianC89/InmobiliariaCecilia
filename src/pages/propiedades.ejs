@@ -1,0 +1,88 @@
+
+
+
+<%- include("templates/cabecera", {tituloWeb: 'Propiedades-form' }) %>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles/crudprop.css">
+  <script src="/src/public/functions/eliminarPropiedad.js" async defer></script>
+  <!-- Otros estilos específicos de la página -->
+
+
+  <div class="container-prop">
+    <nav id="nav-prop">
+      <h1>Administración de Propiedades</h1>
+    </nav>
+    
+    <div class="table-responsive">
+      <a href="/propiedades/form/crear" class="btn btn-primary mb-4" id="botonCrear">Crear Nueva Propiedad</a>
+      <table class="table" id="tablaProp">
+        <thead >
+          <tr>
+            <th scope="col" id="titulosTabla">N°</th>
+            <th scope="col" id="titulosTabla">Imágenes</th>
+            <th scope="col" id="titulosTabla">Tipo de Propiedad</th>
+            <th scope="col" id="titulosTabla">Descripción</th>
+            <th scope="col" id="titulosTabla">Precio</th>
+            <th scope="col" id="titulosTabla">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (propiedades.length> 0) { %>
+            <% propiedades.forEach(propiedad=> { %>
+              <tr>
+                <td>
+                  <%= propiedad.numeroRegistro %>
+                </td>
+                <td>
+                  <div id="carousel<%= propiedad._id %>" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <% propiedad.imagenes.forEach((imagen, index) => { %>
+                        <div class="carousel-item <%= index === 0 ? 'active' : '' %>" id="carruItem">
+                          <img src="<%= imagen.path %>" class="d-block mx-auto img-fluid carousel-image" id="carruImg" alt="<%= imagen.originalname %>">
+                        </div>
+                      <% }); %>
+                    </div>
+                    <% if (propiedad.imagenes.length > 1) { %>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carousel<%= propiedad._id %>" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carousel<%= propiedad._id %>" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                    <% } %>
+                  </div>
+                </td>
+                
+                <td>
+                  <%= propiedad.tipoPropiedad %>
+                </td>
+                <td>
+                  <%= propiedad.descripcion %>
+                </td>
+                <td>
+                  <% if (propiedad.moneda==='Dolar' ) { %>
+                    US$<%= propiedad.precio %>
+                      <% } else { %>
+                        $<%= propiedad.precio %>
+                          <% } %>
+                </td>
+                <td class="botonDoble">
+                  <a href="/propiedades/form/<%= propiedad.id %>" class="btn btn-primary">Editar</a>
+                  <button id="btnEliminar" class="btn btn-danger mb-4" data-id="<%= propiedad.id %>">Eliminar</button>
+                </td>
+              </tr>
+              <% }); %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="6" class="text-center">No hay propiedades disponibles.</td>
+                  </tr>
+                  <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>

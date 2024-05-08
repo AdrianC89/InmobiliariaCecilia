@@ -27,17 +27,21 @@
                     <div class="estado"><p>En <%= propiedad.tipoOperacion %></p></div>
                     <div class="Titulo"><h3><%= propiedad.tipoPropiedad %> En <%= propiedad.direccion %></h3></div>
                     <div class="Precio"><h3><% if (propiedad.moneda==='Dolar' ) { %>US$<%= propiedad.precio %><% } else { %> $<%= propiedad.precio %><% } %></h3></div>
-                    <div class="ubicacion-prop"><img class="svg" src="/imagenes/iconos/marcador.svg" alt=""><p><%= propiedad.direccion %></p></div>
+                    <div class="ubicacion-prop"><img class="svg" src="/imagenes/iconos/marcador.svg" alt="direccion"><p><%= propiedad.direccion %></p></div>
                     <div class="prop-descripcion">
                         <% if(propiedad.dormitorios > 0){ %>
-                            <div class="icono"><img class="svg" src="/imagenes/iconos/cama-alternativa.svg" alt=""><p><%= propiedad.dormitorios %></p></div>
+                            <div class="icono"><img class="svg" src="/imagenes/iconos/cama-alternativa.svg" alt="dormitorio"><p><%= propiedad.dormitorios %></p></div>
                         <% } %>
-                        <% if(propiedad.banos > 0){ %>
-                            <div class="icono"><img class="svg" src="/imagenes/iconos/ducha.svg" alt=""><p><%= propiedad.banos %></p></div>
+                        <% if(propiedad.banos >= 1){ %>
+                            <div class="icono"><img class="svg" src="/imagenes/iconos/ducha.svg" alt="bano"><p><%= propiedad.banos %></p></div>
                         <% } %>
-                        <div class="icono"><img class="svg" src="/imagenes/iconos/regla-triangulo.svg" alt=""><p><%= propiedad.metro2terr %></p></div>
-                        <p>Tipo: <%= propiedad.tipoPropiedad %></p>
+                        <% if(propiedad.garage >= 1) { %>
+                            <div class="icono"><img class="svg" src="/imagenes/iconos/coche.png" alt="coche"><p><%= propiedad.garage %></p></div>
+                       <% } %>
+                        <div class="icono"><img class="svg" src="/imagenes/iconos/regla-triangulo.svg" alt="metrosTerr"><p><%= propiedad.metro2terr %></p></div> 
                     </div>
+                    <a id="enlace" href="#"><div class="icono"><img class="svg" id="compartir" src="/imagenes/iconos/whatsapp (2).png" alt="compartir"><p>Compartir</p></div> </a>
+                    <p id="tipoProp">Tipo: <%= propiedad.tipoPropiedad %></p>
                     <a href="/propiedades/detalle/<%= propiedad._id %>"><button class="detalle">Detalle</button></a> 
                 </div>
             <% }); %>  

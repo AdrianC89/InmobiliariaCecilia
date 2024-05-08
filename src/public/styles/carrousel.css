@@ -1,0 +1,129 @@
+.wrapper {
+    max-width: 1100px;
+    width: 90%;
+    position: relative;
+  }
+  .wrapper i {
+    z-index: 1;
+    top: 50%;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    font-size: 1.25rem;
+    position: absolute;
+    text-align: center;
+    line-height: 50px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.23);
+    transform: translateY(-50%);
+    transition: transform 0.1s linear;
+  }
+  .wrapper i:active{
+    transform: translateY(-50%) scale(0.85);
+  }
+  .wrapper i:first-child{
+    left: -22px;
+  }
+  .wrapper i:last-child{
+    right: -22px;
+  }
+  .wrapper .carousel{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% / 3) - 12px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    border-radius: 8px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .carousel.no-transition {
+    scroll-behavior: auto;
+  }
+  .carousel.dragging {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+  .carousel.dragging .card {
+    cursor: grab;
+    user-select: none;
+  }
+  .carousel :where(.card, .img) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .carousel .card {
+    position: relative;
+    scroll-snap-align: start;
+    height: 400px;
+    list-style: none;
+    background: #f4f4f4;
+    cursor: pointer;
+    padding-bottom: 15px;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden; 
+  }
+  .carousel .card .img {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border-radius: 5%;
+    overflow: hidden; 
+
+
+  }
+  .card .img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+    object-fit: cover;
+    
+  }
+  .carousel .card .text-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-bottom: 0.8rem;
+    padding: 1rem;
+    text-align: center;
+    box-sizing: border-box;
+    background:linear-gradient(rgba(34, 32, 32, 0.5),rgba(245, 242, 242, 0.3)70%) ; 
+
+  }
+  .carousel .card h2 {
+    margin: 0;
+    font-weight: 500;
+    font-size: 1.56rem;
+    color: #f8f7f7; 
+  }
+  .carousel .card span {
+    margin: 0;
+    color: #c7c9d1;
+    font-size: 1.31rem;
+  }
+  @media screen and (max-width: 900px) {
+    .wrapper .carousel {
+      grid-auto-columns: calc((100% / 2) - 9px);
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .wrapper .carousel {
+      grid-auto-columns: 100%;
+    }
+  }
+
+  .destacadas h1 {
+    font-family: 'Mulish', sans-serif;
+    font-size: 50px;
+    text-align: center;
+    margin: 1.5rem;
+    font-weight: bolder;
+  }
