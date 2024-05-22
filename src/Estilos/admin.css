@@ -1,4 +1,31 @@
 .admin-cat {
-    border: black 1px solid;
+    text-align: center;
     margin: 2rem;
+}
+
+.admin-cat p {
+    font-size: small;
+}
+
+.admin-panel {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.adminbutton {
+    border: none;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1.2rem;
+    font-size: 25px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(64, 61, 58);
+    color: #f4f4f4;
+    transition: 0.2s;
+}
+
+.adminbutton:hover {
+    background-color: rgb(227,99,59);
+    color: rgb(64, 61, 58);
 }
