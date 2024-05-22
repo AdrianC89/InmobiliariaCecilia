@@ -1,6 +1,12 @@
 <%- include("templates/cabecera", {tituloWeb: 'Detalle'}) %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 <div class="detalle-contenedor">
+    <div id="enlaces">
+        <a href="whatsapp://send?text=Cecilia%20Gómez%20Inmobiliaria:%20https://inmobiliariacecilia.onrender.com/propiedades/detalle/<%= propiedad._id %>" target="_blank"><div class="icono"><img src="/imagenes/enlaces/Iconos de Whatsapp para descargar gratis.jpeg" alt="compartir"></div> </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.inmobiliariacecilia.onrender.com/propiedades/detalle/<%= propiedad._id %>" target="_blank"><div class="icono"><img  src="/imagenes/enlaces/Free Facebook.jpg" alt="compartir"></div></a>
+        <a href="https://twitter.com/intent/tweet?text=Cecilia%20Gómez%20Inmobiliaria:%20http://www.inmobiliariacecilia.onrender.com/propiedades/detalle/<%= propiedad._id %>" target="_blank"><div class="icono"><img  src="/imagenes/enlaces/Elon Musk.jpg" alt="compartir"></div> </a>
+        <a href="mailto:?subject=Cecilia%20Gómez%20Inmobiliaria&body=Mira%20esta%20propiedad:%20http://www.inmobiliariacecilia.onrender.com/propiedades/detalle/<%= propiedad._id %>" target="_blank"><div class="icono"><img  src="/imagenes/enlaces/Gmail Logo Png Template Download on Pngtree.jpg" alt="compartir"></div> </a>
+    </div>
     <nav id="detalle-nav">
         <h1><%= propiedad.tipoPropiedad %> En <%= propiedad.direccion %></h1>
     </nav>
