@@ -5,7 +5,10 @@ const authenticationController = require('../controllers/authentication.controll
 const validateToken = require('../middlewares/validateToken.js');
 const validate = require('../middlewares/validator.js');
 const schema = require('../schema/auth.schema.js');
+const isAuthenticated = require('../middlewares/isAuthenticated.js');
 
+// Aplicar el middleware a todas las rutas
+router.use(isAuthenticated);
 
 //Rutas
 router.get('/', (req, res) => {

@@ -7,6 +7,10 @@ const User = require('../models/user');
 const { uploadImage, deleteImages } = require('../controllers/cloudinary.js');
 const fs = require('fs');
 const validateToken = require('../middlewares/validateToken.js');
+const isAuthenticated = require('../middlewares/isAuthenticated.js');
+
+// Aplicar el middleware a todas las rutas
+router.use(isAuthenticated);
 
 // Ruta para obtener todas las propiedades
 
