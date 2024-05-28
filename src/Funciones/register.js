@@ -1,23 +1,34 @@
-const mensajeError = document.getElementsByClassName("error")[0];
+document.getElementById('register-form').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const errorMessage = document.getElementById('error-message');
 
+    // Resetear mensaje de error
+    errorMessage.classList.add('escondido');
+    errorMessage.textContent = 'Error al registrarse';
 
-document.getElementById("register-form").addEventListener("submit",async (e)=>{
-    e.preventDefault();
-    console.log(e.target.children.user.value)
-    const res = await fetch("/register",{
-        method:"POST",
-        headers:{
-            "Content-Type" : "application/json"
-        },
-        body: JSON.stringify({
-            user: e.target.children.user.value,
-            email: e.target.children.email.value,
-            password: e.target.children.password.value,
-        })
-    });
-    if (!res.ok) return mensajeError.classList.toggle("escondido", false);
-    const resJson = await res.json();
-    if (resJson.redirect){
-        window.location.href = resJson.redirect;
+    try {
+        const response = await fetch('/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, email, password })
+        });
+
+        if (response.ok) {
+            window.location.href = '/admin';
+        } else {
+            const result = await response.json();
+            errorMessage.textContent = result.error || 'Error al registrarse';
+            errorMessage.classList.remove('escondido');
+        }
+    } catch (error) {
+        console.error('Error al registrarse:', error);
+        errorMessage.textContent = 'Error al registrarse';
+        errorMessage.classList.remove('escondido');
     }
-})
+});
