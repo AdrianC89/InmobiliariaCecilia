@@ -30,7 +30,7 @@
                 <div class="carousel-inner">
                 <% propiedad.imagenes.forEach((imagen, index) => { %>
                     <div class="carousel-item <%= index === 0 ? 'active' : '' %>" id="carruItem">
-                        <img src="<%= imagen.path %>" class="" id="carruImg" alt="<%= imagen.originalname %>">
+                        <img src="<%= imagen.path %>" class="img-fluid" id="carruImg" alt="<%= imagen.originalname %>">
                     </div>
                 <% }) %>
                 </div>

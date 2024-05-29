@@ -18,8 +18,8 @@
 }
 
 #enlaces a img{
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3.3rem;
+    height: 3.3rem;
     border-radius: 20px;
 }
 
@@ -44,7 +44,7 @@
 }
 
 #detalle-nav{
-    background-color: rgb(227,99,59);
+    background: linear-gradient(90deg, rgb(227,99,59), orange);
     color: #f4f4f4;
     max-width: 50%;
     padding: 20px 30px;
@@ -67,10 +67,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: indigo;
+    background: indigo;
     font-size: 1.3rem;
     padding: 20px;
-    height: 100%;
+   /* height: 100%;*/
     color: #f4f4f4;
     border-bottom-left-radius: 20px;
 }
@@ -78,7 +78,6 @@
 #detalle-precio{
     display: flex;
     width: 20%;
-    height: 100%;
     align-items: center;
     justify-content: center;
     background-color: #e9e4e4;
@@ -104,10 +103,10 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: rgb(227,99,59);
+    background: linear-gradient(90deg, rgb(227,99,59), orange);
     color: #f4f4f4;
     width: 80%;
-    padding: 40px;
+    padding: 20px;
     border-radius: 50px;
 }
 .SectionMap nav{
@@ -117,12 +116,13 @@
 }
 
 .SectionMap nav h1{
-    padding: 30px 30px;
+  font-size: 1.5rem;
+  padding: 30px 30px;
 }
 
 .SectionMap nav img{
-    width: 64px;
-    height: 64px;
+    width: 45px;
+    height: 45px;
     margin-top: 20px;
 }
 
@@ -167,14 +167,18 @@
 #detalle-contenido{
     width: 50%;
     height: auto;
-    background-color: gray;
-    color: #f4f4f4;
+    background-color:gray ;
+    color: #d5cbc9;
     border-radius: 30px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #detalle-contenido h2{
     width: 100%;
+    color: rgb(227,99,59);
     background-color: #333;
     text-align: center;
     padding: 20px 20px;
@@ -187,9 +191,11 @@
 }
 
 #descripcion li{
-    padding: 15px 15px;
+    text-align: center;
+    padding: 5px;
+    margin: 10px;
+    list-style-type: none;
     font-size: 1.2rem;
-    margin-left: 30px;
 }
 
 @media only screen and (max-width: 600px){
@@ -217,7 +223,8 @@
         font-size: 0.8rem;
     }
     #detalle-precio{
-        width: 30%;
+        width: 40%;
+        height: 60%;
     }
     #detalle-precio h3{
         font-size: 0.8rem;
