@@ -8,6 +8,7 @@ const { uploadImage, deleteImages } = require('../controllers/cloudinary.js');
 const fs = require('fs');
 const validateToken = require('../middlewares/validateToken.js');
 const isAuthenticated = require('../middlewares/isAuthenticated.js');
+const { log } = require('console');
 
 // Aplicar el middleware a todas las rutas
 router.use(isAuthenticated);
@@ -66,15 +67,16 @@ router.get('/detalle/:id', async (req, res) => {
 
 router.get('/buscar-propiedades', async (req, res) =>{
   const { tipo, operacion, ubicacion, precioMin, precioMax } = req.query;
+  console.log('Query parameters:', req.query);
   try {
     let query = {};
-    if (tipo) query.tipoPropiedad = tipo;
-    if (operacion) query.tipoOperacion = operacion;
-    if (ubicacion) query.direccion = ubicacion;
+    if (tipo && tipo !== '') query.tipoPropiedad = tipo;
+    if (operacion && operacion !== '') query.tipoOperacion = operacion;
+    if (ubicacion && ubicacion !== '') query.direccion = ubicacion;
     if (precioMin && precioMax) query.precio = { $gte: precioMin, $lte: precioMax };
     else if (precioMin) query.precio = { $gte: precioMin };
     else if (precioMax) query.precio = { $lte: precioMax };
-
+    console.log('Query object:', query);
     const propiedadesDB = await Propiedad.find(query);
     res.render('../pages/listas', {
       propiedades: propiedadesDB
