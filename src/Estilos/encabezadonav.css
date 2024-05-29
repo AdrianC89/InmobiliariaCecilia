@@ -50,17 +50,10 @@
 }
 
 .panelControl {
-    display: none;
     float: left;
     width: 20%;
 }
-.panelControl.logged-in {
-    display: block; /* Mostrar el panel de control si el usuario está logueado */
-}
 
-.panelControl.logged-out {
-    display: none; /* Ocultar el panel de control si el usuario no está logueado */
-}
 .entrada {
  justify-content: center;
 }

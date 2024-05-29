@@ -1,4 +1,19 @@
-document.getElementById("button-exit").addEventListener("click",()=>{
-    document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    document.location.href = "/"
-})
+document.getElementById('button-exit').addEventListener('click', async function() {
+    try {
+        const response = await fetch('/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            window.location.href = '/';
+        } else {
+            alert('Error al cerrar sesión');
+        }
+    } catch (error) {
+        console.error('Error al cerrar sesión:', error);
+        alert('Error al cerrar sesión');
+    }
+});

@@ -4,6 +4,16 @@
 
 }
 
+#lupa {
+    width: 25px;
+    margin-right: 1rem;
+}
+
+.busqueda span {
+    font-size: 25px;
+    font-weight: bold;
+}
+
 #whatsapp{
     position: fixed;
     width: 70px;

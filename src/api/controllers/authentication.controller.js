@@ -1,68 +1,89 @@
 const bcrypt = require('bcryptjs');
-const jsonwebtoken = require('jsonwebtoken');
+const User = require('../models/user');
+const jwt = require('../libs/jwt');
 require('dotenv').config();
 
+async function login(req, res) {
+  const { password, username } = req.body;
 
-const usuarios = [{
-    user: "adrian",
-    email: "adrian@gmail.com",
-    password: bcrypt.hashSync("a", 5)
-}]
+  try {
+    const userFound = await User.findOne({ username });
 
-async function login(req,res){
-  console.log(req.body);
-  const user = req.body.user;
-  const password = req.body.password;
-  if (!user || !password ){
-    return res.status(400).send({status:"Error",message:"Los campos están incompletos"})
+    if (!userFound) return res.status(400).json({ message: "User not found" });
+
+    const isMatch = await bcrypt.compare(password, userFound.password);
+
+    if (!isMatch) return res.status(400).json({ message: "Incorrect password" });
+
+    const token = await jwt.createAccessToken({ id: userFound._id });
+
+    res.cookie("token", token);
+    res.json({
+      id: userFound._id,
+      username: userFound.username,
+      email: userFound.email,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-  const usuarioARevisar = usuarios.find(usuario => usuario.user === user);
-  if (!usuarioARevisar){
-    return res.status(400).send({status:"Error",message:"Error durante el login"})
-  }
-  const loginCorrecto = await bcrypt.compare(password,usuarioARevisar.password);
-  if (!loginCorrecto){
-    return res.status(400).send({status:"Error",message:"Error durante el login"})
-  }
-  const token = jsonwebtoken.sign({user:usuarioARevisar.user},
-    process.env.JWT_SECRET,
-    {expiresIn:process.env.JWT_EXPIRATION});
-    const cookieOption = {
-      expires:new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
-      path: "/"
-    };
-    res.cookie("jwt",token,cookieOption);
-    res.send({status:"ok",mesagge: "Usuario loggeado",redirect:"/admin"})
 }
 
+async function register(req, res) {
+  const { email, password, username } = req.body;
 
-async function register(req,res){
-  console.log(req.body);
-  const user = req.body.user;
-  const email = req.body.email;
-  const password = req.body.password;
-  if (!user || !password || !email){
-    return res.status(400).send({status:"Error",message:"Los campos están incompletos"})
-  }
-  const usuarioARevisar = usuarios.find(usuario => usuario.user === user);
-  if (usuarioARevisar){
-    return res.status(400).send({status:"Error",message:"Este usuario ya existe"})
+  try {
+      const userExists = await User.findOne({ email });
+      if (userExists) {
+          return res.status(400).json({ error: "Email already registered" });
+      }
 
+      const passwordHash = await bcrypt.hash(password, 10);
+
+      const newUser = new User({
+          username,
+          email,
+          password: passwordHash,
+      });
+
+      const userSaved = await newUser.save();
+      const token = await jwt.createAccessToken({ id: userSaved._id });
+      res.cookie("token", token, { httpOnly: true });
+
+      res.status(200).json({
+          id: userSaved._id,
+          username: userSaved.username,
+          email: userSaved.email,
+      });
+  } catch (error) {
+      res.status(500).json({ error: error.message });
   }
-  const salt = await bcrypt.genSalt(5);
-  const hashPassword = await bcrypt.hash(password,salt);
-  const nuevoUsuario = {
-    user, email, password: hashPassword
-  }
-  usuarios.push(nuevoUsuario);
-  console.log(usuarios);
-  return res.status(201).send({status:"ok", message:`Usuario ${nuevoUsuario.user} agregado`,redirect:"/"})
 }
 
+async function logout(req, res) {
+  res.cookie('token', "", {
+    expires: new Date(0)
+  });
+  return res.sendStatus(200);
+}
 
-  
-  module.exports = {
-    usuarios,
-    login,
-    register
+async function profile(req, res) {
+  try {
+    const userFound = await User.findById(req.user.id);
+    if (!userFound) return res.status(400).json({ message: "User not found" });
+
+    return res.json({
+      id: userFound._id,
+      username: userFound.username,
+      email: userFound.email
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+module.exports = {
+  login,
+  register,
+  logout,
+  profile
 };
