@@ -52,7 +52,7 @@
     font-size: 18px;
 }
 
-#enlace-busqueda > button {
+#enlace-busqueda {
     margin: 0.5rem;
     border: none;
     color: #f4f4f4;
