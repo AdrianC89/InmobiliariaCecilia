@@ -24,24 +24,26 @@ document.addEventListener("DOMContentLoaded", function () {
     input.addEventListener('input', function () {
         const query = input.value;
         if (query.length > 2) {
-            geocoder.geocode(query, function (results) {
-                resultContainer.innerHTML = '';
-                results.forEach(function (result) {
-                    const option = document.createElement('div');
-                    option.classList.add('autocomplete-option');
-                    option.textContent = result.name;
-                    option.addEventListener('click', function () {
-                        input.value = result.name;
-                        resultContainer.innerHTML = '';
-                        const latlng = result.center;
-                        marker.setLatLng(latlng);
-                        map.setView(latlng, 15);
-                        document.getElementById('coordenada1').value = latlng.lat;
-                        document.getElementById('coordenada2').value = latlng.lng;
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
+                .then(response => response.json())
+                .then(results => {
+                    resultContainer.innerHTML = '';
+                    results.forEach(result => {
+                        const option = document.createElement('div');
+                        option.classList.add('autocomplete-option');
+                        option.textContent = result.display_name;
+                        option.addEventListener('click', function () {
+                            input.value = result.display_name;
+                            resultContainer.innerHTML = '';
+                            const latlng = [result.lat, result.lon];
+                            marker.setLatLng(latlng);
+                            map.setView(latlng, 15);
+                            document.getElementById('coordenada1').value = latlng[0];
+                            document.getElementById('coordenada2').value = latlng[1];
+                        });
+                        resultContainer.appendChild(option);
                     });
-                    resultContainer.appendChild(option);
                 });
-            });
         } else {
             resultContainer.innerHTML = '';
         }

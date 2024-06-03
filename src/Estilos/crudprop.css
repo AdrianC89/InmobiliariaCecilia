@@ -144,12 +144,12 @@
 }
 
 .autocomplete-results {
-  border: 1px solid #ccc;
+  border: none;
   background-color: #fff;
   max-height: 200px;
   overflow-y: auto;
   position: absolute;
-  width: 100%;
+  width: 80%;
   z-index: 1000;
 }
 
