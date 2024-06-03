@@ -1,44 +1,49 @@
-function initMap() {
+document.addEventListener("DOMContentLoaded", function () {
+    const map = L.map('map').setView([-37.32874601356731, -59.13697524676664], 12); // Inicializa el mapa centrado en una ubicación específica
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    const marker = L.marker([-37.32874601356731, -59.13697524676664], {
+        draggable: true
+    }).addTo(map);
+
+    marker.on('dragend', function (e) {
+        const position = marker.getLatLng();
+        document.getElementById('coordenada1').value = position.lat;
+        document.getElementById('coordenada2').value = position.lng;
+    });
+
+    const geocoder = L.Control.Geocoder.nominatim();
     const input = document.getElementById('direccionInput');
-    const options = {
-        types: ['geocode'] // Limitar la búsqueda a direcciones
-    };
-    const autocomplete = new google.maps.places.Autocomplete(input, options);
+    const resultContainer = document.createElement('div');
+    resultContainer.classList.add('autocomplete-results');
+    input.parentNode.appendChild(resultContainer);
 
-    // Crear el mapa
-    const map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -34.603722, lng: -58.381592 }, // Centro inicial del mapa
-        zoom: 12, // Zoom inicial
-    });
-
-    // Crear un marcador que se actualizará cuando se complete una dirección en el autocompletado
-    const marker = new google.maps.Marker({
-        map,
-        draggable: true, // Permitir que el marcador se pueda arrastrar
-    });
-
-    // Listener para detectar el cambio en la dirección seleccionada
-    autocomplete.addListener('place_changed', function () {
-        const place = autocomplete.getPlace();
-        if (!place.geometry || !place.geometry.location) {
-            console.error("No se ha encontrado la ubicación para el lugar proporcionado");
-            return;
+    input.addEventListener('input', function () {
+        const query = input.value;
+        if (query.length > 2) {
+            geocoder.geocode(query, function (results) {
+                resultContainer.innerHTML = '';
+                results.forEach(function (result) {
+                    const option = document.createElement('div');
+                    option.classList.add('autocomplete-option');
+                    option.textContent = result.name;
+                    option.addEventListener('click', function () {
+                        input.value = result.name;
+                        resultContainer.innerHTML = '';
+                        const latlng = result.center;
+                        marker.setLatLng(latlng);
+                        map.setView(latlng, 15);
+                        document.getElementById('coordenada1').value = latlng.lat;
+                        document.getElementById('coordenada2').value = latlng.lng;
+                    });
+                    resultContainer.appendChild(option);
+                });
+            });
+        } else {
+            resultContainer.innerHTML = '';
         }
-
-        // Actualizar las coordenadas del marcador con la ubicación seleccionada
-        const newPosition = place.geometry.location;
-        marker.setPosition(newPosition);
-        map.setCenter(newPosition);
-
-        // Actualizar los campos de coordenadas
-        document.getElementById('coordenada1').value = newPosition.lat();
-        document.getElementById('coordenada2').value = newPosition.lng();
     });
-
-    // Listener para detectar el movimiento del marcador y actualizar las coordenadas
-    marker.addListener('dragend', function () {
-        document.getElementById('coordenada1').value = marker.getPosition().lat();
-        document.getElementById('coordenada2').value = marker.getPosition().lng();
-    });
-}
-
+});

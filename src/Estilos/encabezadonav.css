@@ -17,7 +17,7 @@
    display: flex;
     background:rgb(64, 61, 58);
     width: 100%;
-    z-index: 1000;
+    z-index: 9999;
 }
 #encabezado-nav ul{
     list-style: none;

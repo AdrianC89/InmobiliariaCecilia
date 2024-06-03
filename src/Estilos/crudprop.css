@@ -142,3 +142,23 @@
 .botonDoble > * {
   margin-bottom: 3.5rem; /* Ajusta el valor según sea necesario */
 }
+
+.autocomplete-results {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  max-height: 200px;
+  overflow-y: auto;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
+.autocomplete-option {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autocomplete-option:hover {
+  background-color: #f0f0f0;
+}
+
