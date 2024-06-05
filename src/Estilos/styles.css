@@ -167,14 +167,15 @@ margin-bottom: 5%;
 }
   .categorias {
     display: flex;
+    align-items: center;
     flex-direction: column;
     margin: 0;
     gap: 10px;
   }
 
   .categoria {
-    width: 250px;
-    height: 250px;
+    width: 400px;
+    height: 200px;
   }
 
   .descripcion h1{
@@ -184,6 +185,11 @@ margin-bottom: 5%;
   }
   .descripcion p{
     font-size: 13px;
+  }
+
+  .destacadas h2 {
+    font-size: 25px;
+    margin-top: 1.5rem;
   }
 
   footer {

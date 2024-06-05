@@ -5,12 +5,13 @@
     align-items: center;
     width: 100%;
     height: 600px;
-    font-family: 'Poppins',serif;
+    font-family: 'Mulish', sans-serif;
 }
 
-.destacadas h1{
+.destacadas h2{
     width: 100%;
     text-align: center;
+    margin-bottom: 0.5rem;
     font-size: 3rem;
 }
 .contenedor-img{

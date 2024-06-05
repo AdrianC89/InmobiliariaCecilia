@@ -4,6 +4,7 @@
     background-color: rgba(246,240,233);
     justify-content: center;
     text-align: center;
+    border-bottom: 1px rgb(64, 61, 58) solid;
 }
 
 #menu-icon {
