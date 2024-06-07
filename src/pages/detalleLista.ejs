@@ -1,9 +1,17 @@
 <%- include("templates/cabecera", {tituloWeb: 'Detalle'}) %>
+<head>
+<meta property="og:title" content="<%= propiedad.nombre %>">
+<meta property="og:description" content="<%= propiedad.descripcion %>">
+<meta property="og:url" content="https://inmobiliariacecilia.onrender.com/propiedades/detalle/<%= propiedad._id %>">
+<meta property="og:image" content="<%= propiedad.imagenes[0].path %>">
+<meta property="og:type" content="website">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
 <div class="detalle-contenedor">
     <div id="enlaces">
-        <a href="https://wa.me/?text=TU_URL" target="_blank" class="share-button whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://api.whatsapp.com/send?text=Mira esta propiedad: <%= encodeURIComponent('https://inmobiliariacecilia.onrender.com/propiedades/detalle/' +  propiedad._id ) %>" target="_blank" class="share-button whatsapp"><i class="fab fa-whatsapp"></i></a>
         <a href="https://www.facebook.com/sharer/sharer.php?u=TU_URL" target="_blank" class="share-button facebook"><i class="fab fa-facebook-f"></i></a>
         <a href="https://twitter.com/intent/tweet?url=TU_URL&text=Texto para compartir" target="_blank" class="share-button twitter"><i class="fab fa-twitter"></i></a>
         <a href="mailto:?subject=Te puede interesar esto&body=Echa un vistazo a este sitio web: TU_URL" target="_blank" class="share-button email"><i class="fas fa-envelope"></i></a>
