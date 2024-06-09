@@ -226,6 +226,44 @@
     list-style-type: none;
     font-size: 1.2rem;
 }
+@media only screen and (max-width: 930px){
+    #detalle-nav h1{
+        font-size: 1.3rem;
+    }
+    .detalle-estado h2{
+        font-size: 1rem;
+    }
+    .detalle-estado h3{
+        font-size: 1rem;
+    }
+    #carruItem img{
+        height: 500px;
+    }
+    #carouselExampleIndicators{
+        height: 500px;
+    }
+
+}
+@media only screen and (max-width: 780px){
+    #detalle-nav h1{
+        font-size: 1rem;
+    }
+    .detalle-estado{
+        max-width: 40%;
+    }
+    .detalle-estado h2{
+        font-size: 0.9rem;
+    }
+    .detalle-estado h3{
+        font-size: 0.9rem;
+    }
+    #carruItem img{
+        height: 400px;
+    }
+    #carouselExampleIndicators{
+        height: 400px;
+    }
+}
 
 @media only screen and (max-width: 600px){
     #detalle-nav{
