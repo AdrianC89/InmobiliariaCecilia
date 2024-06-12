@@ -1,0 +1,66 @@
+
+.contenedorContacto{
+    width: 90%;
+    height: 500px;
+    background-color: antiquewhite;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    position: relative;
+}
+
+.contacto-title{
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    font-size: 1.5rem;
+    padding: 15px 10px;
+    background-color: #948872;
+    color: #f4f4f4;
+    border-radius: 10px;
+}
+
+.form-input{
+    position: absolute;
+    width: 400px;
+    padding-left: 20px;
+    box-sizing: border-box;
+    text-align: left;
+    border: none;
+}
+.form-input::placeholder{
+    text-align: left;
+    color: #999;
+}
+
+#form-nombre{
+    top: 25%;
+    left: 10%;
+}
+#form-email{
+    top: 25%;
+    left: 45%;
+}
+#form-asunto{
+    top: 45%;
+    left: 10%;
+}
+#form-telefono{
+    top: 45%;
+    left: 45%;
+}
+#form-mensaje{
+    top: 65%;
+    left: 10%;
+    width: 800px;
+    height: 100px;
+    font-size: 1rem;
+}
+#form-submit{
+    position: absolute;
+    top: 80%;
+    left: 80%;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: #948872;
+    color: #f4f4f4;
+}
