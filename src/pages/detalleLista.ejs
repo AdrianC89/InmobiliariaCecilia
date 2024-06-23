@@ -1,13 +1,13 @@
-<%- include("templates/cabecera", {tituloWeb: 'Detalle'}) %>
-<head>
-<meta property="og:title" content="<%= propiedad.tipoPropiedad %> En <%= propiedad.direccion %>">
-<meta property="og:description" content="<%= propiedad.descripcion %>">
-<meta property="og:url" content="https://inmobiliariacecilia.onrender.com/propiedades/detalle/<%= propiedad._id %>">
-<meta property="og:image" content="<%= propiedad.imagenes[0].path %>">
-<meta property="og:type" content="website">
+<%- include("templates/cabecera",
+ {tituloWeb: 'Detalle',
+ ogTitle: propiedad.tipoPropiedad ,
+ ogURL: 'https://inmobiliariacecilia.onrender.com/propiedades/'+ propiedad._id,
+ ogImage: propiedad.imagenes[0].path,
+ ogType: 'website'}) %>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
+
 
 <div class="detalle-contenedor">
     <div id="enlaces">
