@@ -85,6 +85,24 @@ router.get('/buscar-propiedades', async (req, res) =>{
     console.log(error);
   }
 })
+
+router.post('/enviar-email', async (req, res)=>{
+  const {nombre, email, asunto, telefono, mensaje} = req.body
+
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'benjaminsobarzo2018@gmail.com', // Cambia esto por tu dirección de correo
+        pass: 'renaultfluence' // Cambia esto por tu contraseña
+  } 
+  });
+  let mailOptions = {
+    from: email,
+    to: 'admin@example.com', // Cambia esto por la dirección del administrador
+    subject: asunto,
+    text: `Nombre: ${nombre}\nEmail: ${email}\nTeléfono: ${telefono}\nMensaje:\n${mensaje}`
+};
+})
 //rutas del administrador
 
 router.get('/form',validateToken.authRequired, async (req, res) => {

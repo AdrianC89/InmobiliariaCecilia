@@ -9,13 +9,13 @@
   <nav id="nav-prop">
     <h1>Contacto</h1>
 </nav> 
-  <form action="" class="contenedorContacto">
+  <form action="/enviar-email" method="post" class="contenedorContacto">
     <div class="contacto-title"><p>Envianos un mensaje</p></div>
-    <input type="text" id="form-nombre" class="form-input" placeholder="Tu Nombre">
-    <input type="text" id="form-email" class="form-input" placeholder="Tu Email">
-    <input type="text" id="form-asunto" class="form-input" placeholder="Asunto">
-    <input type="text" id="form-telefono" class="form-input" placeholder="Teléfono">
-    <textarea rows="4" cols="100" placeholder="Mensaje" id="form-mensaje" name="comentario" class="form-input" required="" maxlength="999"></textarea>
+    <input type="text" id="form-nombre" name="nombre" class="form-input" placeholder="Tu Nombre">
+    <input type="text" id="form-email" name="email" class="form-input" placeholder="Tu Email">
+    <input type="text" id="form-asunto" name="asunto" class="form-input" placeholder="Asunto">
+    <input type="text" id="form-telefono" name="telefono" class="form-input" placeholder="Teléfono">
+    <textarea rows="4" cols="100" placeholder="Mensaje" id="form-mensaje" name="mensaje" class="form-input" required="" maxlength="999"></textarea>
     <input type="submit" id="form-submit" placeholder="ENVIAR MENSAJE">
   </form>
 </div>
