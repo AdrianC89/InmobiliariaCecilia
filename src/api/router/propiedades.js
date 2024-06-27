@@ -8,8 +8,9 @@ const { uploadImage, deleteImages } = require('../controllers/cloudinary.js');
 const fs = require('fs');
 const validateToken = require('../middlewares/validateToken.js');
 const isAuthenticated = require('../middlewares/isAuthenticated.js');
-const { log } = require('console');
-
+const { log, info } = require('console');
+const nodemailer = require('nodemailer')
+require('dotenv').config();
 // Aplicar el middleware a todas las rutas
 router.use(isAuthenticated);
 
@@ -89,19 +90,28 @@ router.get('/buscar-propiedades', async (req, res) =>{
 router.post('/enviar-email', async (req, res)=>{
   const {nombre, email, asunto, telefono, mensaje} = req.body
 
-  let transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'benjaminsobarzo2018@gmail.com', // Cambia esto por tu dirección de correo
-        pass: 'renaultfluence' // Cambia esto por tu contraseña
-  } 
-  });
-  let mailOptions = {
-    from: email,
-    to: 'admin@example.com', // Cambia esto por la dirección del administrador
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS}
+});
+
+  const mailOptions = {
+    from: "inmobiliaria web",
+    to: "benjaminsobarzo2018@gmail.com",
     subject: asunto,
     text: `Nombre: ${nombre}\nEmail: ${email}\nTeléfono: ${telefono}\nMensaje:\n${mensaje}`
-};
+  }
+
+  transporter.sendMail(mailOptions, (error, info)=>{
+    if (error) {
+      return res.status(500).send('Error al enviar el mensaje: ' + error.message);
+
+  }
+      res.status(200).send('Mensaje enviado con éxito');
+  })
+  
 })
 //rutas del administrador
 
