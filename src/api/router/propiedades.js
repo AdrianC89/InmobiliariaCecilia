@@ -8,7 +8,6 @@ const { uploadImage, deleteImages } = require('../controllers/cloudinary.js');
 const fs = require('fs');
 const validateToken = require('../middlewares/validateToken.js');
 const isAuthenticated = require('../middlewares/isAuthenticated.js');
-const { log, info } = require('console');
 const nodemailer = require('nodemailer')
 require('dotenv').config();
 // Aplicar el middleware a todas las rutas
@@ -106,7 +105,7 @@ router.post('/enviar-email', async (req, res)=>{
 
   transporter.sendMail(mailOptions, (error, info)=>{
     if (error) {
-      return res.status(500).send('Error al enviar el mensaje: ' + error.message);
+     res.status(500).send('Error al enviar el mensaje: ' + error.message);
 
   }
       res.status(200).send('Mensaje enviado con éxito');
