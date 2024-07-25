@@ -31,7 +31,20 @@
     </div>
     <div class="detalle-body">
         <div class="SectionProp">
+            <div id="video-item">
+                <button class="boton-video" id="volver">Volver</button>
+                <iframe 
+                src="<%= propiedad.video %>" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+                </iframe>
+            </div>
             <div id="carouselExampleIndicators" class="carousel slide">
+                <% if(propiedad.video){ %>
+                    <button class="boton-video"  id="btn-video">Ver Video</button>
+                 <% } %>
                 <div class="carousel-indicators">
                   <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                   <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -94,6 +107,18 @@
     
         </div>
     </div>
+    <script>
+        let btnVideo = document.getElementById("btn-video")
+        btnVideo.addEventListener("click", ()=>{
+            document.getElementById("carouselExampleIndicators").style.display = "none"
+            document.getElementById("video-item").style.display = "block"
+        })
+        let volver = document.getElementById("volver")
+        volver.addEventListener("click", ()=>{
+            document.getElementById("video-item").style.display = "none"
+            document.getElementById("carouselExampleIndicators").style.display = "block"
+        })
+    </script>
     
 </div>
  

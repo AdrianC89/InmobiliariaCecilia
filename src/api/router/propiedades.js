@@ -108,7 +108,7 @@ router.post('/enviar-email', async (req, res)=>{
      res.status(500).send('Error al enviar el mensaje: ' + error.message);
 
   }
-      res.status(200).send('Mensaje enviado con éxito');
+      res.status(200).render('../pages/contacto.ejs');
   })
   
 })
