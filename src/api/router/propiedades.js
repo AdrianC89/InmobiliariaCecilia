@@ -8,7 +8,8 @@ const { uploadImage, deleteImages } = require('../controllers/cloudinary.js');
 const fs = require('fs');
 const validateToken = require('../middlewares/validateToken.js');
 const isAuthenticated = require('../middlewares/isAuthenticated.js');
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
+const convertirUrlYoutube = require('../../Funciones/VideoEmbed.js')
 require('dotenv').config();
 // Aplicar el middleware a todas las rutas
 router.use(isAuthenticated);
@@ -44,6 +45,7 @@ router.get('/propiedad/:tipo', async (req, res) => {
     res.status(500).send('Error interno del servidor');
   }
 });
+
 
 
 
@@ -132,6 +134,8 @@ router.get('/form/crear',validateToken.authRequired, (req, res) => {
 
 // Ruta para procesar la creación de una nueva propiedad
 router.post('/', async (req, res) => {
+  //convertir video 
+  const EmbedVideo = convertirUrlYoutube(req.body.video)
   try {
     const propiedad = new Propiedad({
       descripcion: req.body.descripcion,
@@ -150,7 +154,7 @@ router.post('/', async (req, res) => {
       metro2prop: req.body.metro2prop,
       metro2terr: req.body.metro2terr,
       credito: req.body.credito,
-      video: req.body.video
+      video: EmbedVideo
     });
 
     if (req.body && req.files && req.files.image) {
